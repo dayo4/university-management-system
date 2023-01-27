@@ -1,0 +1,165 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* font-family: 'Work Sans', sans-serif; */
+/* font-family: 'Roboto', sans-serif; */
+
+/* DESIGN SYSTEM */
+
+#MANAGEMENT-WHOLE {
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: hidden !important;
+}
+
+#MARGIN-APP {
+  margin-left: 286px;
+  width: 100%;
+}
+
+p {
+  margin-bottom: 0 !important;
+}
+
+#MARGIN-UP-FIXED {
+  margin-top: 64px;
+}
+
+@media (max-width: 967px) {
+  #MARGIN-APP {
+    margin-left: 0px;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+$primary-t-color: #1315ba;
+$muted-t-color: rgba(157, 162, 176, 0.76);
+$ws-font: "Work Sans", sans-serif;
+
+// LOADER
+
+.load-load {
+  width: 100%;
+  height: 80vh;
+  background: var(--sec-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  place-items: center;
+  z-index: 1000;
+
+  p {
+    font-family: "Work Sans";
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 0 !important;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.ant-message {
+  z-index: 2000 !important;
+}
+
+// GLOBAL TABS STYLING
+// .nav-link {
+//   border: none !important;
+//   font-family: "Work Sans" !important;
+//   font-style: normal !important;
+//   font-weight: 600 !important;
+//   font-size: 18px !important;
+//   line-height: 21px !important;
+//   display: flex !important;
+//   justify-content: center !important;
+//   align-items: center !important;
+//     color: rgba(0, 0, 0, 0.6) !important;
+
+// }
+
+// .nav-item {
+//   display: flex !important;
+//   justify-content: center !important;
+//   align-items: center !important;
+// }
+
+// .nav-link.active {
+//   border-bottom: 7px solid $primary-t-color !important;
+//   padding-left: 15px !important;
+//   justify-content: center !important;
+//   font-family: "Work Sans" !important;
+//   font-style: normal !important;
+//   font-weight: 600 !important;
+//   font-size: 18px !important;
+//   line-height: 21px !important;
+//     color: rgba(0, 0, 0, 0.6) !important;
+
+// }
+
+// .active img {
+//   margin-right: 10px !important;
+// }
+
+// .nav-link img {
+//     margin-right: 10px !important;
+
+// }
+
+// // .nav-link p::after {
+// //   display: none;
+// // }
+
+// .nav-link p {
+//     color:red;
+// }
+
+// .nav-link p::before {
+//     color: green;
+// }
