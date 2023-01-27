@@ -1,0 +1,44 @@
+{
+  "name": "ums",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "env-cmd .env.development react-scripts test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.6",
+    "antd": "^5.1.6",
+    "axios": "^1.2.4",
+    "chart.js": "^4.2.0",
+    "framer-motion": "^8.5.2",
+    "rc-tabs": "^12.5.6",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.7.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.7.0",
+    "react-scripts": "^5.0.1",
+    "react-spinners": "^0.13.8",
+    "react-vis": "^1.11.12",
+    "sass": "^1.57.1",
+    "web-vitals": "^3.1.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
