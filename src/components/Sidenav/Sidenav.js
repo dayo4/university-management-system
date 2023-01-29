@@ -7,18 +7,14 @@ import {
   mdiViewDashboardOutline,
   mdiFileDocumentEditOutline,
   mdiChartLine,
-  mdiAccountTieHat,
+  mdiAccountTieHatOutline,
   mdiAccountSchoolOutline,
-  mdiCogTransferOutline
+  mdiCogTransferOutline,
+  mdiLogout
 } from '@mdi/js';
 
 // IMPORTING IMAGES
 import { logo, } from "../../static/icons"
-// import logo from "../../images/logo.svg";
-// import dash from "../../images/Vector.svg";
-import memo from "../../images/Vector-1.svg";
-import finance from "../../images/Group 69.svg";
-import staff from "../../images/Group 65.svg";
 
 
 
@@ -35,20 +31,21 @@ const Sidenav = () => {
     navigate(`/`);
   };
 
-  const [isActive, setActive] = useState("false");
+  // Set necessary states
+  const [isActive, setActive] = useState(false);
+  const [show, setShow] = useState(true);
+  const [navshow, setNavshow] = useState(false);
 
   const handleToggle = () => {
     setActive(!isActive);
   };
 
-  const [show, setShow] = useState(true);
-  const [navshow, setNavshow] = useState(false);
 
   const navItems = [
     { icon: mdiViewDashboardOutline, name: 'Dashboard', link: '/dashboard' },
     { icon: mdiFileDocumentEditOutline, name: 'Memo', link: '/memo' },
     { icon: mdiChartLine, name: 'Finance', link: '/finance' },
-    { icon: mdiAccountTieHat, name: 'Staff', link: '/staff' },
+    { icon: mdiAccountTieHatOutline, name: 'Staff', link: '/staff' },
     { icon: mdiAccountSchoolOutline, name: 'Student', link: '/student' },
     { icon: mdiCogTransferOutline, name: 'Settings', link: '/Settings' },
   ]
@@ -58,47 +55,48 @@ const Sidenav = () => {
       <NavLink
         key={i}
         to={"/management" + link}
-        className={({ isActive }) => (isActive ? "active" : "inactive")}
+        className={({ isActive }) => ("Link " + (isActive ? "active" : ""))}
       >
         <Icon path={icon}
           title={name}
-          size={1.3}
+          size={1}
           className="Icon"
         />
-        {name}{" "}
+        {name}
       </NavLink>
     )
   })
 
   return (
     <div>
-      <div className="btn-sidenav">
+      <div className="SideNavBtn">
         <button onClick={() => setNavshow(!navshow)}>
           <i className="bx bx-menu-alt-left"></i>
         </button>
       </div>
 
       <div className={"SideNavCont " + (!navshow ? "Hidden" : "")}>
-        <div className="side-logo">
-          <img src={logo} alt="" />
+        <div className="SideNavLogo">
+          <img src={logo} alt="ums logo" />
         </div>
 
-        <div className="inside-btn-sidenav">
+        <div className="InnerSideNavBtn">
           <button onClick={() => setNavshow(!navshow)}>
             <i className="bx bx-x"></i>
           </button>
         </div>
 
-        <div className="sidenav-links">
+        <div className="SideNavLinks">
           {/*  All main nav links display here. */}
           {MainNavLinks}
         </div>
 
-        <div className="logout-side" onClick={(e) => logout(e)}>
-          <p className="inactive">
-            <img src="./side_images/Group 65.svg" alt="" />
+        <div className="Logout" onClick={(e) => logout(e)}>
+            <Icon path={mdiLogout}
+              size={1}
+              className="Icon"
+            />
             Logout
-          </p>
         </div>
       </div>
     </div>
