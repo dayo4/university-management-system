@@ -2,10 +2,20 @@ import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./Sidenav.scss";
 import { message, Button } from "antd";
+import Icon from '@mdi/react';
+import {
+  mdiViewDashboardOutline,
+  mdiFileDocumentEditOutline,
+  mdiChartLine,
+  mdiAccountTieHat,
+  mdiAccountSchoolOutline,
+  mdiCogTransferOutline
+} from '@mdi/js';
 
 // IMPORTING IMAGES
-import logo from "../../images/logo.svg";
-import dash from "../../images/Vector.svg";
+import { logo, } from "../../static/icons"
+// import logo from "../../images/logo.svg";
+// import dash from "../../images/Vector.svg";
 import memo from "../../images/Vector-1.svg";
 import finance from "../../images/Group 69.svg";
 import staff from "../../images/Group 65.svg";
@@ -34,6 +44,32 @@ const Sidenav = () => {
   const [show, setShow] = useState(true);
   const [navshow, setNavshow] = useState(false);
 
+  const navItems = [
+    { icon: mdiViewDashboardOutline, name: 'Dashboard', link: '/dashboard' },
+    { icon: mdiFileDocumentEditOutline, name: 'Memo', link: '/memo' },
+    { icon: mdiChartLine, name: 'Finance', link: '/finance' },
+    { icon: mdiAccountTieHat, name: 'Staff', link: '/staff' },
+    { icon: mdiAccountSchoolOutline, name: 'Student', link: '/student' },
+    { icon: mdiCogTransferOutline, name: 'Settings', link: '/Settings' },
+  ]
+
+  const MainNavLinks = navItems.map(({ icon, name, link }, i) => {
+    return (
+      <NavLink
+        key={i}
+        to={"/management" + link}
+        className={({ isActive }) => (isActive ? "active" : "inactive")}
+      >
+        <Icon path={icon}
+          title={name}
+          size={1.3}
+          className="Icon"
+        />
+        {name}{" "}
+      </NavLink>
+    )
+  })
+
   return (
     <div>
       <div className="btn-sidenav">
@@ -42,7 +78,7 @@ const Sidenav = () => {
         </button>
       </div>
 
-      <div className={navshow ? "sidenav-cont" : "noSidenav-cont"}>
+      <div className={"SideNavCont " + (!navshow ? "Hidden" : "")}>
         <div className="side-logo">
           <img src={logo} alt="" />
         </div>
@@ -54,63 +90,8 @@ const Sidenav = () => {
         </div>
 
         <div className="sidenav-links">
-          <NavLink
-            to="/management/dashboard"
-            className={({ isActive }) => (isActive ? "active" : "inactive")}
-          >
-            <img src={dash} alt="" />
-            Dashboard{" "}
-          </NavLink>
-
-          <br />
-
-          <NavLink
-            to="/management/memo"
-            className={({ isActive }) => (isActive ? "active" : "inactive")}
-          >
-            <img src={memo} alt="" />
-            Memo{" "}
-          </NavLink>
-
-          <br />
-
-          <NavLink
-            to="/management/finance"
-            className={({ isActive }) => (isActive ? "active" : "inactive")}
-          >
-            <img src={finance} alt="" />
-            Finance
-          </NavLink>
-
-          <br />
-
-          <NavLink
-            to="/management/staff"
-            className={({ isActive }) => (isActive ? "active" : "inactive")}
-          >
-            <img src={staff}alt="" />
-            Staff{" "}
-          </NavLink>
-
-          <br />
-
-          <NavLink
-            to="/management/student"
-            className={({ isActive }) => (isActive ? "active" : "inactive")}
-          >
-            <img src="./side_images/side1.svg" alt="" />
-            Students{" "}
-          </NavLink>
-
-          <br />
-
-          <NavLink
-            to="/management/settings"
-            className={({ isActive }) => (isActive ? "active" : "inactive")}
-          >
-            <img src="./side_images/side1.svg" alt="" />
-            Settings{" "}
-          </NavLink>
+          {/*  All main nav links display here. */}
+          {MainNavLinks}
         </div>
 
         <div className="logout-side" onClick={(e) => logout(e)}>

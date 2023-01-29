@@ -6,7 +6,20 @@ $rb-font: 'Roboto', sans-serif;
 $black-c-text :rgba(0, 0, 0, 0.76);
 $form-bg-color:#F4F7FD;
 
-
+.SideNavCont {
+    height: 100vh;
+    width: 286px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-between;
+    align-items: center;
+    background-color:  $primary-t-color;
+    transition: 0.3s ease-in;
+    z-index: 100;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
 
 .sidenav-cont {
     height: 100vh;
@@ -161,7 +174,7 @@ $form-bg-color:#F4F7FD;
     }
 
 
-    .noSidenav-cont {
+    .SideNavCont.Hidden {
         // position: fixed;
         // left:-80%;
         transition: 0.3s ease-in;
