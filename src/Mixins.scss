@@ -1,0 +1,83 @@
+// THESE MIXINS BREAKPOINTS ARE BASED ON ANT DESIGN SYSTEM
+@mixin xxs-only {
+    @media only screen and (max-width: 360px) {
+		@content;
+	}
+}
+@mixin xs-only {
+	@media only screen and (max-width: 575px) {
+		@content;
+	}
+}
+@mixin xs-upward {
+	@media only screen and (min-width: 0) {
+		@content;
+	}
+}
+@mixin sm-only {
+	@media only screen and (min-width: 576px) and (max-width: 767px) {
+		@content;
+	}
+}
+@mixin sm-upward {
+	@media (min-width: 576px) {
+		@content;
+	}
+}
+@mixin sm-downward {
+	@media (max-width: 767px) {
+		@content;
+	}
+}
+@mixin md-only {
+	@media only screen and (min-width: 768px) and (max-width: 991px) {
+		@content;
+	}
+}
+@mixin md-upward {
+	@media (min-width: 768px) {
+		@content;
+	}
+}
+@mixin md-downward {
+	@media (max-width: 991px) {
+		@content;
+	}
+}
+@mixin lg-only {
+	@media only screen and (min-width: 992px) and (max-width: 1199px) {
+		@content;
+	}
+}
+@mixin lg-upward {
+	@media (min-width: 992px) {
+		@content;
+	}
+}
+@mixin lg-downward {
+	@media (max-width: 1199px) {
+		@content;
+	}
+}
+@mixin xl-only {
+	@media only screen and (min-width: 1200px) and (max-width: 1599px) {
+		@content;
+	}
+}
+@mixin xl-upward {
+	@media (min-width: 1200px) {
+		@content;
+	}
+}
+@mixin xl-downward {
+	@media (max-width: 1599px) {
+		@content;
+	}
+}
+@mixin xxl-only {
+	@media (min-width: 1600px) {
+		@content;
+	}
+}
+
+
