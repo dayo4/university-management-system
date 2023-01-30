@@ -1,4 +1,5 @@
 import logo from "./logo.svg";
+import "./Mixins.scss";
 import "./App.scss";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Login from "./components/Login/Login";
@@ -16,6 +17,8 @@ import Editstaff from "./components/Management/Staff/EditStaff/Editstaff";
 import Home from "./components/StaffApp/Home/Home";
 import AddStudent from "./components/Management/Student/AddStudent/AddStudent";
 // import 'bootstrap/dist/css/bootstrap.min.css';
+
+import IconsPreview from "./devOnly/IconsPreview";
 
 function App() {
   return (
@@ -41,6 +44,9 @@ function App() {
 
           {/* STAFF ROUTING */}
           <Route path="/staff/home" element={<Home />} exact />
+
+          {/* DevMode IconsPreview */}
+          <Route path="/icons-preview" element={<IconsPreview />} exact />
         </Routes>
       </Router>
     </div>
