@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import Sidenav from "../../Sidenav/Sidenav";
 import "./Topnav.scss";
 import { useParams } from "react-router-dom";
 
 const Topnav = (props) => {
-  const { heading } = useParams();
+  const heading = useParams();
   const [labb, setlabb] = useState(heading);
 
   // search
@@ -13,7 +12,12 @@ const Topnav = (props) => {
 
   return (
     <div id="MANAGEMENT-WHOLE">
-      <div className="topnav-problem">
+
+      <div className="TopNavCont">
+
+      </div>
+
+      {/* <div className="topnav-problem">
         <div className="topnav-cont">
           <p>{props.title}</p>
 
@@ -48,7 +52,7 @@ const Topnav = (props) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
