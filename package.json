@@ -5,6 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "start-prod": "env-cmd -f .env.production react-scripts start",
     "test": "env-cmd .env.development react-scripts test"
   },
   "author": "",
@@ -12,6 +15,8 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@mdi/js": "^7.1.96",
+    "@mdi/react": "^1.6.1",
     "@mui/material": "^5.11.6",
     "antd": "^5.1.6",
     "axios": "^1.2.4",
