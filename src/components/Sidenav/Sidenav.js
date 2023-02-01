@@ -7,7 +7,7 @@ import {
   mdiViewDashboardOutline,
   mdiFileDocumentEditOutline,
   mdiChartLine,
-  mdiAccountTieHatOutline,
+  mdiAccountTieOutline,
   mdiAccountSchoolOutline,
   mdiCogTransferOutline,
   mdiLogout
@@ -45,7 +45,7 @@ const Sidenav = () => {
     { icon: mdiViewDashboardOutline, name: 'Dashboard', link: '/dashboard' },
     { icon: mdiFileDocumentEditOutline, name: 'Memo', link: '/memo' },
     { icon: mdiChartLine, name: 'Finance', link: '/finance' },
-    { icon: mdiAccountTieHatOutline, name: 'Staff', link: '/staff' },
+    { icon: mdiAccountTieOutline, name: 'Staff', link: '/staff' },
     { icon: mdiAccountSchoolOutline, name: 'Student', link: '/student' },
     { icon: mdiCogTransferOutline, name: 'Settings', link: '/Settings' },
   ]
@@ -76,9 +76,6 @@ const Sidenav = () => {
       </div>
 
       <div className={"SideNavCont " + (!navshow ? "Hidden" : "")}>
-        <div className="SideNavLogo">
-          <img src={logo} alt="ums logo" />
-        </div>
 
         <div className="InnerSideNavBtn">
           <button onClick={() => setNavshow(!navshow)}>
@@ -86,17 +83,24 @@ const Sidenav = () => {
           </button>
         </div>
 
-        <div className="SideNavLinks">
-          {/*  All main nav links display here. */}
-          {MainNavLinks}
-        </div>
+        <section className="SideNavUpperCont">
+          <div className="SideNavLogo">
+            <img src={logo} alt="ums logo" />
+          </div>
+
+
+          <div className="SideNavLinks">
+            {/*  All main nav links display here. */}
+            {MainNavLinks}
+          </div>
+        </section>
 
         <div className="Logout" onClick={(e) => logout(e)}>
-            <Icon path={mdiLogout}
-              size={1}
-              className="Icon"
-            />
-            Logout
+          <Icon path={mdiLogout}
+            size={1}
+            className="Icon"
+          />
+          Logout
         </div>
       </div>
     </div>

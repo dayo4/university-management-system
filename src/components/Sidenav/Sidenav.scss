@@ -13,7 +13,7 @@ $form-bg-color: #f4f7fd;
     position: fixed;
     display: flex;
     flex-direction: column;
-    // justify-content: space-between;
+    justify-content: space-between;
     align-items: center;
     background-color: $primary-t-color;
     transition: 0.3s ease-in;
@@ -24,6 +24,12 @@ $form-bg-color: #f4f7fd;
     & .Icon {
         margin-right: 20px;
     }
+}
+
+.SideNavUpperCont {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .SideNavLogo {
