@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import Icon from '@mdi/react';
 import {
   mdiBell,
+  mdiClose,
   mdiAccountCircle
 } from '@mdi/js';
 import { Input, Popover, Divider } from 'antd';
@@ -16,23 +17,38 @@ const Topnav = (props) => {
   // search
   const [show, setShow] = useState(true);
   const [navshow, setNavshow] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [mobileScreen, setMobileScreen] = useState(false);
   const [searching, setsearching] = useState(false);
-  const clientWidth = useRef(575)
 
   // Setup Component methods
   function onSearch() {
-    setsearching(true)
-    setTimeout(() => {
-      setsearching(false)
+    // If its currently a mobile display, first click expands the search box. Otherwise just start the search function.
+    if (mobileScreen && !showMobileSearch) {
+      setShowMobileSearch(true)
+    }
+    else {
+      setsearching(true)
+      setTimeout(() => {
+        setsearching(false)
 
-    }, 2000)
+      }, 2000)
+    }
   }
 
   useEffect(() => {
-    clientWidth.current = window.innerWidth
-    window.addEventListener("resize", () => {
-      clientWidth.current = window.innerWidth
-    })
+    function handleResize() {
+      if (window.innerWidth <= 575) {
+        setMobileScreen(true)
+      }
+      else {
+        setMobileScreen(false)
+        setShowMobileSearch(false)
+      }
+    }
+    handleResize()
+
+    window.addEventListener("resize", handleResize)
   })
 
   return (
@@ -43,8 +59,14 @@ const Topnav = (props) => {
           <h5 className="Heading">{props.title}</h5>
 
           {/* SEARCH BAR */}
-          <div className={"SearchBar" + (clientWidth <= 575 ? "SmallScreen" : "")}>
+          <div className={"SearchBar " + (mobileScreen && !showMobileSearch ? "SmallScreen" : "SmallScreenSearch")}>
             <Search className="Input" placeholder="Search" loading={searching} enterButton onSearch={onSearch}
+            />
+            <Icon path={mdiClose}
+              onClick={() => setShowMobileSearch(false)}
+              size={1.2}
+              title="close"
+              className={mobileScreen && showMobileSearch ? "CloseIcon" : "HideCloseIcon"}
             />
           </div>
 
@@ -59,7 +81,7 @@ const Topnav = (props) => {
             </div>
 
             <Popover className="Profile" placement="bottomRight" title={
-                  <Divider plain><b>Admin</b></Divider>
+              <Divider plain><b>Admin</b></Divider>
             } content={
               <div className="Details">
                 <small>user@gmail.com</small>

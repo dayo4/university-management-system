@@ -41,9 +41,11 @@ $form-bg-color: #f4f7fd;
             width: 300px;
         }
 
-        // & .ant-input-group-addon {
-        //     // background-color: $primary-t-color !important;
-        // }
+        & .HideCloseIcon {
+            //only shows on small screen search
+            display: none;
+        }
+
         & button {
             display: flex;
             align-items: center;
@@ -152,27 +154,27 @@ $form-bg-color: #f4f7fd;
             font-size: 16px;
         }
 
-        & .SearchBar:not(.SmallScreen) {
-            & input {
-                display: none;
-            }
+        & .SearchBar.SmallScreenSearch {
+            position: absolute;
+            width: 100%;
+            z-index: 102;
+            background-color: white;
+            padding-right: 7px;
+
             & .Input {
-                width: 40px;
-                & .ant-input-group-addon {
-                    overflow: hidden;
-                    border-radius: 28px;
-                    border: solid $primary-t-color 1px !important;
-                }
-                & .ant-input-group-addon * {
-                    background-color: white;
-                    color: $primary-t-color;
-                }
+                width: 75%;
+            }
+            & .CloseIcon {
+                color: $primary-t-color;
+                margin-left: 5px;
+                cursor: pointer;
             }
         }
         & .SearchBar.SmallScreen {
             & input {
-                // display: none;
-                width: 0 !important;
+                width: 0;
+                height: 0;
+                padding: 0;
             }
             & .Input {
                 width: 40px;
