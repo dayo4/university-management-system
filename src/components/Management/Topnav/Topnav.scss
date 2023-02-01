@@ -151,13 +151,13 @@ $form-bg-color: #f4f7fd;
         & .Heading {
             font-size: 16px;
         }
-    
+
         & .SearchBar:not(.SmallScreen) {
             & input {
                 display: none;
             }
             & .Input {
-                width: 40px;                
+                width: 40px;
                 & .ant-input-group-addon {
                     overflow: hidden;
                     border-radius: 28px;
@@ -168,14 +168,14 @@ $form-bg-color: #f4f7fd;
                     color: $primary-t-color;
                 }
             }
-            
         }
         & .SearchBar.SmallScreen {
             & input {
-                display: none;
+                // display: none;
+                width: 0 !important;
             }
             & .Input {
-                width: 40px;                
+                width: 40px;
                 & .ant-input-group-addon {
                     overflow: hidden;
                     border-radius: 28px;
@@ -186,7 +186,6 @@ $form-bg-color: #f4f7fd;
                     color: $primary-t-color;
                 }
             }
-            
         }
     }
 }
@@ -208,6 +207,5 @@ $form-bg-color: #f4f7fd;
                 }
             }
         }
-
     }
 }

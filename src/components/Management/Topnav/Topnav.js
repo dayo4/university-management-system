@@ -4,7 +4,7 @@ import {
   mdiBell,
   mdiAccountCircle
 } from '@mdi/js';
-import { Input, Popover } from 'antd';
+import { Input, Popover, Divider } from 'antd';
 const { Search } = Input;
 import "./Topnav.scss";
 import { useParams } from "react-router-dom";
@@ -29,9 +29,9 @@ const Topnav = (props) => {
   }
 
   useEffect(() => {
-    clientWidth.current =  window.innerWidth
+    clientWidth.current = window.innerWidth
     window.addEventListener("resize", () => {
-     clientWidth.current =  window.innerWidth
+      clientWidth.current = window.innerWidth
     })
   })
 
@@ -58,21 +58,25 @@ const Topnav = (props) => {
               <i className="Dot"></i>
             </div>
 
-            {/* <div className="Profile"> */}
-            <Popover className="Profile" placement="bottomRight" title={"text"} content={"content"} trigger="click">
+            <Popover className="Profile" placement="bottomRight" title={
+                  <Divider plain><b>Admin</b></Divider>
+            } content={
+              <div className="Details">
+                <small>user@gmail.com</small>
+              </div>
+            } trigger="click">
               <Icon path={mdiAccountCircle}
                 size={1.4}
                 className="Icon"
                 title="User"
-                />
+              />
               {/* <img src="./userimg.svg" alt="" /> */}
 
               <div className="Details">
                 <h6>Admin</h6>
                 <small>user@gmail.com</small>
               </div>
-            {/* </div> */}
-                </Popover>
+            </Popover>
           </div>
         </div>
       </section>
