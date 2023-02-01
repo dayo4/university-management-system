@@ -1,21 +1,81 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import Icon from '@mdi/react';
+import {
+  mdiBell,
+  mdiAccountCircle
+} from '@mdi/js';
+import { Input, Popover } from 'antd';
+const { Search } = Input;
 import "./Topnav.scss";
 import { useParams } from "react-router-dom";
 
 const Topnav = (props) => {
-  const heading = useParams();
-  const [labb, setlabb] = useState(heading);
+  // const heading = useParams();
+  // const [labb, setlabb] = useState(heading);
 
   // search
   const [show, setShow] = useState(true);
   const [navshow, setNavshow] = useState(false);
+  const [searching, setsearching] = useState(false);
+  const clientWidth = useRef(575)
+
+  // Setup Component methods
+  function onSearch() {
+    setsearching(true)
+    setTimeout(() => {
+      setsearching(false)
+
+    }, 2000)
+  }
+
+  useEffect(() => {
+    clientWidth.current =  window.innerWidth
+    window.addEventListener("resize", () => {
+     clientWidth.current =  window.innerWidth
+    })
+  })
 
   return (
     <div id="MANAGEMENT-WHOLE">
 
-      <div className="TopNavCont">
+      <section className="TopNavWrapper">
+        <div className="TopNavCont">
+          <h5 className="Heading">{props.title}</h5>
 
-      </div>
+          {/* SEARCH BAR */}
+          <div className={"SearchBar" + (clientWidth <= 575 ? "SmallScreen" : "")}>
+            <Search className="Input" placeholder="Search" loading={searching} enterButton onSearch={onSearch}
+            />
+          </div>
+
+          {/* USER PROFILE AREA */}
+          <div className="UserNotification">
+            <div className="NotiIcon">
+              <Icon path={mdiBell}
+                size={1.1}
+                title="Notifications"
+              />
+              <i className="Dot"></i>
+            </div>
+
+            {/* <div className="Profile"> */}
+            <Popover className="Profile" placement="bottomRight" title={"text"} content={"content"} trigger="click">
+              <Icon path={mdiAccountCircle}
+                size={1.4}
+                className="Icon"
+                title="User"
+                />
+              {/* <img src="./userimg.svg" alt="" /> */}
+
+              <div className="Details">
+                <h6>Admin</h6>
+                <small>user@gmail.com</small>
+              </div>
+            {/* </div> */}
+                </Popover>
+          </div>
+        </div>
+      </section>
 
       {/* <div className="topnav-problem">
         <div className="topnav-cont">
