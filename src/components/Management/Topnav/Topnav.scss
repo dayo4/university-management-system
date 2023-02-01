@@ -30,7 +30,7 @@ $form-bg-color: #f4f7fd;
         font-size: 24px;
         line-height: 28px;
         letter-spacing: 1px;
-        color: $primary-t-color;
+        color: $pri-color;
         margin: 0;
     }
 
@@ -85,13 +85,13 @@ $form-bg-color: #f4f7fd;
             justify-content: center;
             align-items: center;
             width: 130px;
-            font-family: $ws-font;
+            font-family: $work-sans;
             cursor: pointer;
             // & .img {
             //     margin-right: 10px;
             // }
             & svg {
-                color: grey;
+                color: $pri-color;
                 margin-right: 5px;
             }
             & .Details {
@@ -99,7 +99,7 @@ $form-bg-color: #f4f7fd;
                 max-width: 80%;
                 & h6 {
                     font-size: 12px;
-                    color: $primary-t-color;
+                    color: $pri-color;
                     font-weight: bolder;
                     margin: 0;
                     transform: translateY(7px);
@@ -165,7 +165,7 @@ $form-bg-color: #f4f7fd;
                 width: 75%;
             }
             & .CloseIcon {
-                color: $primary-t-color;
+                color: $pri-color;
                 margin-left: 5px;
                 cursor: pointer;
             }
@@ -181,11 +181,11 @@ $form-bg-color: #f4f7fd;
                 & .ant-input-group-addon {
                     overflow: hidden;
                     border-radius: 28px;
-                    border: solid $primary-t-color 1px !important;
+                    border: solid $pri-color 1px !important;
                 }
                 & .ant-input-group-addon * {
                     background-color: white;
-                    color: $primary-t-color;
+                    color: $pri-color;
                 }
             }
         }

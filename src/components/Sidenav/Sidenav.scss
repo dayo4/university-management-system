@@ -15,7 +15,7 @@ $form-bg-color: #f4f7fd;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: $primary-t-color;
+    background-color: $pri-color;
     transition: 0.3s ease-in;
     z-index: 100;
     overflow-x: hidden;
@@ -102,7 +102,7 @@ $form-bg-color: #f4f7fd;
             background-color: transparent;
             i {
                 font-size: 30px;
-                color: #1315ba;
+                color: $pri-color;
                 padding: 7px 14px 14px 5px;
             }
         }
