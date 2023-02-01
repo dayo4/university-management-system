@@ -5,6 +5,7 @@ $ws-font: "Work Sans", sans-serif;
 $rb-font: "Roboto", sans-serif;
 $black-c-text: rgba(0, 0, 0, 0.76);
 $form-bg-color: #f4f7fd;
+@import "../../Mixins.scss";
 
 .SideNavCont {
     height: 100vh;
@@ -81,7 +82,7 @@ $form-bg-color: #f4f7fd;
     display: none;
 }
 
-@media (max-width: 967px) {
+@include md-downward {
     .SideNavBtn {
         display: block;
         position: fixed;
