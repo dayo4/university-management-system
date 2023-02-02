@@ -68,7 +68,7 @@ p {
   margin-top: 64px;
 }
 
-@media (max-width: 967px) {
+@include md-downward {
   #MARGIN-APP {
     margin-left: 0px;
   }
