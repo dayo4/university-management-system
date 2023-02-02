@@ -18,6 +18,10 @@ import Home from "./components/StaffApp/Home/Home";
 import AddStudent from "./components/Management/Student/AddStudent/AddStudent";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+/* Import Students Routes */
+import StudentsSection from "./components/Student/Index";
+
 import IconsPreview from "./devOnly/IconsPreview";
 
 function App() {
@@ -44,6 +48,9 @@ function App() {
 
           {/* STAFF ROUTING */}
           <Route path="/staff/home" element={<Home />} exact />
+
+          {/* STAFF ROUTING */}
+          <Route path="/student" element={<StudentsSection />} exact />
 
           {/* DevMode IconsPreview */}
           <Route path="/icons-preview" element={<IconsPreview />} exact />
