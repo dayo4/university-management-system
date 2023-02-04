@@ -44,7 +44,7 @@ const Sidenav = () => {
   const navItems = [
     { icon: mdiViewDashboardOutline, name: 'Dashboard', link: '' },
     { icon: mdiCardsOutline, name: 'Fees Management', link: '/fees' },
-    { icon: mdiChartLine, name: 'Finance', link: '/finance' },
+    { icon: mdiChartLine, name: 'Attendance', link: '/attendance' },
     { icon: mdiAccountTieOutline, name: 'Staff', link: '/staff' },
     { icon: mdiAccountSchoolOutline, name: 'Student', link: '/student' },
     { icon: mdiCogTransferOutline, name: 'Settings', link: '/Settings' },
