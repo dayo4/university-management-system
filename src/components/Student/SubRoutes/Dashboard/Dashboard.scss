@@ -1,0 +1,84 @@
+@import "../../../../Mixins.scss";
+
+.ProfileImage {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    & .Image {
+        margin-right: 20px;
+        & > svg {
+            color: $helper-text-color;
+        }
+    }
+
+    & .Buttons {
+        width: 100px;
+
+        & button {
+            width: 90px;
+            border-radius: 3px;
+            text-align: start;
+            font-weight: bold;
+            padding: 2px;
+            transition: 0.3s;
+            &:active {
+                opacity: 0.75;
+            }
+        }
+        & button:first-child {
+            color: $success-color;
+            border: solid $success-color 1.5px;
+            &:hover {
+                color: white;
+                border: solid white 1.5px;
+                background-color: $success-color;
+            }
+        }
+        & button:last-child {
+            margin-top: 5px;
+            color: $sec-color;
+            border: solid $sec-color 1.5px;
+            &:hover {
+                color: white;
+                border: solid white 1.5px;
+                background-color: $sec-color;
+            }
+        }
+
+        & svg {
+            margin-right: 5px;
+        }
+    }
+}
+
+.ProfileDetails {
+    margin-top: 40px;
+    padding-left: 10px;
+    & ul {
+        list-style: none;
+        & li {
+            display: flex;
+            font-weight: bold;
+            text-transform: uppercase;
+            & span:first-child {
+                width: 100px;
+                color: $helper-text-color
+            }
+        }
+    }
+}
+
+@include xs-only {
+    .ProfileImage {
+        // display: block;
+        justify-content: center;
+
+        & .Image {
+            margin-right: 0;
+        }
+        // & button {
+        //     margin-left: 20px;
+        // }
+    }
+}
