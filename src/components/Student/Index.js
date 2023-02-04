@@ -9,6 +9,10 @@ import Topnav from "./Navs/TopNav/TopNav";
 
 /* Import students section routes */
 import Dashboard from "./SubRoutes/Dashboard/Dashboard";
+/* Fees Mgt Routes */
+import FeesManagement from "./SubRoutes/FeesManagement/Index";
+import Payment from "./SubRoutes/FeesManagement/SubRoutes/Payment/Index";
+import Receipts from "./SubRoutes/FeesManagement/SubRoutes/Receipts/Index";
 
 const EntryPoint = ({ children }) => {
   const user = JSON.parse(localStorage.getItem("userData"));
@@ -26,6 +30,12 @@ const EntryPoint = ({ children }) => {
         <Col span={22} id="MARGIN-UP-FIXED">
           <Routes>
             <Route path="/" element={<Dashboard />} />
+            <Route path="fees/*">
+              <Route path="" element={<FeesManagement />} />
+              <Route path="payment" element={<Payment />} />
+              <Route path="receipts" element={<Receipts />} />
+
+            </Route>
           </Routes>
         </Col>
       </Row>
