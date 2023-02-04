@@ -1,0 +1,32 @@
+@import "../../../../Mixins.scss";
+
+.AttenWrapper {
+    margin: 30px 5px;
+    & .List {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+        width: 100%;
+        background-color: $subtle-bg-color;
+        text-align: center;
+        padding: 5px 10px;
+        margin: 5px 0;
+        font-weight: bold;
+        color: $body-text-color;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: $shadow-1;
+        cursor: pointer;
+        &:active {
+            opacity: 0.75;
+        }
+
+    }
+}
+
+@include lg-downward {
+    // .Box {
+    //     margin: 30px 20px 5px 20px;
+    // }
+}
