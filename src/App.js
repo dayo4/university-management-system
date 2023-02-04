@@ -50,7 +50,7 @@ function App() {
           <Route path="/staff/home" element={<Home />} exact />
 
           {/* STAFF ROUTING */}
-          <Route path="/student" element={<StudentsSection />} exact />
+          <Route path="/student/*" element={<StudentsSection />} exact />
 
           {/* DevMode IconsPreview */}
           <Route path="/icons-preview" element={<IconsPreview />} exact />
