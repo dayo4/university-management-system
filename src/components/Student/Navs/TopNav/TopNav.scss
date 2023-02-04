@@ -12,6 +12,11 @@ $form-bg-color: #f4f7fd;
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 1000;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+     -ms-user-select: none;
+         user-select: none;
 }
 
 .TopNavCont {
@@ -60,7 +65,7 @@ $form-bg-color: #f4f7fd;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 150px;
+        width: 190px;
 
         & .NotiIcon {
             position: relative;
@@ -84,7 +89,7 @@ $form-bg-color: #f4f7fd;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 130px;
+            width: 170px;
             font-family: $work-sans;
             cursor: pointer;
             // & .img {
@@ -102,6 +107,7 @@ $form-bg-color: #f4f7fd;
                     color: $pri-color;
                     font-weight: bolder;
                     margin: 0;
+                    text-overflow: ellipsis;
                     transform: translateY(7px);
                 }
                 & small {
@@ -184,8 +190,21 @@ $form-bg-color: #f4f7fd;
                     border: solid $pri-color 1px !important;
                 }
                 & .ant-input-group-addon * {
+                    height: 25px;
                     background-color: white;
                     color: $pri-color;
+                }
+            }
+        }
+        & .UserNotification {
+            width: 100px;
+            & .Profile {
+                width: 70px;
+                & svg {
+                    margin-right: 0;
+                }
+                & .Details {
+                    display: none;
                 }
             }
         }
@@ -197,17 +216,17 @@ $form-bg-color: #f4f7fd;
         & .Heading {
             font-size: 14px;
         }
-        & .UserNotification {
-            width: 100px;
-            & .Profile {
-                width: 40px;
-                & svg {
-                    margin-right: 0;
-                }
-                & .Details {
-                    display: none;
-                }
-            }
-        }
+        // & .UserNotification {
+        //     width: 100px;
+        //     & .Profile {
+        //         width: 40px;
+        //         & svg {
+        //             margin-right: 0;
+        //         }
+        //         & .Details {
+        //             display: none;
+        //         }
+        //     }
+        // }
     }
 }
