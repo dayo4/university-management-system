@@ -13,6 +13,9 @@ import Dashboard from "./SubRoutes/Dashboard/Dashboard";
 import FeesManagement from "./SubRoutes/FeesManagement/Index";
 import Payment from "./SubRoutes/FeesManagement/SubRoutes/Payment/Index";
 import Receipts from "./SubRoutes/FeesManagement/SubRoutes/Receipts/Index";
+import Complaint from "./SubRoutes/FeesManagement/SubRoutes/Complaint/Index";
+/* Attendance Routes */
+import Attendamce from "./SubRoutes/Attendance/Index";
 
 const EntryPoint = ({ children }) => {
   const user = JSON.parse(localStorage.getItem("userData"));
@@ -34,7 +37,10 @@ const EntryPoint = ({ children }) => {
               <Route path="" element={<FeesManagement />} />
               <Route path="payment" element={<Payment />} />
               <Route path="receipts" element={<Receipts />} />
-
+              <Route path="complaint" element={<Complaint />} />
+            </Route>
+            <Route path="attendance/*">
+              <Route path="" element={<Attendamce />} />
             </Route>
           </Routes>
         </Col>
