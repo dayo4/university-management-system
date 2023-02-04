@@ -5,7 +5,7 @@ import { message, Button } from "antd";
 import Icon from '@mdi/react';
 import {
   mdiViewDashboardOutline,
-  mdiFileDocumentEditOutline,
+  mdiCardsOutline,
   mdiChartLine,
   mdiAccountTieOutline,
   mdiAccountSchoolOutline,
@@ -42,8 +42,8 @@ const Sidenav = () => {
 
 
   const navItems = [
-    { icon: mdiViewDashboardOutline, name: 'Dashboard', link: '/dashboard' },
-    { icon: mdiFileDocumentEditOutline, name: 'Memo', link: '/memo' },
+    { icon: mdiViewDashboardOutline, name: 'Dashboard', link: '' },
+    { icon: mdiCardsOutline, name: 'Fees Management', link: '/fees' },
     { icon: mdiChartLine, name: 'Finance', link: '/finance' },
     { icon: mdiAccountTieOutline, name: 'Staff', link: '/staff' },
     { icon: mdiAccountSchoolOutline, name: 'Student', link: '/student' },
@@ -54,7 +54,7 @@ const Sidenav = () => {
     return (
       <NavLink
         key={i}
-        to={"/management" + link}
+        to={"/student" + link}
         className={({ isActive }) => ("Link " + (isActive ? "active" : ""))}
       >
         <Icon path={icon}
