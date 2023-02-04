@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col } from 'antd';
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Icon from '@mdi/react';
 import {
@@ -12,8 +12,6 @@ import {
 } from '@mdi/js';
 import "./Index.scss"
 
-// let navigate = useNavigate();
-
 const Items = [
   { title: 'Payment', link: 'payment', icon: mdiCardsOutline },
   { title: 'Receipts', link: 'receipts', icon: mdiFileDocumentMultipleOutline },
@@ -22,11 +20,13 @@ const Items = [
 ]
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <Row wrap justify="center" className="EntryWrapper">
       {Items.map((item, i) => {
         return (
-          <Col  key={i} className="Box" xs={10} sm={7}>
+          <Col onClick={() => navigate('/student/fees/' + item.link)} key={i} className="Box" xs={10} sm={7}>
             <div className='Icon'>
               <Icon path={item.icon}
                 title={item.title}
