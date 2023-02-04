@@ -1,5 +1,7 @@
 import React from 'react'
-import { Row, Col, Button } from 'antd';
+import {useNavigate} from "react-router-dom"
+
+import { Row, Col } from 'antd';
 import Icon from '@mdi/react';
 import {
   mdiCardsOutline,
@@ -19,12 +21,15 @@ const Items = [
 ]
 
 const Home = () => {
+  const navigate = useNavigate();
+
+
   return (
     <div>
       <Row wrap justify="space-around" className="SubWrapper">
         {Items.map((item, i) => {
           return (
-            <Col key={i} className={"Box " + (i === 0 ? "Active" : "")} xs={6}>
+            <Col onClick={()=>navigate('/student/fees/'+item.link)} key={i} className={"Box " + (i === 0 ? "Active" : "")} xs={6}>
               <div className='Icon'>
                 <Icon path={item.icon}
                   title={item.title}
