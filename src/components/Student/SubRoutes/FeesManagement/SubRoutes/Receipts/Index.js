@@ -1,4 +1,6 @@
 import React from 'react'
+import {useNavigate} from "react-router-dom"
+
 import { Row, Col, Table, Button } from 'antd';
 import Icon from '@mdi/react';
 import {
@@ -76,12 +78,14 @@ for (let i = 0; i < 20; i++) {
 
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <Row wrap justify="space-around" className="SubWrapper">
         {Items.map((item, i) => {
           return (
-            <Col key={i} className={"Box " + (i === 1 ? "Active" : "")} xs={6}>
+            <Col onClick={()=>navigate('/student/fees/'+item.link)} key={i} className={"Box " + (i === 1 ? "Active" : "")} xs={6}>
               <div className='Icon'>
                 <Icon path={item.icon}
                   title={item.title}
