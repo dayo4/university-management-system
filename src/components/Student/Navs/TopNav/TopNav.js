@@ -81,7 +81,7 @@ const Topnav = (props) => {
             </div>
 
             <Popover className="Profile" placement="bottomRight" title={
-              <Divider plain><b>Admin</b></Divider>
+              <Divider plain style={{color:"#8C8CA2"}} ><b>Student</b></Divider>
             } content={
               <div className="Details">
                 <p>Profile</p>
@@ -96,8 +96,8 @@ const Topnav = (props) => {
               {/* <img src="./userimg.svg" alt="" /> */}
 
               <div className="Details">
-                <h6>Admin</h6>
-                <small>user@gmail.com</small>
+                <h6>Afolabi Hassan</h6>
+                <small>Student</small>
               </div>
             </Popover>
           </div>

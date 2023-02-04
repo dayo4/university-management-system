@@ -84,8 +84,8 @@ const Topnav = (props) => {
               <Divider plain><b>Admin</b></Divider>
             } content={
               <div className="Details">
-                <p>Profile</p>
-                <p>user@gmail.com</p>
+                <p>Ademola Ojo</p>
+                <p>Admin</p>
               </div>
             } trigger="click">
               <Icon path={mdiAccountCircle}
@@ -96,8 +96,8 @@ const Topnav = (props) => {
               {/* <img src="./userimg.svg" alt="" /> */}
 
               <div className="Details">
-                <h6>Admin</h6>
-                <small>user@gmail.com</small>
+                <h6>Ademola Ojo</h6>
+                <small>Admin</small>
               </div>
             </Popover>
           </div>
