@@ -91,6 +91,7 @@ $form-bg-color: #f4f7fd;
 
 //Variables
 $pri-color: #4B4DED;
+$pri-color-faded: rgba(75, 78, 237, 0.5);
 $sec-color: #ED4B9E;
 $ter-color: #F3D9DA;
 $subtle-bg-color: #ECF1F4;
@@ -99,3 +100,31 @@ $dark-color: #0E0E2C;
 $body-text-color: #4A4A68;
 $helper-text-color: #8C8CA2;
 $success-color: #31D0AA;
+
+// %pri-color-bg-hover {
+// 	background-color: $pri-color;
+// 	opacity: 0.75;
+// }
+// %pri-color-bg-active {
+// 	background-color: $pri-color;
+// 	opacity: 0.75;
+// }
+
+// Box-Shadows
+$shadow-8 : 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+
+$shadow-7 : 0px 4px 5px -2px rgba(0, 0, 0, 0.2), 0px 7px 10px 1px rgba(0, 0, 0, 0.14), 0px 2px 16px 1px rgba(0, 0, 0, 0.12);
+
+$shadow-6 : 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+
+$shadow-5 : 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+
+$shadow-4 : 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
+$shadow-3 : 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
+
+$shadow-2 : 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+
+$shadow-1 : 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
+$shadow-0 : 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
