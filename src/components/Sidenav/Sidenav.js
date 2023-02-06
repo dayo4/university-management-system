@@ -10,7 +10,9 @@ import {
   mdiAccountTieOutline,
   mdiAccountSchoolOutline,
   mdiCogTransferOutline,
-  mdiLogout
+  mdiLogout,
+  mdiClose,
+  mdiText
 } from '@mdi/js';
 
 // IMPORTING IMAGES
@@ -69,19 +71,21 @@ const Sidenav = () => {
 
   return (
     <div>
-      <div className="SideNavBtn">
-        <button onClick={() => setNavshow(!navshow)}>
-          <i className="bx bx-menu-alt-left"></i>
-        </button>
-      </div>
+      <Icon className="SideNavBtn"
+        path={mdiText}
+        onClick={() => setNavshow(!navshow)}
+        style={{ marginRight: '3px' }}
+        size={1.3}
+      />
 
       <div className={"SideNavCont " + (!navshow ? "Hidden" : "")}>
 
-        <div className="InnerSideNavBtn">
-          <button onClick={() => setNavshow(!navshow)}>
-            <i className="bx bx-x"></i>
-          </button>
-        </div>
+      <Icon
+          className="InnerSideNavBtn"
+          path={mdiClose} onClick={() => setNavshow(!navshow)}
+          style={{ marginRight: '3px' }}
+          size={1.3}
+        />
 
         <section className="SideNavUpperCont">
           <div className="SideNavLogo">

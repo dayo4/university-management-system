@@ -92,41 +92,27 @@ $form-bg-color: #f4f7fd;
     .SideNavBtn {
         display: block;
         position: fixed;
-        left: 0px;
-        top: 7px;
+        left: 5px;
+        top: 13px;
         opacity: 1;
-        z-index: 100;
-
-        button {
-            border: none;
-            background-color: transparent;
-            i {
-                font-size: 30px;
-                color: $pri-color;
-                padding: 7px 14px 14px 5px;
-            }
-        }
+        z-index: 1001;
+        color: $pri-color;
+        cursor: pointer;
+        font-weight: bold;
     }
 
     .InnerSideNavBtn {
         display: block;
         position: absolute;
-        right: 2px;
-        top: 2px;
+        right: 5px;
+        top: 5px;
         opacity: 1;
-
-        button {
-            border: none;
-            background-color: transparent;
-            // background-color: white;
-            // border-radius: 100% 0% 0% 100% / 0% 0% 100% 100%  ;
-            i {
-                font-size: 30px;
-                color: white;
-                padding: 5px 2px 9px 10px;
-            }
-        }
+        z-index: 1001;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
     }
+
 
     .SideNavCont.Hidden {
         transition: 0.3s ease-in;
