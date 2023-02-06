@@ -57,28 +57,12 @@
         color: $body-text-color;
     }
 
-    & .Body {
-        background-color: $subtle-bg-color;
-        border-radius: 5px;
-        padding: 10px;
-    }
-
-    & .Actions {
-        margin: 30px 0 40px 0;
-
-        & .Attach {
-            cursor: pointer;
-            color: $helper-text-color;
-            // padding: ;
-        }
-        & .Icon {
-            margin-right: 5px;
-            margin-bottom: 2px;
-        }
-    }
 }
 
 .RTable {
+    // & thead {
+    //     background-color: $subtle-bg-color;
+    // }
     & td {
         font-weight: bold;
         font-size: 12px;
