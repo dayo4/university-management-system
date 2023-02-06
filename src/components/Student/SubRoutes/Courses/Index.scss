@@ -1,0 +1,73 @@
+@import "../../../../Mixins.scss";
+
+.AttenWrapper {
+    margin: 30px 5px;
+    & .List {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+        width: 100%;
+        background-color: $subtle-bg-color;
+        text-align: center;
+        padding: 5px 10px;
+        margin: 5px 0;
+        font-weight: bold;
+        color: $body-text-color;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: $shadow-1;
+        cursor: pointer;
+        &:active {
+            opacity: 0.75;
+        }
+
+    }
+}
+
+.Content {
+    margin: 30px 0;
+    & .Heading {
+        color: $body-text-color;
+        font-weight: bold;
+        // text-align: center;
+    }
+
+    & .Body {
+        background-color: $subtle-bg-color;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    & .Actions {
+        margin: 30px 0 40px 0;
+
+        & .Attach {
+            cursor: pointer;
+            color: $helper-text-color;
+            // padding: ;
+        }
+        & .Icon {
+            margin-right: 5px;
+            margin-bottom: 2px;
+        }
+    }
+}
+
+.CTable {
+    // & thead {
+    //     background-color: $subtle-bg-color;
+    // }
+    & td {
+        font-weight: bold;
+        font-size: 12px;
+        color: $body-text-color;
+        text-align: left;
+    }
+}
+
+@include lg-downward {
+    // .Box {
+    //     margin: 30px 20px 5px 20px;
+    // }
+}
