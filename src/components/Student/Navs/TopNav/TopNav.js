@@ -3,16 +3,22 @@ import Icon from '@mdi/react';
 import {
   mdiBell,
   mdiClose,
-  mdiAccountCircle
+  mdiAccountCircle,
+  mdiAccountDetailsOutline,
+  mdiAccountBoxMultipleOutline,
+  mdiLogout
 } from '@mdi/js';
-import { Input, Popover, Divider } from 'antd';
+import { Input, Popover, Divider, Button, Row, Col, message } from 'antd';
 const { Search } = Input;
 import "./TopNav.scss";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { logo2 } from "../../../../static/icons"
 
 const Topnav = (props) => {
   // const heading = useParams();
   // const [labb, setlabb] = useState(heading);
+  const navigate = useNavigate();
+
 
   // search
   const [show, setShow] = useState(true);
@@ -36,9 +42,18 @@ const Topnav = (props) => {
     }
   }
 
+
+  // LOGOUT FUNCTION
+  const logout = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    message.info("Logout Successful");
+    navigate(`/`);
+  };
+
   useEffect(() => {
     function handleResize() {
-      if (window.innerWidth <= 575) {
+      if (window.innerWidth <= 767) {
         setMobileScreen(true)
       }
       else {
@@ -56,7 +71,11 @@ const Topnav = (props) => {
 
       <section className="TopNavWrapper">
         <div className="TopNavCont">
-          <h5 className="Heading">{props.title}</h5>
+
+          <h5 className="Heading">
+            <img className="Logo" src={logo2} alt="ums logo" />
+            {props.title}
+          </h5>
 
           {/* SEARCH BAR */}
           <div className={"SearchBar " + (mobileScreen && !showMobileSearch ? "SmallScreen" : "SmallScreenSearch")}>
@@ -72,21 +91,74 @@ const Topnav = (props) => {
 
           {/* USER PROFILE AREA */}
           <div className="UserNotification">
-            <div className="NotiIcon">
+            {/* Notifications */}
+            <Popover
+              placement="bottomRight"
+              className="NotiIcon"
+              content={
+                <Row justify={"center"} className="NavNotifPopoverContent">
+                  <Col span={24}>
+                    <h6 className="Header">
+                      Your Notifications
+                    </h6>
+                    <section className="Notifs">
+                      <div className="Notif">
+                        <p>There will be holiday starting from...</p>
+                      </div>
+                      <div className="Notif">
+                        <p>There will be holiday starting from...</p>
+                      </div>
+                      <div className="Notif">
+                        <p>There will be holiday starting from...</p>
+                      </div>
+                      <div className="Notif">
+                        <p>There will be holiday starting from...</p>
+                      </div>
+                      <div className="Notif">
+                        <p>There will be holiday starting from...</p>
+                      </div>
+                    </section>
+                  </Col>
+                </Row>
+              } trigger="click">
               <Icon path={mdiBell}
                 size={1.1}
                 title="Notifications"
               />
               <i className="Dot"></i>
-            </div>
+            </Popover>
 
+            {/* User Profile */}
             <Popover className="Profile" placement="bottomRight" title={
-              <Divider plain style={{color:"#8C8CA2"}} ><b>Student</b></Divider>
+              <Divider plain style={{ color: "#8C8CA2", paddingTop: '10px' }} ><b>Student</b></Divider>
             } content={
-              <div className="Details">
-                <p>Profile</p>
-                <p>user@gmail.com</p>
-              </div>
+              <Row dir="colomn" justify={"space-between"} className="NavUserPopoverContent">
+                <Col span={24}>
+                  <Button onClick={() => navigate('/student/profile', { state: { bCrumb: "Student Profile" } })} icon={
+                    <Icon path={mdiAccountDetailsOutline}
+                      size={1}
+                    />
+                  }>
+                    Profile
+                  </Button>
+                  <Button onClick={()=> navigate('/management/dashboard')} icon={
+                    <Icon path={mdiAccountBoxMultipleOutline}
+                      size={1}
+                    />
+                  }>
+                    Switch Account
+                  </Button>
+                </Col>
+                <Col span={24}>
+                  <Button onClick={(e) => logout(e)} icon={
+                    <Icon path={mdiLogout}
+                      size={1}
+                    />
+                  }>
+                    Logout
+                  </Button>
+                </Col>
+              </Row>
             } trigger="click">
               <Icon path={mdiAccountCircle}
                 size={1.4}
