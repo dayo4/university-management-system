@@ -56,9 +56,25 @@
     & .Heading {
         color: $body-text-color;
     }
-    //dummy image
-    img {
-        max-width: 100%;
+
+    & .Body {
+        background-color: $subtle-bg-color;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    & .Actions {
+        margin: 30px 0 40px 0;
+
+        & .Attach {
+            cursor: pointer;
+            color: $helper-text-color;
+            // padding: ;
+        }
+        & .Icon {
+            margin-right: 5px;
+            margin-bottom: 2px;
+        }
     }
 }
 

@@ -25,46 +25,6 @@ const Items = [
   { title: 'Payment Complaint', link: 'complaint', icon: mdiCommentTextOutline },
 ]
 
-const columns = [
-  {
-    title: 'Date',
-    dataIndex: 'date',
-    key: 'date',
-  },
-  {
-    title: 'Amount',
-    dataIndex: 'amount',
-    key: 'amount',
-    // render: (text) => <a>{text}</a>,
-  },
-  {
-    title: 'Description',
-    dataIndex: 'description',
-    key: 'description',
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (_, record) => (
-      <Button>
-        DETAILS
-      </Button>
-    ),
-  },
-];
-
-const data = []
-for (let i = 0; i < 20; i++) {
-  data.push(
-    {
-      key: i,
-      date: '15/12/2022',
-      amount: '#120,000',
-      description: 'Full School fees Payment',
-    }
-  )
-}
-
 const onChange = (e) => {
   // console.log('Change:', e.target.value);
 };
@@ -100,7 +60,7 @@ const Home = () => {
       <Row wrap justify="space-around" className="SubWrapper">
         {Items.map((item, i) => {
           return (
-            <Col onClick={() => navigate('/student/fees/' + item.link)} key={i} className={"Box " + (i === 2 ? "Active" : "")} xs={6}>
+            <Col onClick={() => navigate('/student/fees/' + item.link, { state: { bCrumb: "Fees Management / " + item.title } })} key={i} className={"Box " + (i === 2 ? "Active" : "")} xs={6}>
               <div className='Icon'>
                 <Icon path={item.icon}
                   title={item.title}
