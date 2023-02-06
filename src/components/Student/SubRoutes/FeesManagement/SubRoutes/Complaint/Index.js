@@ -16,7 +16,7 @@ import {
 } from '@mdi/js';
 import "./Index.scss"
 // Import dummy svg images
-import Complaint from "../../images/Complaint.svg"
+import ComplaintSvg from "../../images/Complaint.svg"
 
 // const [tableData, setTableData] = useState([])
 const Items = [
@@ -29,7 +29,9 @@ const onChange = (e) => {
   // console.log('Change:', e.target.value);
 };
 
-const Home = () => {
+const Complaint = ({setBreadCrumb}) => {
+  setBreadCrumb()
+
   const navigate = useNavigate();
 
   const [loadings, setLoadings] = useState([]);
@@ -60,7 +62,7 @@ const Home = () => {
       <Row wrap justify="space-around" className="SubWrapper">
         {Items.map((item, i) => {
           return (
-            <Col onClick={() => navigate('/student/fees/' + item.link, { state: { bCrumb: "Fees Management / " + item.title } })} key={i} className={"Box " + (i === 2 ? "Active" : "")} xs={6}>
+            <Col onClick={() => navigate('/student/fees/' + item.link)} key={i} className={"Box " + (i === 2 ? "Active" : "")} xs={6}>
               <div className='Icon'>
                 <Icon path={item.icon}
                   title={item.title}
@@ -82,7 +84,7 @@ const Home = () => {
               <Image
                 preview={false}
                 width={'320px'}
-                src={Complaint}
+                src={ComplaintSvg}
               />
             </Col>
           </Row>
@@ -124,4 +126,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Complaint

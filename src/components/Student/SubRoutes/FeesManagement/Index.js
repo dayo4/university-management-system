@@ -19,14 +19,15 @@ const Items = [
   { title: 'Payment Complaint', link: 'complaint', icon: mdiCommentTextOutline },
 ]
 
-const Home = () => {
+const FeesManagement = ({setBreadCrumb}) => {
+  setBreadCrumb()
+  
   const navigate = useNavigate();
-
   return (
     <Row wrap justify="center" className="EntryWrapper">
       {Items.map((item, i) => {
         return (
-          <Col onClick={() => navigate('/student/fees/' + item.link, { state: { bCrumb: "Fees Management / " + item.title } })} key={i} className="Box" xs={10} sm={7}>
+          <Col onClick={() => navigate('/student/fees/' + item.link)} key={i} className="Box" xs={10} sm={7}>
             <div className='Icon'>
               <Icon path={item.icon}
                 title={item.title}
@@ -41,4 +42,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default FeesManagement

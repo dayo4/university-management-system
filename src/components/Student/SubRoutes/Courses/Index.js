@@ -10,7 +10,9 @@ import "./Index.scss"
 
 
 
-const Courses = () => {
+const Courses = ({setBreadCrumb}) => {
+  setBreadCrumb()
+
   // const navigate = useNavigate();
 
   /* Table checkbox select algo */

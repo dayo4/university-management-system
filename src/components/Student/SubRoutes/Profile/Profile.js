@@ -11,7 +11,9 @@ import "./Profile.scss"
 
 
 
-const Home = () => {
+const Profile = ({setBreadCrumb}) => {
+  setBreadCrumb()
+
   return (
     <Row>
       <Row wrap>
@@ -94,4 +96,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Profile

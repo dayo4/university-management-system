@@ -14,7 +14,9 @@ import "./Index.scss"
 
 
 
-const Home = () => {
+const Attendance = ({setBreadCrumb}) => {
+  setBreadCrumb()
+
   // const navigate = useNavigate();
   const attendance = []
   for (let i = 0; i < 10; i++) {
@@ -40,4 +42,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Attendance

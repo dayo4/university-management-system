@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Row, Col, } from 'antd';
 
@@ -25,6 +25,7 @@ const EntryPoint = ({ children }) => {
   const user = JSON.parse(localStorage.getItem("userData"));
 
   const { pathname, state } = useLocation()
+  const [BreadCrumb, setBreadCrumb] = useState('')
 
   // if (user.acc_type === "student") {
   return (
@@ -34,10 +35,10 @@ const EntryPoint = ({ children }) => {
       <Row justify="center" id="MARGIN-APP" >
         <Col span={22} id="MARGIN-UP-FIXED">
           {/* Display Breadcrumbs or whatever it's called... */}
-          {state && (pathname != '/student' && pathname != '/student/' && pathname != '/student/dashboard')
+          {pathname != '/student' && pathname != '/student/' && pathname != '/student/dashboard'
             ?
             <Row className="BCrumb">
-              {"Dashboard / " + state.bCrumb}
+              {"Dashboard / " + BreadCrumb}
             </Row>
             :
             state && (pathname === '/student/dashboard')
@@ -51,21 +52,24 @@ const EntryPoint = ({ children }) => {
 
 
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard setBreadCrumb={() => setBreadCrumb('')} />} />
             <Route path="profile/*">
-              <Route path="" element={<Profile />} />
+              <Route path="" element={<Profile setBreadCrumb={() => setBreadCrumb('Student Profile')} />} />
             </Route>
             <Route path="fees/*">
-              <Route path="" element={<FeesManagement />} />
-              <Route path="payment" element={<Payment />} />
-              <Route path="receipts" element={<Receipts />} />
-              <Route path="complaint" element={<Complaint />} />
+              <Route path="" element={<FeesManagement setBreadCrumb={() => setBreadCrumb('Fees Management')} />} />
+              <Route path="payment" element={<Payment setBreadCrumb={() => setBreadCrumb('Fees Management / Payment')} />} />
+              <Route path="receipts" element={<Receipts setBreadCrumb={() => setBreadCrumb('Fees Management / Receipts')} />} />
+              <Route path="complaint" element={<Complaint setBreadCrumb={() => setBreadCrumb('Fees Management / Complaint')} />} />
             </Route>
             <Route path="attendance/*">
-              <Route path="" element={<Attendance />} />
+              <Route path="" element={<Attendance setBreadCrumb={() => setBreadCrumb('Attendance')} />} />
             </Route>
             <Route path="courses/*">
-              <Route path="" element={<Courses />} />
+              <Route path="" element={<Courses setBreadCrumb={() => setBreadCrumb('Courses')} />} />
+            </Route>
+            <Route path="exit/*">
+              <Route path="" element={<Courses setBreadCrumb={() => setBreadCrumb('Exit')} />} />
             </Route>
           </Routes>
 
