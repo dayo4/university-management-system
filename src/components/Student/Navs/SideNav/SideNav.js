@@ -10,7 +10,13 @@ import {
   mdiAccountTieOutline,
   mdiAccountSchoolOutline,
   mdiCogTransferOutline,
-  mdiLogout
+  mdiLogout,
+  mdiClose,
+  mdiText,
+  mdiListBoxOutline,
+  mdiBriefcaseCheckOutline,
+  mdiChartBoxPlusOutline,
+  mdiExitRun
 } from '@mdi/js';
 
 // IMPORTING IMAGES
@@ -42,12 +48,13 @@ const Sidenav = () => {
 
 
   const navItems = [
-    { icon: mdiViewDashboardOutline, name: 'Dashboard', link: '' },
+    { icon: mdiViewDashboardOutline, name: 'Dashboard', link: '/dashboard' },
     { icon: mdiCardsOutline, name: 'Fees Management', link: '/fees' },
-    { icon: mdiChartLine, name: 'Attendance', link: '/attendance' },
-    { icon: mdiAccountTieOutline, name: 'Staff', link: '/staff' },
-    { icon: mdiAccountSchoolOutline, name: 'Student', link: '/student' },
-    { icon: mdiCogTransferOutline, name: 'Settings', link: '/Settings' },
+    { icon: mdiListBoxOutline, name: 'Attendance', link: '/attendance' },
+    { icon: mdiBriefcaseCheckOutline, name: 'Course Registration', link: '/courses' },
+    { icon: mdiAccountSchoolOutline, name: 'Resumption', link: '/resumption' },
+    { icon: mdiChartBoxPlusOutline, name: 'Results', link: '/results' },
+    { icon: mdiExitRun, name: 'Exit', link: '/exit' },
   ]
 
   const MainNavLinks = navItems.map(({ icon, name, link }, i) => {
@@ -55,6 +62,7 @@ const Sidenav = () => {
       <NavLink
         key={i}
         to={"/student" + link}
+        state={{ bCrumb: name }}
         className={({ isActive }) => ("Link " + (isActive ? "active" : ""))}
       >
         <Icon path={icon}
@@ -63,25 +71,27 @@ const Sidenav = () => {
           className="Icon"
         />
         {name}
-      </NavLink>
+      </NavLink >
     )
   })
 
   return (
     <div>
-      <div className="SideNavBtn">
-        <button onClick={() => setNavshow(!navshow)}>
-          <i className="bx bx-menu-alt-left"></i>
-        </button>
-      </div>
+      <Icon className="SideNavBtn"
+        path={mdiText}
+        onClick={() => setNavshow(!navshow)}
+        style={{ marginRight: '3px' }}
+        size={1.3}
+      />
 
       <div className={"SideNavCont " + (!navshow ? "Hidden" : "")}>
 
-        <div className="InnerSideNavBtn">
-          <button onClick={() => setNavshow(!navshow)}>
-            <i className="bx bx-x"></i>
-          </button>
-        </div>
+        <Icon
+          className="InnerSideNavBtn"
+          path={mdiClose} onClick={() => setNavshow(!navshow)}
+          style={{ marginRight: '3px' }}
+          size={1.3}
+        />
 
         <section className="SideNavUpperCont">
           <div className="SideNavLogo">
