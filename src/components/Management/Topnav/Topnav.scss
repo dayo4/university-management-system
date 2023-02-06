@@ -15,8 +15,8 @@ $form-bg-color: #f4f7fd;
     z-index: 1000;
     -webkit-user-select: none;
     -moz-user-select: none;
-     -ms-user-select: none;
-         user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .TopNavCont {
@@ -24,7 +24,7 @@ $form-bg-color: #f4f7fd;
     justify-content: space-between;
     background-color: white;
     align-items: center;
-    margin-left: 300px;
+    margin-left: 290px;
     border-bottom: 1px solid rgba(196, 196, 196, 0.25);
     padding: 10px;
 
@@ -32,18 +32,23 @@ $form-bg-color: #f4f7fd;
         font-family: $ws-font;
         font-style: normal;
         font-weight: 700;
-        font-size: 24px;
+        font-size: 22px;
         line-height: 28px;
         letter-spacing: 1px;
         color: $pri-color;
         margin: 0;
     }
-
+    & .Logo {
+        width: 45px;
+        height: 45px;
+        position: relative;
+        top: -5px;
+    }
     & .SearchBar {
         position: relative;
 
         & .Input {
-            width: 300px;
+            width: 270px;
         }
 
         & .HideCloseIcon {
@@ -119,11 +124,78 @@ $form-bg-color: #f4f7fd;
         }
     }
 }
+.ant-popover-inner {
+    padding: 0 !important;
+}
+.NavNotifPopoverContent {
+    max-height: 350px;
+    min-width: 300px;
+    padding: 12px;
+    background-color: $subtle-bg-color;
+    z-index: 900;
+    overflow: scroll;
+    & .Header {
+        background-color: $pri-color;
+        text-align: center;
+        color: white;
+        border-radius: 10px;
+        padding: 5px 0;
+    }
+    & .Notifs {
+        padding: 8px;
+        background-color: $pri-color;
+        color: $body-text-color;
+        border-radius: 10px;
+        & .Notif{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 40px;
+            padding: 0 7px;
+            font-size: 14px;
+            border-radius: 15px;
+            background-color: white;
+            margin-bottom: 5px;
+            font-weight: 300;
+            cursor: pointer;
+            // & p {
+            //     margin-right: 5px;
+            // }
+        }
+    }
+}
+
+.NavUserPopoverContent {
+    height: 160px;
+    width: 200px;
+    padding: 0 10px 0px 10px;
+    z-index: 900;
+
+    & button {
+        width: 100%;
+        margin: 0 0 5px 0;
+        padding: 5px 10px;
+        border-radius: 4px;
+        text-align: left;
+        border: none;
+
+        &:hover {
+            background-color: $subtle-bg-color;
+        }
+        & span {
+            color: $helper-text-color;
+        }
+    }
+    & svg {
+        margin-right: 5px;
+        color: $helper-text-color;
+    }
+}
 
 @include md-downward {
     .TopNavCont {
         margin-left: 0;
-        padding-left: 60px;
+        padding-left: 50px;
     }
 }
 
@@ -132,32 +204,7 @@ $form-bg-color: #f4f7fd;
         padding-left: 45px;
 
         & .Heading {
-            font-size: 20px;
-        }
-
-        & .SearchBar {
-            & .Input {
-                width: 200px;
-            }
-        }
-
-        & .UserNotification {
-            & .NotiIcon {
-                margin-right: 10px;
-            }
-            & .Profile {
-                & .Details {
-                    max-width: 80%;
-                }
-            }
-        }
-    }
-}
-
-@include xs-only {
-    .TopNavCont {
-        & .Heading {
-            font-size: 16px;
+            font-size: 18px;
         }
 
         & .SearchBar.SmallScreenSearch {
@@ -195,6 +242,29 @@ $form-bg-color: #f4f7fd;
                     color: $pri-color;
                 }
             }
+        }
+
+        & .UserNotification {
+            & .NotiIcon {
+                margin-right: 10px;
+            }
+            & .Profile {
+                & .Details {
+                    max-width: 80%;
+                }
+            }
+        }
+    }
+}
+
+@include xs-only {
+    .TopNavCont {
+        & .Heading {
+            font-size: 16px;
+        }
+        & .Logo {
+            width: 40px;
+            height: 40px;
         }
         & .UserNotification {
             width: 100px;
