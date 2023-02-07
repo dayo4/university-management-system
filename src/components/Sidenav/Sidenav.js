@@ -57,7 +57,9 @@ const Sidenav = () => {
       <NavLink
         key={i}
         to={"/management" + link}
-        className={({ isActive }) => ("Link " + (isActive ? "active" : ""))}
+        className={
+          ({ isActive }) => ("Link " + (isActive ? "active" : ""))
+        }
       >
         <Icon path={icon}
           title={name}

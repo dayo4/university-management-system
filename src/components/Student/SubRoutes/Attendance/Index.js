@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Row, Col } from 'antd';
 // import { useNavigate } from "react-router-dom";
 
@@ -15,7 +15,9 @@ import "./Index.scss"
 
 
 const Attendance = ({setBreadCrumb}) => {
-  setBreadCrumb()
+  useEffect(() => {
+    setBreadCrumb()
+  })
 
   // const navigate = useNavigate();
   const attendance = []

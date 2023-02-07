@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {useNavigate} from "react-router-dom"
 
 import { Row, Col } from 'antd';
@@ -21,7 +21,9 @@ const Items = [
 ]
 
 const Payment = ({setBreadCrumb}) => {
-  setBreadCrumb()
+  useEffect(() => {
+    setBreadCrumb()
+  })
 
   const navigate = useNavigate();
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Row, Col, } from 'antd';
 
@@ -10,8 +10,8 @@ import "./Index.scss"
 
 /* Import students section routes */
 // import Dashboard from "./SubRoutes/Dashboard/Dashboard";
-import Dashboard from "./SubRoutes/Profile/Profile";
-import Profile from "./SubRoutes/Profile/Profile";
+import Dashboard from "./SubRoutes/Profile/Index";
+import Profile from "./SubRoutes/Profile/Index";
 /* Fees Mgt Routes */
 import FeesManagement from "./SubRoutes/FeesManagement/Index";
 import Payment from "./SubRoutes/FeesManagement/SubRoutes/Payment/Index";
@@ -19,11 +19,18 @@ import Receipts from "./SubRoutes/FeesManagement/SubRoutes/Receipts/Index";
 import Complaint from "./SubRoutes/FeesManagement/SubRoutes/Complaint/Index";
 /* Attendance Routes */
 import Attendance from "./SubRoutes/Attendance/Index";
+/* Courses Routes */
 import Courses from "./SubRoutes/Courses/Index";
+/* Resumption Routes */
+import Resumption from "./SubRoutes/Resumption/Index";
+
 
 const EntryPoint = ({ children }) => {
   const user = JSON.parse(localStorage.getItem("userData"));
 
+  useEffect(() => {
+
+  })
   const { pathname, state } = useLocation()
   const [BreadCrumb, setBreadCrumb] = useState('')
 
@@ -41,7 +48,7 @@ const EntryPoint = ({ children }) => {
               {"Dashboard / " + BreadCrumb}
             </Row>
             :
-            state && (pathname === '/student/dashboard')
+            pathname === '/student/dashboard'
               ?
               <Row className="BCrumb">
                 {"Dashboard"}

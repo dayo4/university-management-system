@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {useNavigate} from "react-router-dom"
 
 import { Row, Col, Table, Button } from 'antd';
@@ -78,7 +78,9 @@ for (let i = 0; i < 60; i++) {
 
 
 const Receipts = ({setBreadCrumb}) => {
-  setBreadCrumb()
+  useEffect(() => {
+    setBreadCrumb()
+  })
 
   const navigate = useNavigate();
 

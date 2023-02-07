@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom"
 
 import { Row, Col, Button, Input, Image } from 'antd';
@@ -30,7 +30,9 @@ const onChange = (e) => {
 };
 
 const Complaint = ({setBreadCrumb}) => {
-  setBreadCrumb()
+  useEffect(() => {
+    setBreadCrumb()
+  })
 
   const navigate = useNavigate();
 

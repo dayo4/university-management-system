@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Row, Col } from 'antd';
 import { useNavigate } from "react-router-dom";
 
@@ -20,7 +20,9 @@ const Items = [
 ]
 
 const FeesManagement = ({setBreadCrumb}) => {
-  setBreadCrumb()
+  useEffect(() => {
+    setBreadCrumb()
+  })
   
   const navigate = useNavigate();
   return (
