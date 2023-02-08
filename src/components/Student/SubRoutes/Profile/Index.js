@@ -17,8 +17,8 @@ const Profile = ({ setBreadCrumb }) => {
   })
 
   return (
-    <div>
-      <Row className="ProfileImage">
+    <div id="Profile">
+      <section className="ProfileImage">
         <div className="Image">
           <Icon path={mdiAccountCircle}
             size={6}
@@ -44,44 +44,45 @@ const Profile = ({ setBreadCrumb }) => {
             Delete
           </button>
         </div>
-      </Row>
+      </section>
 
-      <Row className='ProfileDetails'>
+      <section className='ProfileDetails'>
         <ul className='List'>
           <li>
-            <span>NAME: </span>
-            <span>AFOLABI HASSAN</span>
+            <div>NAME: </div>
+            <div><div>AFOLABI HASSAN</div></div>
           </li>
           <li>
-            <span>GENDER: </span>
-            <span>MALE</span>
+            <div>GENDER: </div>
+            <div><div>MALE</div></div>
           </li>
           <li>
-            <span>Matric No.: </span>
-            <span>4983432453</span>
+            <div>Matric No.: </div>
+            <div><div>4983432453</div></div>
           </li>
           <li>
-            <span>Level: </span>
-            <span>300 Level</span>
+            <div>Level: </div>
+            <div><div>300 Level</div></div>
           </li>
           <li>
-            <span>Semester: </span>
-            <span>Second</span>
+            <div>Semester: </div>
+            <div><div>Second</div></div>
           </li>
           <li>
-            <span>Program: </span>
-            <span>Computer Science</span>
+            <div>Program: </div>
+            <div><div>Computer Science</div></div>
           </li>
           <li>
-            <span>D.O.B: </span>
-            <span>September 24, 1998</span>
+            <div>D.O.B: </div>
+            <div><div>September 24, 1998</div></div>
           </li>
           <li>
-            <span>Status: </span>
-            <span>Promoted Clean Bill</span>
+            <div>Status: </div>
+            <div><div>Promoted Clean Bill</div></div>
           </li>
         </ul>
-        <Row justify="center">
+      </section>
+        <Row className='Actions' justify="center">
           <Button
             type="primary"
             icon={<Icon path={mdiNoteEdit}
@@ -91,7 +92,6 @@ const Profile = ({ setBreadCrumb }) => {
             />}
           >Edit</Button>
         </Row>
-      </Row>
     </div>
   )
 }
