@@ -14,10 +14,11 @@ import Student from "./components/Management/Student/Student";
 import Topnav from "./components/Management/Topnav/Topnav";
 import Newstaff from "./components/Management/Staff/Newstaff/Newstaff";
 import Editstaff from "./components/Management/Staff/EditStaff/Editstaff";
-import Home from "./components/StaffApp/Home/Home";
 import AddStudent from "./components/Management/Student/AddStudent/AddStudent";
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+/* Import Staff Routes */
+import StaffSection from "./components/Student/Index";
 
 /* Import Students Routes */
 import StudentsSection from "./components/Student/Index";
@@ -47,9 +48,9 @@ function App() {
           {/* <Route path="/management/side" element={<Sidenav />} exact /> */}
 
           {/* STAFF ROUTING */}
-          <Route path="/staff/home" element={<Home />} exact />
+          <Route path="/staff/*" element={<StaffSection />} exact />
 
-          {/* STAFF ROUTING */}
+          {/* STUDENTS ROUTING */}
           <Route path="/student/*" element={<StudentsSection />} exact />
 
           {/* DevMode IconsPreview */}
