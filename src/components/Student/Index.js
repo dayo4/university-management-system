@@ -4,8 +4,8 @@ import { Row, Col, } from 'antd';
 
 import NoAccess from "../InvalidAccess/noAccess";
 
-import SideNav from "./Navs/SideNav/SideNav";
-import Topnav from "./Navs/TopNav/TopNav";
+import SideNav from "../Navs/SideNav/Index";
+import Topnav from "../Navs/TopNav/Index";
 import "./Index.scss"
 
 /* Import students section routes */
@@ -25,7 +25,7 @@ import Courses from "./SubRoutes/Courses/Index";
 import Resumption from "./SubRoutes/Resumption/Index";
 
 
-const EntryPoint = ({ children }) => {
+const StudentsEntryPoint = ({ children }) => {
   const user = JSON.parse(localStorage.getItem("userData"));
 
   useEffect(() => {
@@ -39,6 +39,7 @@ const EntryPoint = ({ children }) => {
     <div id="MANAGEMENT-WHOLE">
       <Topnav title={"Dashboard"} />
       <SideNav onTabSwitch />
+
       <Row justify="center" id="MARGIN-APP" >
         <Col span={22} id="MARGIN-UP-FIXED">
           {/* Display Breadcrumbs or whatever it's called... */}
@@ -94,4 +95,4 @@ const EntryPoint = ({ children }) => {
   // }
 };
 
-export default EntryPoint;
+export default StudentsEntryPoint;
