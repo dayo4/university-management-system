@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Row, Col, } from 'antd';
 
-import NoAccess from "../InvalidAccess/noAccess";
+import NoAccess from "../../InvalidAccess/noAccess";
 
-import SideNav from "../Navs/SideNav/Index";
-import Topnav from "../Navs/TopNav/Index";
+import SideNav from "../../Navs/SideNav/Index";
+import Topnav from "../../Navs/TopNav/Index";
 import "./Index.scss"
 
 /* Import students section routes */

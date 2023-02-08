@@ -18,10 +18,10 @@ import AddStudent from "./components/Management/Student/AddStudent/AddStudent";
 
 
 /* Import Staff Routes */
-import StaffSection from "./components/Student/Index";
+import StaffSection from "./components/Sections/Student/Index";
 
 /* Import Students Routes */
-import StudentsSection from "./components/Student/Index";
+import StudentsSection from "./components/Sections/Student/Index";
 
 import IconsPreview from "./devOnly/IconsPreview";
 

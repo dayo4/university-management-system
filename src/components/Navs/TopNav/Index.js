@@ -17,7 +17,7 @@ import { ShowBasedOnAccType } from "../../UtilFunctions";
 
 const Topnav = (props) => {
   const navigate = useNavigate();
-  const { pathname } = useLocation()
+  // const { pathname } = useLocation()
 
 
   // search

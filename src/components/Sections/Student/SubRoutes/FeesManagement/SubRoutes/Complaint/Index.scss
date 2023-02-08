@@ -1,4 +1,4 @@
-@import "../../../../../../Mixins.scss";
+@import "../../../../../../../Mixins.scss";
 
 .SubWrapper {
     & .Box {
@@ -31,7 +31,7 @@
             justify-content: center;
             font-weight: bold;
             font-size: 10px;
-           padding: 5px;
+            padding: 5px;
             text-transform: uppercase;
             color: white;
             background-color: $pri-color-faded;
@@ -56,12 +56,36 @@
     & .Heading {
         color: $body-text-color;
     }
-    //dummy image
-    img {
-        max-width: 100%;
+
+    & .Body {
+        background-color: $subtle-bg-color;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    & .Actions {
+        margin: 30px 0 40px 0;
+
+        & .Attach {
+            cursor: pointer;
+            color: $helper-text-color;
+            // padding: ;
+        }
+        & .Icon {
+            margin-right: 5px;
+            margin-bottom: 2px;
+        }
     }
 }
 
+.RTable {
+    & td {
+        font-weight: bold;
+        font-size: 12px;
+        color: $body-text-color;
+        text-align: left;
+    }
+}
 
 @include xs-only {
     .SubWrapper {

@@ -30,14 +30,6 @@ const Sidenav = () => {
     navigate(`/`);
   };
 
-  const RenderMainNavLinks = () => {
-    return ShowBasedOnAccType({
-      mgt: '',
-      staff: '',
-      student: <StudentsSideNavLinks />
-    })
-  }
-
   return (
     <div>
       <Icon className="SideNavBtn"
@@ -62,7 +54,11 @@ const Sidenav = () => {
           </div>
 
           {/*  All main nav links display here. */}
-          {RenderMainNavLinks}
+          {ShowBasedOnAccType({
+            mgt: '',
+            staff: '',
+            student: <StudentsSideNavLinks />
+          })}
 
         </section>
 

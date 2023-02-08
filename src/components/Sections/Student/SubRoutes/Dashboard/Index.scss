@@ -1,4 +1,4 @@
-@import "../../../../Mixins.scss";
+@import "../../../../../Mixins.scss";
 
 .ProfileImage {
     display: flex;
@@ -54,27 +54,16 @@
 
 .ProfileDetails {
     margin-top: 40px;
-    margin-bottom: 40px;
     padding-left: 10px;
     & ul {
         list-style: none;
-        margin-bottom: 20px;
         & li {
             display: flex;
-            align-items: center;
             font-weight: bold;
             text-transform: uppercase;
-            margin-bottom: 8px;
             & span:first-child {
                 width: 100px;
                 color: $helper-text-color
-            }
-            & span:last-child {
-                text-align: center;
-                border-radius: 28px;
-                border: solid $pri-color-faded 1px;
-                padding: 3px 10px;
-                min-width: 150px;
             }
         }
     }
