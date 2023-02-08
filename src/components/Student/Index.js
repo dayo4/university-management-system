@@ -31,7 +31,8 @@ const StudentsEntryPoint = ({ children }) => {
   useEffect(() => {
 
   })
-  const { pathname, state } = useLocation()
+  
+  const { pathname } = useLocation()
   const [BreadCrumb, setBreadCrumb] = useState('')
 
   // if (user.acc_type === "student") {

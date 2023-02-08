@@ -11,18 +11,16 @@ import {
 import { Input, Popover, Divider, Button, Row, Col, message } from 'antd';
 const { Search } = Input;
 import "./Index.scss";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { logo2 } from "../../../static/icons"
+import { ShowBasedOnAccType } from "../../UtilFunctions";
 
 const Topnav = (props) => {
-  // const heading = useParams();
-  // const [labb, setlabb] = useState(heading);
   const navigate = useNavigate();
+  const { pathname } = useLocation()
 
 
   // search
-  const [show, setShow] = useState(true);
-  const [navshow, setNavshow] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [mobileScreen, setMobileScreen] = useState(false);
   const [searching, setsearching] = useState(false);
@@ -41,7 +39,6 @@ const Topnav = (props) => {
       }, 2000)
     }
   }
-
 
   // LOGOUT FUNCTION
   const logout = (e) => {
@@ -141,7 +138,7 @@ const Topnav = (props) => {
                   }>
                     Profile
                   </Button>
-                  <Button onClick={()=> navigate('/management/dashboard')} icon={
+                  <Button onClick={() => navigate('/management/dashboard')} icon={
                     <Icon path={mdiAccountBoxMultipleOutline}
                       size={1}
                     />
@@ -169,7 +166,13 @@ const Topnav = (props) => {
 
               <div className="Details">
                 <h6>Afolabi Hassan</h6>
-                <small>Student</small>
+                <small>
+                  {ShowBasedOnAccType({
+                    mgt: 'Management',
+                    staff: 'Staff',
+                    student: 'Student'
+                  })}
+                </small>
               </div>
             </Popover>
           </div>

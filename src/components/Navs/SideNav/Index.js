@@ -1,33 +1,26 @@
 import React, { useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import "./Index.scss";
 import { message, Button } from "antd";
 import Icon from '@mdi/react';
 import {
-  mdiViewDashboardOutline,
-  mdiCardsOutline,
-  mdiChartLine,
-  mdiAccountTieOutline,
-  mdiAccountSchoolOutline,
-  mdiCogTransferOutline,
   mdiLogout,
   mdiClose,
   mdiText,
-  mdiListBoxOutline,
-  mdiBriefcaseCheckOutline,
-  mdiChartBoxPlusOutline,
-  mdiExitRun
 } from '@mdi/js';
 
 // IMPORTING IMAGES
-import { logo, } from "../../../static/icons"
+import { logo } from "../../../static/icons"
 
-
-
-
+import StudentsSideNavLinks from "./Students/Index"
+import { ShowBasedOnAccType } from "../../UtilFunctions";
 
 const Sidenav = () => {
   let navigate = useNavigate();
+  const { pathname } = useLocation()
+
+  // Set necessary states
+  const [navshow, setNavshow] = useState(false);
 
   // LOGOUT FUNCTION
   const logout = (e) => {
@@ -37,43 +30,13 @@ const Sidenav = () => {
     navigate(`/`);
   };
 
-  // Set necessary states
-  const [isActive, setActive] = useState(false);
-  const [show, setShow] = useState(true);
-  const [navshow, setNavshow] = useState(false);
-
-  const handleToggle = () => {
-    setActive(!isActive);
-  };
-
-
-  const navItems = [
-    { icon: mdiViewDashboardOutline, name: 'Dashboard', link: '/dashboard' },
-    { icon: mdiCardsOutline, name: 'Fees Management', link: '/fees' },
-    { icon: mdiListBoxOutline, name: 'Attendance', link: '/attendance' },
-    { icon: mdiBriefcaseCheckOutline, name: 'Course Registration', link: '/courses' },
-    { icon: mdiAccountSchoolOutline, name: 'Resumption', link: '/resumption' },
-    { icon: mdiChartBoxPlusOutline, name: 'Results', link: '/results' },
-    { icon: mdiExitRun, name: 'Exit', link: '/exit' },
-  ]
-
-  const MainNavLinks = navItems.map(({ icon, name, link }, i) => {
-    return (
-      <NavLink
-        key={i}
-        to={"/student" + link}
-        state={{ bCrumb: name }}
-        className={({ isActive }) => ("Link " + (isActive ? "active" : ""))}
-      >
-        <Icon path={icon}
-          title={name}
-          size={1}
-          className="Icon"
-        />
-        {name}
-      </NavLink >
-    )
-  })
+  const RenderMainNavLinks = () => {
+    return ShowBasedOnAccType({
+      mgt: '',
+      staff: '',
+      student: <StudentsSideNavLinks />
+    })
+  }
 
   return (
     <div>
@@ -98,11 +61,9 @@ const Sidenav = () => {
             <img src={logo} alt="ums logo" />
           </div>
 
+          {/*  All main nav links display here. */}
+          {RenderMainNavLinks}
 
-          <div className="SideNavLinks">
-            {/*  All main nav links display here. */}
-            {MainNavLinks}
-          </div>
         </section>
 
         <div className="Logout" onClick={(e) => logout(e)}>
