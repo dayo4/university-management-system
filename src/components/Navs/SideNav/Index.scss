@@ -14,7 +14,7 @@ $form-bg-color: #f4f7fd;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     background-color: $pri-color;
     transition: 0.3s ease-in;
     z-index: 1001;
@@ -39,24 +39,51 @@ $form-bg-color: #f4f7fd;
 .SideNavLinks {
     width: 100%;
 
+    & .LinksMenu {
+        padding: 0;
+        background-color: transparent;
+
+        & .ant-menu-item-selected {
+            // color: $pri-color !important;
+            background: rgba(255, 255, 255, 0.25);
+        }
+        & .ant-menu-item,
+        & .ant-menu-submenu-title {
+            padding-left: 0 !important;
+            &:active {
+                background-color: rgba(255, 255, 255, 0.25);
+            }
+
+            & .ant-menu-submenu-arrow {
+                color: white;
+            }
+        }
+    }
+
     & .Link {
         width: 100%;
         height: 55px;
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        padding-left: 50px;
-        font-family: $ws-font;
+        // padding-left: 50px;
         font-style: normal;
         font-weight: 700;
-        font-size: 18px;
+        font-size: 17px;
         line-height: 21px;
         letter-spacing: 1px;
-        color: #ffffff;
+        color: #ffffff !important;
         text-decoration: none;
         transition: 0.5s;
+        white-space: normal;
+
+        &.SubLink {
+            font-size: 14px;
+            margin-left: 25px;
+        }
 
         &.active {
+            // color: $pri-color !important;
             background: rgba(255, 255, 255, 0.25);
         }
         &:not(.active):hover {

@@ -1,0 +1,98 @@
+@import "../../../../../../../Mixins.scss";
+
+.SubWrapper {
+    & .Box {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 80px;
+        max-width: 150px;
+        background-color: $subtle-bg-color;
+        text-align: center;
+        padding: 15px 0 0 0;
+        margin: 15px 5px 5px 5px;
+        color: $pri-color;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: $shadow-5;
+        cursor: pointer;
+        transition: 0.3s;
+        &:active {
+            opacity: 0.75;
+        }
+
+        & .Icon {
+            height: 30px;
+            margin-top: 3px;
+        }
+        & .Title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 10px;
+            padding: 5px;
+            text-transform: uppercase;
+            color: white;
+            background-color: $pri-color-faded;
+        }
+    }
+    & .Box.Active {
+        background-color: $pri-color-faded;
+        color: white;
+        cursor: default;
+        box-shadow: none;
+        &:active {
+            opacity: 1;
+        }
+        & .Title {
+            background-color: $pri-color;
+        }
+    }
+}
+
+.Content {
+    margin-top: 30px;
+    & .Heading {
+        color: $body-text-color;
+    }
+
+    & .Body {
+        background-color: $subtle-bg-color;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    & .Actions {
+        margin: 30px 0 40px 0;
+
+        & .Attach {
+            cursor: pointer;
+            color: $helper-text-color;
+            // padding: ;
+        }
+        & .Icon {
+            margin-right: 5px;
+            margin-bottom: 2px;
+        }
+    }
+}
+
+.RTable {
+    & td {
+        font-weight: bold;
+        font-size: 12px;
+        color: $body-text-color;
+        text-align: left;
+    }
+}
+
+@include xs-only {
+    .SubWrapper {
+        & .Box {
+            & .Title {
+                font-size: 8px;
+            }
+        }
+    }
+}

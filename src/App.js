@@ -18,7 +18,7 @@ import AddStudent from "./components/Management/Student/AddStudent/AddStudent";
 
 
 /* Import Staff Routes */
-import StaffSection from "./components/Sections/Student/Index";
+import StaffSection from "./components/Sections/Staff/Index";
 
 /* Import Students Routes */
 import StudentsSection from "./components/Sections/Student/Index";

@@ -48,6 +48,12 @@ const Topnav = (props) => {
     navigate(`/`);
   };
 
+  const nextAccRoute = ShowBasedOnAccType({
+    mgt: 'staff',
+    staff: 'student',
+    student: 'management'
+  })
+
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth <= 767) {
@@ -138,7 +144,7 @@ const Topnav = (props) => {
                   }>
                     Profile
                   </Button>
-                  <Button onClick={() => navigate('/management/dashboard')} icon={
+                  <Button onClick={() => navigate('/' + nextAccRoute + '/dashboard')} icon={
                     <Icon path={mdiAccountBoxMultipleOutline}
                       size={1}
                     />

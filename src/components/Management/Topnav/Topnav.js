@@ -142,7 +142,7 @@ const Topnav = (props) => {
                   }>
                     Profile
                   </Button>
-                  <Button onClick={()=> navigate('/student/dashboard')} icon={
+                  <Button onClick={()=> navigate('/staff/dashboard')} icon={
                     <Icon path={mdiAccountBoxMultipleOutline}
                       size={1}
                     />

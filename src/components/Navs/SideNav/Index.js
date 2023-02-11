@@ -12,6 +12,7 @@ import {
 // IMPORTING IMAGES
 import { logo } from "../../../static/icons"
 
+import StaffSideNavLinks from "./Staff/Index"
 import StudentsSideNavLinks from "./Students/Index"
 import { ShowBasedOnAccType } from "../../UtilFunctions";
 
@@ -56,7 +57,7 @@ const Sidenav = () => {
           {/*  All main nav links display here. */}
           {ShowBasedOnAccType({
             mgt: '',
-            staff: '',
+            staff: <StaffSideNavLinks />,
             student: <StudentsSideNavLinks />
           })}
 

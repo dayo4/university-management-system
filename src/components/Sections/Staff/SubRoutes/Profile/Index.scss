@@ -1,0 +1,122 @@
+@import "../../../../../Mixins.scss";
+
+#Profile {
+    & .ProfileImage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & .Image {
+            margin-right: 20px;
+            & > svg {
+                color: $helper-text-color;
+            }
+        }
+
+        & .Buttons {
+            width: 100px;
+
+            & button {
+                width: 90px;
+                border-radius: 3px;
+                text-align: start;
+                font-weight: bold;
+                padding: 2px;
+                transition: 0.3s;
+                &:active {
+                    opacity: 0.75;
+                }
+            }
+            & button:first-child {
+                color: $success-color;
+                border: solid $success-color 1.5px;
+                &:hover {
+                    color: white;
+                    border: solid white 1.5px;
+                    background-color: $success-color;
+                }
+            }
+            & button:last-child {
+                margin-top: 5px;
+                color: $sec-color;
+                border: solid $sec-color 1.5px;
+                &:hover {
+                    color: white;
+                    border: solid white 1.5px;
+                    background-color: $sec-color;
+                }
+            }
+
+            & svg {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    & .ProfileDetails {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+        padding-left: 10px;
+        & ul {
+            list-style: none;
+            margin-bottom: 0;
+            padding-left: 0;
+            & li {
+                display: flex;
+                align-items: center;
+                font-weight: bold;
+                text-transform: uppercase;
+                margin-bottom: 0;
+                & > div {
+                    height: 40px;
+                }
+                & div:first-child {
+                    width: 100px;
+                    font-size: 12px;
+                    text-align: right;
+                    padding-right: 8px;
+                    padding-top: 11px;
+                    color: $helper-text-color;
+                }
+                & div:last-child {
+                    padding: 0 5px;
+                    display: flex;
+                    align-items: center;
+                    font-size: 12px;
+                    background-color: $subtle-bg-color;
+                    min-width: 250px;
+                    & div {
+                        text-align: center;
+                        border-radius: 28px;
+                        // border: solid $pri-color-faded 1px;
+                        padding: 3px 10px;
+                        background-color: $light-bg-color;
+                    }
+                }
+
+                &:first-of-type > div:last-child{
+                    border-radius: 12px 12px 0 0;
+                }
+                &:last-of-type > div:last-child{
+                    border-radius: 0 0 12px 12px;
+                }
+
+            }
+        }
+    }
+    & .Actions {
+        margin-bottom: 40px;
+    }
+}
+
+@include xs-only {
+    #Profile {
+        .ProfileImage {
+            & .Image {
+                margin-right: 0;
+            }
+        }
+    }
+}

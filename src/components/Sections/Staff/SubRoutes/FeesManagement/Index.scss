@@ -1,0 +1,41 @@
+@import "../../../../../Mixins.scss";
+
+.EntryWrapper {
+    & .Box {
+        height: 130px;
+        background-color: $pri-color-faded;
+        text-align: center;
+        padding: 25px 0 0 0;
+        margin: 30px 20px 5px 20px;
+        color: white;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: $shadow-5;
+        cursor: pointer;
+        transition: 0.3s;
+        &:active {
+            opacity: 0.75;
+        }
+
+        & .Icon {
+            height: 60%;
+            margin-top: 3px;
+        }
+        & .Title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40%;
+            font-weight: bold;
+           padding: 5px;
+            text-transform: uppercase;
+            background-color: $pri-color;
+        }
+    }
+}
+
+@include lg-downward {
+    // .Box {
+    //     margin: 30px 20px 5px 20px;
+    // }
+}
