@@ -55,6 +55,7 @@ const StaffSideNavLinks = () => {
     {
       icon: mdiBriefcaseCheckOutline, name: 'Assessments',/*  link: '/assessments', */
       subLinks: [
+        { name: 'Review Assessments', link: '/assessments/review' },
         { name: 'Create Assessment', link: '/assessments/create' },
       ]
     },

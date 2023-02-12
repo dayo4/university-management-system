@@ -42,7 +42,7 @@ const columns = [
     title: 'Action',
     key: 'action',
     render: (_, record) => (
-      <Button>
+      <Button style={{borderRight : 'solid 1px #d9d9d9'}}>
         DETAILS
       </Button>
     ),

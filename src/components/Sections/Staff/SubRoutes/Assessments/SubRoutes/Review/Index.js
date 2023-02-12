@@ -16,49 +16,6 @@ const Attendance = ({setBreadCrumb}) => {
   })
 
   // const navigate = useNavigate();
-   /* Table checkbox select algo */
-   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-   const onSelectChange = (newSelectedRowKeys) => {
-     console.log('selectedRowKeys changed: ', newSelectedRowKeys);
-     setSelectedRowKeys(newSelectedRowKeys);
-   };
-   const rowSelection = {
-     selectedRowKeys,
-     onChange: onSelectChange,
-     selections: [
-       Table.SELECTION_ALL,
-       Table.SELECTION_INVERT,
-       Table.SELECTION_NONE,
-       {
-         key: 'odd',
-         text: 'Select Odd Row',
-         onSelect: (changableRowKeys) => {
-           let newSelectedRowKeys = [];
-           newSelectedRowKeys = changableRowKeys.filter((_, index) => {
-             if (index % 2 !== 0) {
-               return false;
-             }
-             return true;
-           });
-           setSelectedRowKeys(newSelectedRowKeys);
-         },
-       },
-       {
-         key: 'even',
-         text: 'Select Even Row',
-         onSelect: (changableRowKeys) => {
-           let newSelectedRowKeys = [];
-           newSelectedRowKeys = changableRowKeys.filter((_, index) => {
-             if (index % 2 !== 0) {
-               return true;
-             }
-             return false;
-           });
-           setSelectedRowKeys(newSelectedRowKeys);
-         },
-       },
-     ],
-   };
  
    /*  Table Colomns  */
    const tableColumns = [
@@ -82,7 +39,7 @@ const Attendance = ({setBreadCrumb}) => {
       title: 'ACTION',
       key: 'action',
       render: (_, record) => (
-        <Button>
+        <Button style={{borderRight : 'solid 1px #d9d9d9'}}>
           REVIEW
         </Button>
       ),
@@ -135,7 +92,7 @@ const Attendance = ({setBreadCrumb}) => {
           />
         </Col>
          <Col xs={24} md={20}>
-           <Table rowSelection={rowSelection} className='CTable' columns={tableColumns} dataSource={tableData} />
+           <Table className='CTable' columns={tableColumns} dataSource={tableData} />
          </Col>
          <Col xs={24} md={20}>
            <Row justify="space-between" className='Actions'>
