@@ -63,26 +63,30 @@ const Attendance = ({setBreadCrumb}) => {
    /*  Table Colomns  */
    const tableColumns = [
      {
-       title: '',
-       dataIndex: 'select',
-       key: 'select',
-     },
-     {
-       title: 'Name',
+       title: 'NAME',
        dataIndex: 'name',
        key: 'name',
        // render: (text) => <a>{text}</a>,
      },
      {
-       title: 'Level',
+       title: 'LEVEL',
        dataIndex: 'level',
        key: 'level',
      },
      {
-       title: 'Matric No.',
+       title: 'MATRIC NO.',
        dataIndex: 'matric_no',
        key: 'matric no',
      },
+     {
+      title: 'ACTION',
+      key: 'action',
+      render: (_, record) => (
+        <Button>
+          REVIEW
+        </Button>
+      ),
+    },
    ];
  
    /* Table Data */
@@ -103,7 +107,7 @@ const Attendance = ({setBreadCrumb}) => {
      <div>
        <Row justify="center" className="Content">
        <Col xs={24} md={20}>
-          <h5 className='Heading'>Manage Attendance</h5>
+          <h5 className='Heading'>Review Assessments</h5>
         </Col>
         <Col xs={24} md={20} style={{ marginTop: '20px' }}>
           <h6 className='SubHead'>Select Course</h6>

@@ -1,0 +1,29 @@
+@import "../../../../../../../Mixins.scss";
+
+.CreateCourse {
+    & .Heading {
+        color: $body-text-color;
+    }
+    & .SubHead {
+        color: $helper-text-color;
+        margin-bottom: 3px;
+    }
+
+    & .UploadBtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        margin: 20px 0 20px 0;
+        cursor: pointer;
+        & * {
+            color: $pri-color;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    }
+
+    & .Actions {
+        margin: 30px 0 40px 0;
+    }
+}

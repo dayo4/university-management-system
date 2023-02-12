@@ -46,10 +46,16 @@ const StaffSideNavLinks = () => {
     { icon: mdiCardsOutline, name: 'Fees Management', link: '/fees' },
     { icon: mdiListBoxOutline, name: 'Attendance', link: '/attendance' },
     {
-      icon: mdiBriefcaseCheckOutline, name: 'Courses', link: '/courses',
+      icon: mdiBriefcaseCheckOutline, name: 'Courses', /* link: '/courses', */
       subLinks: [
         { name: 'Create Course', link: '/courses/create' },
         { name: 'Course Outline', link: '/courses/outline' }
+      ]
+    },
+    {
+      icon: mdiBriefcaseCheckOutline, name: 'Assessments',/*  link: '/assessments', */
+      subLinks: [
+        { name: 'Create Assessment', link: '/assessments/create' },
       ]
     },
     { icon: mdiAccountSchoolOutline, name: 'Resumption', link: '/resumption' },
@@ -63,7 +69,7 @@ const StaffSideNavLinks = () => {
       getItem(
         <NavLink
           key={i}
-          to={"/staff" + link}
+          to={link ? "/staff" + link : null}
           className={({ isActive }) => ("Link " + (isActive && !subLinks ? "active" : ""))}
         >
           <Icon path={icon}

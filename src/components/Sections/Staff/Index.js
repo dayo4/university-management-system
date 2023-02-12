@@ -20,8 +20,12 @@ import Complaint from "./SubRoutes/FeesManagement/SubRoutes/Complaint/Index";
 /* Attendance Routes */
 import Attendance from "./SubRoutes/Attendance/Index";
 /* Courses Routes */
-import Courses from "./SubRoutes/Courses/Index";
+// import Courses from "./SubRoutes/Courses/Index";
 import CreateCourses from "./SubRoutes/Courses/SubRoutes/Create/Index";
+/* Assessments Routes */
+// import Assessments from "./SubRoutes/Assessments/Index";
+import CreateAssessments from "./SubRoutes/Assessments/SubRoutes/Create/Index";
+import ReviewAssessments from "./SubRoutes/Assessments/SubRoutes/Review/Index";
 /* Resumption Routes */
 // import Resumption from "./SubRoutes/Resumption/Index";
 
@@ -35,8 +39,8 @@ const StudentsEntryPoint = ({ children }) => {
   
   const { pathname } = useLocation()
   const [BreadCrumb, setBreadCrumb] = useState('')
-
-  // if (user.acc_type === "student") {
+console.log(pathname.split('/').join(' / '))
+  // if (user.acc_type === "staff") {
   return (
     <div id="MANAGEMENT-WHOLE">
       <Topnav title={"Dashboard"} />
@@ -76,11 +80,16 @@ const StudentsEntryPoint = ({ children }) => {
               <Route path="" element={<Attendance setBreadCrumb={() => setBreadCrumb('Attendance')} />} />
             </Route>
             <Route path="courses/*">
-              <Route path="" element={<Courses setBreadCrumb={() => setBreadCrumb('Courses')} />} />
+              {/* <Route path="" element={<Courses setBreadCrumb={() => setBreadCrumb('Courses')} />} /> */}
               <Route path="create" element={<CreateCourses setBreadCrumb={() => setBreadCrumb('Courses / Create')} />} />
             </Route>
+            <Route path="assessments/*">
+              {/* <Route path="" element={<Assessments setBreadCrumb={() => setBreadCrumb('Assessments')} />} /> */}
+              <Route path="create" element={<CreateAssessments setBreadCrumb={() => setBreadCrumb('Assessments / Create')} />} />
+              <Route path="review" element={<ReviewAssessments setBreadCrumb={() => setBreadCrumb('Assessments / Rrview')} />} />
+            </Route>
             <Route path="exit/*">
-              <Route path="" element={<Courses setBreadCrumb={() => setBreadCrumb('Exit')} />} />
+              {/* <Route path="" element={<Courses setBreadCrumb={() => setBreadCrumb('Exit')} />} /> */}
             </Route>
           </Routes>
 

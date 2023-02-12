@@ -1,4 +1,4 @@
-@import "../../../../../Mixins.scss";
+@import "../../../../../../../Mixins.scss";
 
 .Content {
     margin: 30px 0;
@@ -17,11 +17,6 @@
     & .Actions {
         margin: 30px 0 40px 0;
 
-        // & .Attach {
-        //     cursor: pointer;
-        //     color: $helper-text-color;
-        //     // padding: ;
-        // }
         & .Icon {
             margin-right: 5px;
             margin-bottom: 2px;
