@@ -14,7 +14,7 @@ $form-bg-color: #f4f7fd;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     background-color: $pri-color;
     transition: 0.3s ease-in;
     z-index: 1001;
@@ -76,6 +76,7 @@ $form-bg-color: #f4f7fd;
         text-decoration: none;
         transition: 0.5s;
         white-space: normal;
+        padding-left: 30px;
 
         &.SubLink {
             font-size: 14px;
