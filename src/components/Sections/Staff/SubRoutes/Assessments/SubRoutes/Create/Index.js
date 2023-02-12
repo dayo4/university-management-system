@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Col, Select, Button, Input } from 'antd';
+import { Row, Col, Select, Button, Input, message, Upload } from 'antd';
 const { TextArea } = Input;
 
 // import { useNavigate } from "react-router-dom";
@@ -17,6 +17,33 @@ const CreateAssessments = () => {
   const onChange = (e) => {
     // console.log('Change:', e.target.value);
   };
+
+  const uploadProps = {
+    name: 'assessment',
+    action: 'https://www.random.com',
+    headers: {
+      authorization: 'authorization-text',
+    },
+    onChange(info) {
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (info.file.status === 'done') {
+        message.success(`${info.file.name} file uploaded successfully`);
+      } else if (info.file.status === 'error') {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
+    progress: {
+      strokeColor: {
+        '0%': '#108ee9',
+        '100%': '#87d068',
+      },
+      strokeWidth: 3,
+      format: (percent) => percent && `${parseFloat(percent.toFixed(2))}%`,
+    },
+  };
+
 
   return (
     <div>
@@ -67,14 +94,13 @@ const CreateAssessments = () => {
           {/* <h6 className='SubHead'>All Available Courses</h6> */}
           <Row justify={'center'} align='middle'>
 
-            <div className='UploadBtn'>
-
+            <Upload className='UploadBtn' {...uploadProps}>
               <Button icon={<Icon path={mdiUpload}
                 title="upload"
                 style={{ marginRight: '3px' }}
                 size={1}
               />}>Upload Files</Button>
-            </div>
+            </Upload>
           </Row>
         </Col>
 

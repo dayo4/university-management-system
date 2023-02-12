@@ -17,6 +17,9 @@ import Editstaff from "./components/Management/Staff/EditStaff/Editstaff";
 import AddStudent from "./components/Management/Student/AddStudent/AddStudent";
 
 
+/* Import Management Routes */
+import ManagementSection from "./components/Sections/Management/Index";
+
 /* Import Staff Routes */
 import StaffSection from "./components/Sections/Staff/Index";
 
@@ -34,15 +37,17 @@ function App() {
           <Route path="/" element={<Login />} exact />
 
           {/* MANAGEMENT ROUTING */}
-          <Route path="/management/staff" element={<Staff />} exact />
-          <Route path="/management/dashboard" element={<Dashboard />} exact />
-          <Route path="/management/memo" element={<Memo />} exact />
-          <Route path="/management/Editstaff/:token" element={<Editstaff />} exact />
+          <Route path="/management/*" element={<ManagementSection />} exact />
+
+          {/* <Route path="/management/staff" element={<Staff />} exact /> */}
+          {/* <Route path="/management/dashboard" element={<Dashboard />} exact />
+          <Route path="/management/memo" element={<Memo />} exact /> */}
+          {/* <Route path="/management/Editstaff/:token" element={<Editstaff />} exact />
           <Route path="/management/settings" element={<Settings />} exact />
           <Route path="/management/student" element={<Student />} exact />
           <Route path="/management/topnav" element={<Topnav />} exact />
           <Route path="/management/newstaff" element={<Newstaff />} exact />
-          <Route path="/management/addstudent" element={<AddStudent />} exact />
+          <Route path="/management/addstudent" element={<AddStudent />} exact /> */}
 
           <Route path="/management/finance" element={<Finance />} exact />
           {/* <Route path="/management/side" element={<Sidenav />} exact /> */}

@@ -10,12 +10,7 @@
     }
 
     & .UploadBtn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100px;
         margin: 20px 0 20px 0;
-        cursor: pointer;
         & * {
             color: $pri-color;
             font-size: 14px;

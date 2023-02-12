@@ -68,6 +68,7 @@ const Attendance = () => {
        title: 'Name',
        dataIndex: 'name',
        key: 'name',
+       sorter: true
        // render: (text) => <a>{text}</a>,
      },
      {
@@ -88,7 +89,7 @@ const Attendance = () => {
      tableData.push(
        {
          key: i,
-         name: 'Adeola Mercy',
+         name: ['Adeola Mercy', 'Jide Taiwo', 'Adesola Romoke'][Math.floor(Math.random() * 3)],
          level: '400',
          matric_no: '897890',
        }
@@ -102,7 +103,7 @@ const Attendance = () => {
        <Col xs={24} md={20}>
           <h5 className='Heading'>Manage Attendance</h5>
         </Col>
-        <Col xs={24} md={20} style={{ marginTop: '20px' }}>
+        <Col xs={24} md={20} style={{ margin: '20px 0' }}>
           <h6 className='SubHead'>Select Course</h6>
           <Select
             showSearch

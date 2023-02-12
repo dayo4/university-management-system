@@ -20,7 +20,7 @@ const Attendance = () => {
        title: 'NAME',
        dataIndex: 'name',
        key: 'name',
-       // render: (text) => <a>{text}</a>,
+       sorter: true
      },
      {
        title: 'LEVEL',
@@ -63,7 +63,7 @@ const Attendance = () => {
        <Col xs={24} md={20}>
           <h5 className='Heading'>Review Assessments</h5>
         </Col>
-        <Col xs={24} md={20} style={{ marginTop: '20px' }}>
+        <Col xs={24} md={20} style={{ margin: '20px 0' }}>
           <h6 className='SubHead'>Select Course</h6>
           <Select
             showSearch

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Col, Select, Button } from 'antd';
+import { Row, Col, Select, Button, DatePicker } from 'antd';
 // import { useNavigate } from "react-router-dom";
 
 import Icon from '@mdi/react';
@@ -11,6 +11,9 @@ import "./Index.scss"
 
 
 const CreateCourses = () => {
+  const onDateChange = (date, dateString) => {
+    console.log(date, dateString);
+  };
 
   return (
     <div>
@@ -123,22 +126,7 @@ const CreateCourses = () => {
             </Col>
             <Col xs={8} md={5} style={{ marginTop: '10px' }}>
               <h6 className='SubHead'>Date</h6>
-              <Select
-                style={{
-                  width: '100%'
-                }}
-                placeholder="Select Date"
-                options={[
-                  {
-                    value: '3',
-                    label: 'Accounting',
-                  },
-                  {
-                    value: '4',
-                    label: 'Computer Science',
-                  }
-                ]}
-              />
+              <DatePicker onChange={onDateChange} />
             </Col>
             <Col xs={8} md={8} style={{ marginTop: '10px' }}>
               <h6 className='SubHead'>Session</h6>

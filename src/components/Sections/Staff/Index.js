@@ -30,7 +30,7 @@ import ReviewAssessments from "./SubRoutes/Assessments/SubRoutes/Review/Index";
 // import Resumption from "./SubRoutes/Resumption/Index";
 
 
-const StudentsEntryPoint = ({ children }) => {
+const StaffEntryPoint = ({ children }) => {
   const user = JSON.parse(localStorage.getItem("userData"));
   const { pathname } = useLocation()
   // const [BreadCrumb, setBreadCrumb] = useState('hhh')
@@ -111,4 +111,4 @@ const StudentsEntryPoint = ({ children }) => {
   // }
 };
 
-export default StudentsEntryPoint;
+export default StaffEntryPoint;
