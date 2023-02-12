@@ -77,11 +77,8 @@ for (let i = 0; i < 60; i++) {
 // })
 
 
-const Receipts = ({setBreadCrumb}) => {
-  useEffect(() => {
-    setBreadCrumb()
-  })
-
+const Receipts = () => {
+  
   const navigate = useNavigate();
 
   return (

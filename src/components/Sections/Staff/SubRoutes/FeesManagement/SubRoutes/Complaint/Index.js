@@ -29,10 +29,7 @@ const onChange = (e) => {
   // console.log('Change:', e.target.value);
 };
 
-const Complaint = ({setBreadCrumb}) => {
-  useEffect(() => {
-    setBreadCrumb()
-  })
+const Complaint = () => {
 
   const navigate = useNavigate();
 

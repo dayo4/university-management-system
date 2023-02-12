@@ -2,10 +2,14 @@
 
 
 .BCrumb {
-    color: $helper-text-color;
     text-transform: capitalize;
     font-weight: bold;
     font-size: 12px;
     margin: 10px 0;
     letter-spacing: 0.3px;
+    
+    & a {
+        text-decoration: none;
+        color: $helper-text-color;
+    }
 }   

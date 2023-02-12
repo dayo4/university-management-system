@@ -12,9 +12,6 @@ import "./Index.scss"
 
 
 const Profile = ({ setBreadCrumb }) => {
-  useEffect(() => {
-    setBreadCrumb()
-  })
 
   return (
     <div id="Profile">

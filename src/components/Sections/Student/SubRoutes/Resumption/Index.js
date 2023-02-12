@@ -11,10 +11,7 @@ import "./Index.scss"
 
 
 
-const Resumption = ({setBreadCrumb}) => {
-  useEffect(() => {
-    setBreadCrumb()
-  })
+const Resumption = () => {
 
   return (
     <Row>

@@ -19,11 +19,8 @@ const Items = [
   { title: 'Payment Complaint', link: 'complaint', icon: mdiCommentTextOutline },
 ]
 
-const FeesManagement = ({setBreadCrumb}) => {
-  useEffect(() => {
-    setBreadCrumb()
-  })
-  
+const FeesManagement = () => {
+
   const navigate = useNavigate();
   return (
     <Row wrap justify="center" className="EntryWrapper">

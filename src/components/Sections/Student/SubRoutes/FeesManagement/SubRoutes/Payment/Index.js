@@ -20,10 +20,7 @@ const Items = [
   { title: 'Payment Complaint', link: 'complaint', icon: mdiCommentTextOutline },
 ]
 
-const Payment = ({setBreadCrumb}) => {
-  useEffect(() => {
-    setBreadCrumb()
-  })
+const Payment = () => {
 
   const navigate = useNavigate();
 

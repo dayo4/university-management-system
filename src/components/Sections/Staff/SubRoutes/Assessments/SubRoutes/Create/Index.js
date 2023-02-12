@@ -12,10 +12,7 @@ import "./Index.scss"
 
 
 
-const CreateAssessments = ({ setBreadCrumb }) => {
-  useEffect(() => {
-    setBreadCrumb()
-  })
+const CreateAssessments = () => {
 
   const onChange = (e) => {
     // console.log('Change:', e.target.value);

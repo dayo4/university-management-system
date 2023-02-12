@@ -10,10 +10,7 @@ import "./Index.scss"
 
 
 
-const Attendance = ({setBreadCrumb}) => {
-  useEffect(() => {
-    setBreadCrumb()
-  })
+const Attendance = () => {
 
   // const navigate = useNavigate();
    /* Table checkbox select algo */
