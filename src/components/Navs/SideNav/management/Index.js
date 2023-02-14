@@ -49,8 +49,20 @@ const StaffSideNavLinks = () => {
     { icon: mdiViewDashboardOutline, name: 'Dashboard', link: '/dashboard' },
     { icon: mdiFileDocumentEditOutline, name: 'Memo', link: '/memo' },
     { icon: mdiChartLine, name: 'Finance', link: '/finance' },
-    { icon: mdiAccountTieOutline, name: 'Staff', link: '/staff' },
-    { icon: mdiAccountSchoolOutline, name: 'Student', link: '/student' },
+    {
+      icon: mdiAccountTieOutline, name: 'Staff', /* link: '/staff' */
+      subLinks: [
+        { name: 'Staff Overview', link: '/staff/overview' },
+        { name: 'Add Staff', link: '/staff/add' },
+      ]
+    },
+    {
+      icon: mdiAccountSchoolOutline, name: 'Student', /* link: '/student' */
+      subLinks: [
+        { name: 'Overview', link: '/student/overview' },
+        { name: 'Add Student', link: '/student/add' },
+      ]
+    },
     { icon: mdiCogTransferOutline, name: 'Settings', link: '/Settings' },
   ]
 

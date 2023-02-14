@@ -1,3 +1,6 @@
+@import "../../../../../../Mixins.scss";
+
+
 // DESIGN SYSTEM
 $primary-t-color : #1315BA;
 $muted-t-color: rgba(157, 162, 176, 0.76);
@@ -15,7 +18,7 @@ $form-bg-color:#F4F7FD;
     overflow: scroll;
     padding-top: 30px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     flex: 2 1;
     flex-wrap: wrap;
@@ -35,6 +38,7 @@ $form-bg-color:#F4F7FD;
     padding: 30px 20px;
     position: relative;
     margin-bottom: 30px;
+    box-shadow: $shadow-3;
 
 
 
@@ -190,7 +194,7 @@ width: 100%;
             font-size: 14px;
             line-height: 16px;
             color: #07BF1A;
-            padding: 9px 28px;
+            // padding: 9px 28px;
 
         }
 
@@ -203,7 +207,7 @@ width: 100%;
             font-size: 14px;
             line-height: 16px;
             color: #CA0124;
-            padding: 9px 28px;
+            // padding: 9px 28px;
 
         }
     }

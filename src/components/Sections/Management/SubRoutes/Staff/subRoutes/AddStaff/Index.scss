@@ -1,0 +1,29 @@
+@import "../../../../../../../Mixins.scss";
+
+.AddStaff {
+  & .Heading {
+    color: $body-text-color;
+  }
+  & .SubHead {
+    color: $helper-text-color;
+    margin-bottom: 3px;
+  }
+
+  & .Actions {
+    margin: 30px 0 40px 0;
+  }
+}
+
+.BackIcon {
+  cursor: pointer;
+  color: $pri-color;
+  margin-right: 30px;
+  transition: 0.3s;
+  border-radius: 28px;
+  &:hover {
+    background-color: #4b4eed28;
+  }
+  &:active {
+    background-color: $pri-color-faded;
+  }
+}

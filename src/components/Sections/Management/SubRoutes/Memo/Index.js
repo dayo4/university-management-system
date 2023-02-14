@@ -4,32 +4,23 @@ import Modal from "react-bootstrap/Modal";
 
 import Inbox from "./Inbox/Index";
 import AppLoader from "../../../../../Loader";
-import { message } from "antd";
+import { Button, message } from "antd";
 import axios from "axios";
 import "antd/dist/reset.css";
 import "../../GlobalStyle.scss";
 import { Tabs } from "antd";
 import Icon from '@mdi/react';
-import { 
-  mdiEmailArrowLeftOutline, 
-  mdiEmailArrowRightOutline, 
-  mdiEmailCheckOutline, 
-  mdiEmailOpenMultipleOutline, 
+import {
+  mdiEmailArrowLeftOutline,
+  mdiEmailArrowRightOutline,
+  mdiEmailCheckOutline,
+  mdiEmailOpenMultipleOutline,
+  mdiPencilPlusOutline,
+  mdiRefresh,
 } from '@mdi/js';
 
 // IMPORTING IMAGES
-import draft from "../../../../../images/draft.svg";
-import sent from "../../../../../images/sent.svg";
-import inbox from "../../../../../images/inbox.svg";
-// import spam from "../../../../../images/spam.svg";
-import onboard from "../../../../../images/onboard.svg";
-import idk from "../../../../../images/idk.svg";
-import refresh from "../../../../../images/refresh.svg";
 import search from "../../../../../images/search.svg";
-
-
-
-
 
 const { TabPane } = Tabs;
 
@@ -50,7 +41,7 @@ const Memo = () => {
     setploading(true);
     setTimeout(() => {
       setploading(false);
-    }, 3000);
+    }, 1000);
   }, []);
 
   // LOGIN HANDLE
@@ -100,58 +91,52 @@ const Memo = () => {
   const composeShow = () => setShow(true);
 
   // TAB CONTENTS
-  const Inboxg = () => {
-    return (
-      <div className="tab-custom">
-        <Icon path={mdiEmailArrowLeftOutline}
-          size={1}
-        />
-        <h6>Inbox</h6>
-      </div>
-    );
-  };
-
-  const Sent = () => {
-    return (
-      <div className="tab-custom">
-        <Icon path={mdiEmailArrowRightOutline}
-          size={1}
-        />
-        <h6>Sent</h6>
-      </div>
-    );
-  };
-
-  const Draft = () => {
-    return (
-      <div className="tab-custom">
-        <Icon path={mdiEmailOpenMultipleOutline}
-          size={1}
-        />
-        <h6>Draft</h6>
-      </div>
-    );
-  };
-
-  const Starred = () => {
-    return (
-      <div className="tab-custom">
-        <Icon path={mdiEmailCheckOutline}
-          size={1}
-        />
-        <h6>Starred</h6>
-      </div>
-    );
-  };
-
-  // const Spam = () => {
-  //   return (
-  //     <div className="tab-custom">
-  //       <img src={spam} alt="" />
-  //       <h6>Spam</h6>
-  //     </div>
-  //   );
-  // };
+  const tabsContent = [
+    {
+      key: '1',
+      label:
+        <div className="MemoTabsHeading">
+          <Icon path={mdiEmailArrowLeftOutline}
+            size={0.9}
+          />
+          <h6>Inbox</h6>
+        </div>,
+      children: <Inbox />,
+    },
+    {
+      key: '2',
+      label:
+        <div className="MemoTabsHeading">
+          <Icon path={mdiEmailArrowRightOutline}
+            size={0.9}
+          />
+          <h6>Sent</h6>
+        </div>,
+      children: 'Sent Memos',
+    },
+    {
+      key: '3',
+      label:
+        <div className="MemoTabsHeading">
+          <Icon path={mdiEmailOpenMultipleOutline}
+            size={0.9}
+          />
+          <h6>Draft</h6>
+        </div>,
+      children: 'Drafts',
+    },
+    {
+      key: '4',
+      label:
+        <div className="MemoTabsHeading">
+          <Icon path={mdiEmailCheckOutline}
+            size={0.9}
+          />
+          <h6>Starred</h6>
+        </div>,
+      children: 'Starred Memos',
+    },
+  ];
 
   return (
     // <MWrapperb>
@@ -168,19 +153,26 @@ const Memo = () => {
         <>
           <div className="memo-whole-cont">
             <div className="top-memo-cont">
-              <button
+              <Button
                 className="compose-btn"
-                variant="primary"
+                type="primary"
                 onClick={composeShow}
               >
                 Compose Message
-                <img src={onboard} alt="" />
-              </button>
+                <Icon path={mdiPencilPlusOutline}
+                  size={1}
+                  style={{
+                    marginLeft: '8px'
+                  }}
+                />
+              </Button>
 
               <div className="memo-search-whole-cont">
-                <img className="raddradd" src={idk} alt="" />
 
-                <img className="raddradd" src={refresh} alt="" />
+                <Icon path={mdiRefresh}
+                  size={1.5}
+                  className={'MemoReloadIcon'}
+                />
 
                 <form
                   className="search-memo-cont"
@@ -194,31 +186,11 @@ const Memo = () => {
                 </form>
               </div>
 
-              <div className="iginition">1-10 of 62</div>
+              {/* <div className="iginition">1-10 of 62</div> */}
             </div>
           </div>
 
-          <Tabs defaultActiveKey="1">
-            <TabPane tab={Inboxg()} key="1">
-              <Inbox />
-            </TabPane>
-
-            <TabPane tab={Sent()} key="2">
-              Content of Tab Pane 2
-            </TabPane>
-
-            <TabPane tab={Draft()} key="3">
-              Content of Tab Pane 3
-            </TabPane>
-
-            <TabPane tab={Starred()} key="4">
-              Content of Tab Pane 4
-            </TabPane>
-
-            {/* <TabPane tab={Spam()} key="5">
-                  Content of Tab Pane 3
-                </TabPane> */}
-          </Tabs>
+          <Tabs defaultActiveKey="1" items={tabsContent}> </Tabs>
         </>
       )}
       {/* </div> */}

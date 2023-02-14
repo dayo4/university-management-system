@@ -1,5 +1,29 @@
 @import "../../../../../../Mixins.scss";
 
+.InboxTable {
+    & td {
+        font-weight: bold;
+        font-size: 12px;
+        color: $body-text-color;
+        text-align: left;
+    }
+    & .UserImage {
+        color: $pri-color;
+    }
+    & .UserName {
+        color: $pri-color;
+        cursor: pointer;
+    }
+    & .Subject {
+        cursor: pointer;
+    }
+
+    & .StarredMsg svg {
+        cursor: pointer;
+        color: $pri-color;
+    }
+}
+
 .inbox-memo-cont {
     display:flex;
     width:100%;
@@ -101,4 +125,3 @@
 @media (max-width: 982px) {
 
 }
-

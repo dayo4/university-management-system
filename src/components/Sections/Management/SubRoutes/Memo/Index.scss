@@ -6,7 +6,6 @@ $black-c-text: rgba(0, 0, 0, 0.76);
 $form-bg-color: #f4f7fd;
 @import "../../../../../Mixins.scss";
 
-
 .memo-whole-cont {
   width: 100%;
   display: flex;
@@ -14,7 +13,23 @@ $form-bg-color: #f4f7fd;
   justify-content: center;
   align-items: center;
   border: 1px solid rgba(196, 196, 196, 0.51);
-  padding: 12px 0px;
+  padding: 5px 0px;
+  border-radius: 10px;
+}
+
+.MemoTabsHeading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & svg {
+    color: $pri-color;
+    margin-right: 5px;
+  }
+  & h6 {
+    color: $helper-text-color;
+    margin: 0;
+    font-size: 14px;
+  }
 }
 
 .top-memo-cont {
@@ -24,23 +39,16 @@ $form-bg-color: #f4f7fd;
   align-items: center;
 
   .compose-btn {
-    font-family: $ws-font;
-    font-style: normal;
     font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
+    font-size: 14px;
     color: #ffffff;
     border: none;
-    padding: 12px 18px;
+    // padding: 8px 12px;
 
-    background: $pri-color;
+    // background: $pri-color;
     box-shadow: 0px 4px 22px 3px rgba(194, 200, 208, 0.12);
     border-radius: 10px;
 
-    img {
-      margin-left: 10px;
-      vertical-align: middle;
-    }
   }
 }
 
@@ -49,22 +57,15 @@ $form-bg-color: #f4f7fd;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  .raddradd {
-    width: 6%;
-    margin-right: 30px;
-  }
 }
 
-.iginition {
-  font-family: $ws-font;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 16px;
+// .iginition {
+//   font-weight: 700;
+//   font-size: 14px;
+//   line-height: 16px;
 
-  color: #4b4ded;
-}
+//   color: $pri-color;
+// }
 
 // ANOTHER SEARCH FIELD
 
@@ -73,7 +74,7 @@ $form-bg-color: #f4f7fd;
   box-sizing: border-box;
   box-shadow: 0px 4px 22px 3px rgba(194, 200, 208, 0.12);
   border-radius: 10px;
-  padding: 10px 20px;
+  padding: 4px 20px;
   width: 90%;
   display: flex;
   justify-content: space-between;
@@ -84,13 +85,9 @@ $form-bg-color: #f4f7fd;
     background: none;
     width: 6%;
     cursor: pointer;
-
-    img {
-      // border: 2px solid red;
-      width: 100%;
-      color: $pri-color;
-    }
   }
+
+
 
   input {
     border: none;
@@ -112,6 +109,19 @@ $form-bg-color: #f4f7fd;
   }
 }
 
+.MemoReloadIcon {
+  cursor: pointer;
+  color: $pri-color;
+  margin-right: 30px;
+  transition: 0.3s;
+  border-radius: 28px;
+  &:hover {
+    background-color: #4b4eed28;
+  }
+  &:active {
+    background-color: $pri-color-faded;
+  }
+}
 // COMPOSE MESSAGE AREA MODAL
 
 .modal-header {
@@ -231,8 +241,8 @@ select:focus {
 }
 
 .compose-select-cont {
-    width: 100%;
-        background: rgba(19, 21, 186, 0.08);
+  width: 100%;
+  background: rgba(19, 21, 186, 0.08);
 
   .compose-select {
     width: 97%;

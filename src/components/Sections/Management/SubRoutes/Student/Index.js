@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Request from "./Requests/Request";
 import axios from "axios";
-import { Tabs } from "antd";
-import { Link } from "react-router-dom";
+import AppLoader from "../../../../../Loader";
+import { Button, Col, Row, Table, Tabs } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 import "./Index.scss"
 import Icon from '@mdi/react';
 import {
+  mdiAccountMultiplePlusOutline,
   mdiEmailArrowLeftOutline,
   mdiEmailArrowRightOutline,
   mdiEmailCheckOutline,
   mdiEmailOpenMultipleOutline,
+  mdiFilter,
   mdiPlusBox,
 } from '@mdi/js';
 
@@ -30,13 +33,19 @@ const Student = () => {
     JSON.parse(localStorage.getItem("userData"))
   );
   const [apptoken, setpptoken] = useState(process.env.REACT_APP_UMS_TOKEN);
+  const [ploading, setploading] = useState(false);
 
   const toggleTab = (index) => {
     setToggleState(index);
   };
+  const navigate = useNavigate();
 
   useEffect(() => {
     listStudent();
+    setploading(true);
+    setTimeout(() => {
+      setploading(false);
+    }, 500);
   }, []);
 
   // GETTING LIST OF STUDENTS
@@ -64,116 +73,117 @@ const Student = () => {
       });
   };
 
-  // TAB CONTENTS
-  const Inboxg = () => {
-    return (
-      <div className="tab-custom">
-        <Icon path={mdiEmailArrowLeftOutline}
-          size={1}
-        />
-        <h6>Student profile</h6>
-      </div>
-    );
-  };
 
-  const Sent = () => {
-    return (
-      <div className="tab-custom">
-        <Icon path={mdiEmailArrowRightOutline}
-          size={1}
-        />
-        <h6>Requests</h6>
-      </div>
-    );
-  };
+  /*  Table Colomns  */
+  const tableColumns = [
+    {
+      // title: 'Image',
+      dataIndex: 'image',
+      key: 'image',
+    },
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+      sorter: true
+    },
+    {
+      title: 'Department',
+      dataIndex: 'department',
+      key: 'department',
+    },
+    {
+      title: 'Level',
+      dataIndex: 'level',
+      key: 'level',
+    },
+    {
+      title: 'E-mail',
+      dataIndex: 'email',
+      key: 'email',
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (_, record) => (
+        <Button style={{ border: 'solid 1px #4B4DED', }}>
+          Open
+        </Button>
+      ),
+    },
+  ];
 
-  const Draft = () => {
-    return (
-      <Link to="/management/addstudent" className="add-std-btn">
-        Add Student
-        <Icon path={mdiPlusBox}
-          size={1}
-        />
-      </Link>
-    );
-  };
+  const tableData = []
+  const randomColors = ['yellow', 'red', 'lightblue', 'green', 'blue', 'brown', 'cyan', 'teal']
+  for (let i = 0; i < 90; i++) {
+    tableData.push(
+      {
+        key: i,
+        image: <div className="StudentsImgAlt" style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}>OJ</div>,
+        name: 'Oladele Julius',
+        department: 'Business Admin',
+        level: '100',
+        email: 'oladele@rand.com',
+      }
+    )
+  }
+
+  const tabsContent = [
+    {
+      key: '1',
+      label:
+        <div className="StudentsTabsHeading">
+          <Icon path={mdiEmailArrowLeftOutline}
+            size={0.9}
+          />
+          <h6>Students</h6>
+        </div>,
+      children: <Row justify={'center'}>
+        <Col xs={24}>
+          <Table className='StudentsTable' columns={tableColumns} dataSource={tableData} />
+        </Col>
+      </Row>,
+    },
+    {
+      key: '2',
+      label:
+        <div className="StudentsTabsHeading">
+          <Icon path={mdiEmailArrowRightOutline}
+            size={0.9}
+          />
+          <h6>Requests</h6>
+        </div>,
+      children: <Request />,
+    },
+  ];
 
   return (
+    <div>
+      {ploading ? (
+        <AppLoader nameloader={"Students"} loading={ploading} />
+      ) : (
+        <div className="MgtStudentsOverview">
+          <Row justify={'space-between'} align={'middle'} className="TopActions">
+            <h6>Students Overview</h6>
 
-        <div className="student-whole-cont">
-          <div className="memo-tabs-whole">
-            <Tabs defaultActiveKey="1">
-              <TabPane tab={Inboxg()} key="1">
-                <div className="real-table-staff-cont">
-                  <table
-                    className="staff-table-cont"
-                    style={{ width: "100%" }}
-                  >
-                    <tr>
-                      <th className="radiuses head-style">S/N</th>
-                      <th className="head-style">Department</th>
-                      <th className="head-style">Name</th>
-                      <th className="head-style">Level</th>
-                      <th className="head-style">Email Address</th>
-                      <th className="head-style"></th>
-                      <th className="radiuses2 head-style"></th>
-                    </tr>
+            <div>
+              <Button
+                icon={<Icon path={mdiFilter} size={1} />}>
+                Filter
+              </Button>
+              <Button
+                icon={<Icon path={mdiAccountMultiplePlusOutline} size={1} style={{marginRight:'5px'}} />}
+                onClick={() => navigate("/management/student/add")}>
+                Add Student
+              </Button>
+            </div>
+          </Row>
 
-                    {getStudent?.map((data) => {
-                      const { store, level, fname, mail, img, size } =
-                        data;
-                      return (
-                        <>
-                          <tr className="staff-table-each ">
-                            <td className="bbb">
-                              <img src="./stafficon.svg" alt="" />
-                            </td>
-                            <td className="item-style bbb">Physics</td>
-                            <td className="item-style bbb">{fname}</td>
-                            <td className="item-style bbb">{level}</td>
-                            <td className="item-style bbb">{mail}</td>
+          <Tabs defaultActiveKey="1" items={tabsContent}> </Tabs>
 
-                            <td className="delete bbb">
-                              <img src="./delete.svg" alt="" />
-                              Delete
-                            </td>
-
-                            <td className="view bbb">
-                              <img src="./view.svg" alt="" />
-                              view
-                            </td>
-                          </tr>
-                        </>
-                      );
-                    })}
-                  </table>
-                </div>{" "}
-              </TabPane>
-
-              <TabPane tab={Sent()} key="2">
-                <Request />
-              </TabPane>
-
-              <TabPane className="Ojaa" tab={Draft()} key="3" style={{ float: "right", border: "2px solid red !important" }}></TabPane>
-            </Tabs>
-            {/* <div className="bloc-tabs">
-              <button
-                className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
-                onClick={() => toggleTab(1)}
-              >
-                <img src="./inbox.svg" alt="" />
-                Student profile{" "}
-              </button>
-              <button
-                className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
-                onClick={() => toggleTab(2)}
-              >
-                <img src="./sent.svg" alt="" />
-                Requests{" "}
-              </button>
-            </div> */}
-          </div>
         </div>
+      )}
+    </div>
   );
 };
 

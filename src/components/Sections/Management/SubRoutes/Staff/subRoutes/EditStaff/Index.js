@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import "./Editstaff.scss";
+import "./Index.scss";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import axios from "axios";

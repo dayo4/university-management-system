@@ -53,6 +53,11 @@ const Topnav = (props) => {
     staff: 'student',
     student: 'management'
   })
+  const profileRoute = ShowBasedOnAccType({
+    mgt: 'management',
+    staff: 'staff',
+    student: 'student'
+  })
 
   useEffect(() => {
     function handleResize() {
@@ -137,7 +142,7 @@ const Topnav = (props) => {
             } content={
               <Row dir="colomn" justify={"space-between"} className="NavUserPopoverContent">
                 <Col span={24}>
-                  <Button onClick={() => navigate('/student/profile', { state: { bCrumb: "Student Profile" } })} icon={
+                  <Button onClick={() => navigate('/' + profileRoute + '/profile')} icon={
                     <Icon path={mdiAccountDetailsOutline}
                       size={1}
                     />

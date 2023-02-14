@@ -1,39 +1,89 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Index.scss";
 import { domData } from "../../../DomData";
+import Icon from "@mdi/react";
+import {
+  mdiAccountCircle,
+  mdiStar,
+  mdiStarOutline,
+} from "@mdi/js";
+import { Col, Row, Table } from "antd";
+
 
 const Inbox = () => {
+  const [starred, setStarred] = useState({});
+
+  const tableColumns = [
+    {
+      dataIndex: 'image',
+      key: 'image',
+      className: 'UserImage'
+    },
+    {
+      dataIndex: 'name',
+      key: 'name',
+      className: 'UserName',
+    },
+    {
+      dataIndex: 'subject',
+      key: 'subject',
+      className: 'Subject'
+    },
+    {
+      key: 'star',
+      render: (value, record) => (
+        <span onClick={onStarClicked} className="StarredIcon" id={record.key} >
+          {
+            starred[record.key] ?
+              <Icon path={mdiStar}
+                size={1}
+              /> :
+              <Icon path={mdiStarOutline}
+                size={1}
+              />
+          }
+        </span>
+      ),
+      className: 'StarredMsg'
+    },
+  ];
+
+  /* Table Data */
+  const tableData = []
+  for (let i = 0; i < 40; i++) {
+    tableData.push(
+      {
+        key: i,
+        image: <Icon path={mdiAccountCircle} size={1.4} />,
+        name: 'Adeola Mercy',
+        subject: 'Just trying to get a msg across to the...',
+      }
+    )
+  }
+
+  function onStarClicked(e) {
+    let target = e.target.closest('.StarredIcon').id
+    let stars = starred
+
+    if (stars[target]) {
+      stars[target] = false
+    }
+    else {
+      stars[target] = true
+    }
+
+    setStarred((state)=>({
+      ...stars
+    }))
+  }
+
+
   return (
-    <>
-      {domData.map((data) => {
-        const { store, name, price, description, img, size } = data;
-        return (
-          <>
-            <div className="inbox-memo-cont">
-              <div className="user-name-inbox">
-                <img src={img} alt=" " />
-
-                <div className="user-name-name">
-                  <h6>{store}</h6>
-                  <p>{name}</p>
-                </div>
-              </div>
-
-              <div className="user-inbox-details">
-                <p>
-                  {description} - <span>We know how frustrating it... </span>{" "}
-                </p>
-              </div>
-
-              <div className="user-inbox-date">
-                <p>{size}</p>
-              </div>
-            </div>
-            <div className="line-line"> </div>
-          </>
-        );
-      })}
-    </>
+    <Row>
+      <Col xs={24}>
+        <Table className='InboxTable' columns={tableColumns} dataSource={tableData} />
+      </Col>
+    </Row>
   );
 };
 

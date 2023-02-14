@@ -1,5 +1,17 @@
 @import "./Mixins.scss";
 
+#PageAwaitingDesign{
+display: flex;
+justify-content: center;
+align-items: center;
+height: 300px;
+width: 100%;
+font-size: 20px;
+background-color: $subtle-bg-color;
+color: $body-text-color;
+margin-top: 20px;
+}
+
 /* .App {
   text-align: center;
 }
