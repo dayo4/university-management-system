@@ -36,7 +36,7 @@ const StudentsEntryPoint = ({ children }) => {
 
     return BCrumb.map((crumb, i) => {
       return <Link
-        to={i === 0 ? "/staff/dashboard" : "/staff/" + BCrumb.slice(1, i + 1).join('/')}
+        to={i === 0 ? "/student/dashboard" : "/student/" + BCrumb.slice(1, i + 1).join('/')}
         key={i}
       >
         {(i === 0 ? crumb + " " : (crumb === 'dashboard' ? "" : " / " + crumb))}

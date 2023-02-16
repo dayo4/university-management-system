@@ -25,7 +25,7 @@ const Staff = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getStaff();
+    // getStaff();
     setploading(true);
     setTimeout(() => {
       setploading(false);

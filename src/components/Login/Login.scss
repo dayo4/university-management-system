@@ -1,3 +1,5 @@
+@import "../../Mixins.scss";
+
 $primary-t-color: #1315ba;
 $primary-t-color-hover: #4548e6;
 $muted-t-color: rgba(157, 162, 176, 0.76);
@@ -5,6 +7,7 @@ $ws-font: "Work Sans", sans-serif;
 $rb-font: "Roboto", sans-serif;
 $black-c-text: rgba(0, 0, 0, 0.76);
 $form-bg-color: #f4f7fd;
+
 
 .login-cont {
   width: 100%;
@@ -23,13 +26,11 @@ $form-bg-color: #f4f7fd;
   align-items: center;
 
   p {
-    font-family: "Roboto";
-    font-style: normal;
     font-weight: 300;
     font-size: 14px;
     line-height: 34px;
     letter-spacing: 2px;
-    color: $muted-t-color;
+    color: $helper-text-color;
   }
 
   .logo-login {
@@ -46,14 +47,12 @@ $form-bg-color: #f4f7fd;
     }
 
     h6 {
-      font-family: "Work Sans", sans-serif;
-      font-style: normal;
       font-weight: 900;
       font-size: 18px;
       line-height: 27px;
       text-align: center;
       letter-spacing: 2px;
-      color: $primary-t-color;
+      color: $pri-color;
     }
   }
 }
@@ -67,8 +66,8 @@ $form-bg-color: #f4f7fd;
 .login-right {
   background-image: linear-gradient(
       50deg,
-      #1316bac1 52%,
-      rgba(97, 84, 228, 0.88) 100%
+      $pri-color 52%,
+      $pri-color-faded 100%
     ),
     url(../../../public/patternBg.svg);
   width: 60%;
@@ -89,12 +88,10 @@ $form-bg-color: #f4f7fd;
     flex-direction: column;
 
     h1 {
-      font-family: $ws-font;
-      font-style: normal;
       font-weight: 700;
       font-size: 27px;
       line-height: 32px;
-      color: $primary-t-color;
+      color: $pri-color;
     }
 
     .forgot-password {
@@ -103,20 +100,18 @@ $form-bg-color: #f4f7fd;
       width: 80%;
       text-decoration: none;
       font-family: "Inter";
-      font-style: normal;
       font-weight: 400;
       font-size: 10px;
       line-height: 34px;
-      color: $primary-t-color;
+      color: $pri-color;
       margin-top: 10px;
     }
 
     .btn-login {
-      background: $primary-t-color;
+      background: $pri-color;
       border-radius: 6px;
       border: none;
       font-family: "Inter";
-      font-style: normal;
       font-weight: 800;
       font-size: 18px;
       line-height: 34px;
@@ -132,7 +127,42 @@ $form-bg-color: #f4f7fd;
     .btn-login:hover {
       // border: 2px solid $primary-t-color;
       color: white;
-      background-color: $primary-t-color-hover;
+      background-color: #4548e6;
+    }
+
+    .email-login {
+      margin-top: 30px;
+      width: 80%;
+
+      p {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 34px;
+        letter-spacing: -0.33px;
+        color: $black-c-text;
+      }
+
+      input {
+        width: 100%;
+        border: none;
+        background-color: $form-bg-color;
+        padding: 10px 10px;
+        border-radius: 6px;
+        transition: 0.3s ease-in;
+        font-family: $rb-font;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 34px;
+        letter-spacing: 2px;
+        color: $ws-font;
+      }
+      input:focus,
+      textarea:focus,
+      select:focus {
+        outline: none;
+        border: 1px solid $pri-color;
+      }
     }
 
     .email-login {
@@ -168,44 +198,7 @@ $form-bg-color: #f4f7fd;
       textarea:focus,
       select:focus {
         outline: none;
-        border: 1px solid $primary-t-color;
-      }
-    }
-
-    .email-login {
-      margin-top: 30px;
-      width: 80%;
-
-      p {
-        font-family: $rb-font;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 34px;
-        letter-spacing: -0.33px;
-        color: $black-c-text;
-      }
-
-      input {
-        width: 100%;
-        border: none;
-        background-color: $form-bg-color;
-        padding: 10px 10px;
-        border-radius: 6px;
-        transition: 0.3s ease-in;
-        font-family: $rb-font;
-        font-style: normal;
-        font-weight: 300;
-        font-size: 14px;
-        line-height: 34px;
-        letter-spacing: 2px;
-        color: $ws-font;
-      }
-      input:focus,
-      textarea:focus,
-      select:focus {
-        outline: none;
-        border: 1px solid $primary-t-color;
+        border: 1px solid $pri-color;
       }
     }
 
@@ -259,6 +252,7 @@ $form-bg-color: #f4f7fd;
   line-height: 34px;
   letter-spacing: 2px;
   color: $ws-font;
+  cursor: pointer;
 
   // border: 2px solid red;
   display: flex;
