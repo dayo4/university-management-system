@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Row, Col, Button } from 'antd';
+import { Row, Col, Button, message } from 'antd';
 import Icon from '@mdi/react';
 import {
   mdiPencilOutline,
@@ -8,10 +8,44 @@ import {
   mdiNoteEdit
 } from '@mdi/js';
 import "./Index.scss"
+import axios from 'axios';
 
 
+const Profile = () => {
+  const { usertoken } = JSON.parse(localStorage.getItem("userData")).data
+  const fetchProfile = async () => {
+    const data = {
+      data: {
+        // apptoken: process.env.REACT_APP_UMS_TOKEN,
+        usertoken,
+        token: usertoken
+      }
+    };
 
-const Profile = ({ setBreadCrumb }) => {
+    await axios
+      .get(`${process.env.REACT_APP_UMS_BASE}/management/getUserDetails`, data)
+      .then((res) => {
+        console.log(res)
+        if (res.data.success === true) {
+          message.success(res.data.message)
+          // setLoading(false);
+          localStorage.setItem("userPrf", res.data)
+          console.log(localStorage.getItem("userPrf"))
+          // authUser();
+        } else {
+          // setLoading(false);
+          message.info(res.data.message)
+        }
+      })
+      .catch((err) => {
+        // setLoading(false);
+        message.warning(err.message)
+      });
+  };
+
+  useEffect(() => {
+    fetchProfile()
+  }, []);
 
   return (
     <div id="Profile">
@@ -45,29 +79,21 @@ const Profile = ({ setBreadCrumb }) => {
 
       <section className='ProfileDetails'>
         <ul className='List'>
-          <li>
+        <li>
             <div>NAME: </div>
-            <div><div>AFOLABI HASSAN</div></div>
+            <div><div>Omoleke Grace</div></div>
           </li>
           <li>
             <div>GENDER: </div>
-            <div><div>MALE</div></div>
+            <div><div>FEMALE</div></div>
           </li>
           <li>
-            <div>Matric No.: </div>
+            <div>Phone No.: </div>
             <div><div>4983432453</div></div>
           </li>
           <li>
             <div>Level: </div>
-            <div><div>300 Level</div></div>
-          </li>
-          <li>
-            <div>Semester: </div>
-            <div><div>Second</div></div>
-          </li>
-          <li>
-            <div>Program: </div>
-            <div><div>Computer Science</div></div>
+            <div><div>21</div></div>
           </li>
           <li>
             <div>D.O.B: </div>
@@ -75,20 +101,20 @@ const Profile = ({ setBreadCrumb }) => {
           </li>
           <li>
             <div>Status: </div>
-            <div><div>Promoted Clean Bill</div></div>
+            <div><div>Lorem..</div></div>
           </li>
         </ul>
       </section>
-        <Row className='Actions' justify="center">
-          <Button
-            type="primary"
-            icon={<Icon path={mdiNoteEdit}
-              title="Edit"
-              style={{ marginRight: '3px' }}
-              size={0.9}
-            />}
-          >Edit</Button>
-        </Row>
+      <Row className='Actions' justify="center">
+        <Button
+          type="primary"
+          icon={<Icon path={mdiNoteEdit}
+            title="Edit"
+            style={{ marginRight: '3px' }}
+            size={0.9}
+          />}
+        >Edit</Button>
+      </Row>
     </div>
   )
 }

@@ -43,7 +43,7 @@ const StaffSideNavLinks = () => {
 
   const navItems = [
     { icon: mdiViewDashboardOutline, name: 'Dashboard', link: '/dashboard' },
-    { icon: mdiCardsOutline, name: 'Fees Management', link: '/fees' },
+    // { icon: mdiCardsOutline, name: 'Fees Management', link: '/fees' },
     { icon: mdiListBoxOutline, name: 'Attendance', link: '/attendance' },
     {
       icon: mdiBriefcaseCheckOutline, name: 'Courses', /* link: '/courses', */
@@ -59,9 +59,9 @@ const StaffSideNavLinks = () => {
         { name: 'Create Assessment', link: '/assessments/create' },
       ]
     },
-    { icon: mdiAccountSchoolOutline, name: 'Resumption', link: '/resumption' },
-    { icon: mdiChartBoxPlusOutline, name: 'Results', link: '/results' },
-    { icon: mdiExitRun, name: 'Exit', link: '/exit' },
+    // { icon: mdiAccountSchoolOutline, name: 'Resumption', link: '/resumption' },
+    // { icon: mdiChartBoxPlusOutline, name: 'Results', link: '/results' },
+    // { icon: mdiExitRun, name: 'Exit', link: '/exit' },
   ]
 
   const MainNavLinks = navItems.map(({ icon, name, link, subLinks }, i) => {

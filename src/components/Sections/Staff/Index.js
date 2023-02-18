@@ -13,15 +13,16 @@ import "./Index.scss"
 import Dashboard from "./SubRoutes/Profile/Index";
 import Profile from "./SubRoutes/Profile/Index";
 /* Fees Mgt Routes */
-import FeesManagement from "./SubRoutes/FeesManagement/Index";
-import Payment from "./SubRoutes/FeesManagement/SubRoutes/Payment/Index";
-import Receipts from "./SubRoutes/FeesManagement/SubRoutes/Receipts/Index";
-import Complaint from "./SubRoutes/FeesManagement/SubRoutes/Complaint/Index";
+// import FeesManagement from "./SubRoutes/FeesManagement/Index";
+// import Payment from "./SubRoutes/FeesManagement/SubRoutes/Payment/Index";
+// import Receipts from "./SubRoutes/FeesManagement/SubRoutes/Receipts/Index";
+// import Complaint from "./SubRoutes/FeesManagement/SubRoutes/Complaint/Index";
 /* Attendance Routes */
 import Attendance from "./SubRoutes/Attendance/Index";
 /* Courses Routes */
 // import Courses from "./SubRoutes/Courses/Index";
 import CreateCourses from "./SubRoutes/Courses/SubRoutes/Create/Index";
+import CoursesOutline from "./SubRoutes/Courses/SubRoutes/Outline/Index";
 /* Assessments Routes */
 // import Assessments from "./SubRoutes/Assessments/Index";
 import CreateAssessments from "./SubRoutes/Assessments/SubRoutes/Create/Index";
@@ -77,21 +78,20 @@ const StaffEntryPoint = ({ children }) => {
             <Route path="profile/*">
               <Route path="" element={<Profile />} />
             </Route>
-            <Route path="fees/*">
+            {/* <Route path="fees/*">
               <Route path="" element={<FeesManagement />} />
               <Route path="payment" element={<Payment />} />
               <Route path="receipts" element={<Receipts />} />
               <Route path="complaint" element={<Complaint />} />
-            </Route>
+            </Route> */}
             <Route path="attendance/*">
               <Route path="" element={<Attendance />} />
             </Route>
             <Route path="courses/*">
-              {/* <Route path="" element={<Courses setBreadCrumb={() => setBreadCrumb('Courses')} />} /> */}
               <Route path="create" element={<CreateCourses />} />
+              <Route path="outline" element={<CoursesOutline />} />
             </Route>
             <Route path="assessments/*">
-              {/* <Route path="" element={<Assessments setBreadCrumb={() => setBreadCrumb('Assessments')} />} /> */}
               <Route path="create" element={<CreateAssessments />} />
               <Route path="review" element={<ReviewAssessments />} />
             </Route>

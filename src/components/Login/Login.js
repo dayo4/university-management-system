@@ -33,7 +33,7 @@ const Login = () => {
 
     const data = {
       apptoken: apptoken,
-      email: email,
+      mail: email,
       pword: password,
     };
 
@@ -41,21 +41,22 @@ const Login = () => {
 
     const authUser = () => {
       const user = JSON.parse(localStorage.getItem("userData"));
-      if (user.acc_type === "Management") {
+      if (user.acc_type === "management") {
         navigate(`/management/dashboard`);
-      } else if (user.acc_type === "Staff") {
+      } else if (user.acc_type === "staff") {
         navigate(`/staff
-         /home`);
-      } else if (user.acc_type === "Student") {
-        navigate(`/staff`);
+         /dashboard`);
+      } else if (user.acc_type === "student") {
+        navigate(`/student/dashboard`);
       } else {
         return <NoAccess />;
       }
     };
 
     await axios
-      .post(` ${process.env.REACT_APP_UMS_BASE}/v1/login`, data)
+      .post(` ${process.env.REACT_APP_UMS_BASE}/general/login`, data)
       .then((res) => {
+        console.log(res.data)
         if (res.data.success === true) {
           message.success(res.data.message);
           setLoading(false);
@@ -76,13 +77,13 @@ const Login = () => {
 
   const authUser2 = () => {
     const user = JSON.parse(localStorage.getItem("userData"));
-    if (user.acc_type === "Management") {
+    if (user.acc_type === "management") {
       navigate(`/management/dashboard`);
-    } else if (user.acc_type === "Staff") {
+    } else if (user.acc_type === "staff") {
       navigate(`/staff
-         /home`);
-    } else if (user.acc_type === "Student") {
-      navigate(`/staff`);
+         /dashboard`);
+    } else if (user.acc_type === "student") {
+      navigate(`/student/dashboard`);
     } else {
       return <NoAccess />;
     }
@@ -179,7 +180,7 @@ const Login = () => {
                     {" "}
                     <button
                       className="btn-login disabled"
-                      // onClick={(e) => handleLogin(e)}
+                    // onClick={(e) => handleLogin(e)}
                     >
                       {" "}
                       Please wait...{" "}

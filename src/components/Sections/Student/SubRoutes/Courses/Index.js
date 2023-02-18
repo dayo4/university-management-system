@@ -100,7 +100,7 @@ const Courses = () => {
     <div>
       <Row justify="center" className="Content">
         <Col xs={24} sm={20} md={20}>
-          <h5 className='Heading'>Courses Registration</h5>
+          <h6 className='Heading'>Courses Registration</h6>
         </Col>
         <Col xs={24} sm={20} md={20}>
           <Table rowSelection={rowSelection} className='CTable' columns={tableColumns} dataSource={tableData} />

@@ -23,6 +23,10 @@ import Attendance from "./SubRoutes/Attendance/Index";
 import Courses from "./SubRoutes/Courses/Index";
 /* Resumption Routes */
 import Resumption from "./SubRoutes/Resumption/Index";
+/* Results Routes */
+import Results from "./SubRoutes/Results/Index";
+/* Exit Routes */
+import Exit from "./SubRoutes/Exit/Index";
 
 
 const StudentsEntryPoint = ({ children }) => {
@@ -78,8 +82,14 @@ const StudentsEntryPoint = ({ children }) => {
             <Route path="courses/*">
               <Route path="" element={<Courses/>} />
             </Route>
+            <Route path="resumption/*">
+              <Route path="" element={<Resumption/>} />
+            </Route>
+            <Route path="results/*">
+              <Route path="history" element={<Results/>} />
+            </Route>
             <Route path="exit/*">
-              <Route path="" element={<Courses/>} />
+              <Route path="" element={<Exit/>} />
             </Route>
           </Routes>
 

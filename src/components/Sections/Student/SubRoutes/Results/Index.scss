@@ -1,0 +1,26 @@
+@import "../../../../../Mixins.scss";
+
+.Resumption {
+    & .Heading {
+        color: $body-text-color;
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+    & .Info {
+        & h6 {
+            color: $body-text-color;
+            font-size: 14px;
+            width: 100%;
+        }
+    }
+
+}
+.ResultTable {
+    & td {
+        font-weight: bold;
+        font-size: 12px;
+        color: $body-text-color;
+        text-align: left;
+    }
+  }
+  

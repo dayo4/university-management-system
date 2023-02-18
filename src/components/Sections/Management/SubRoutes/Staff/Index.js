@@ -25,7 +25,7 @@ const Staff = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // getStaff();
+    getStaff();
     setploading(true);
     setTimeout(() => {
       setploading(false);
@@ -34,13 +34,17 @@ const Staff = () => {
 
   // GETTING LIST OF STAFF
   const getStaff = async () => {
+    const { usertoken } = JSON.parse(localStorage.getItem("userData")).data
+
     const staffData = {
-      apptoken: apptoken,
-      usertoken: userData.usertoken,
+    //  data: {
+       apptoken: apptoken,
+       usertoken,
+    //  }
     };
 
     await axios
-      .post(` ${process.env.REACT_APP_UMS_BASE}/general/listAllStaffs`, staffData)
+      .post(`${process.env.REACT_APP_UMS_BASE}/general/listAllStaffs`, staffData)
       .then((res) => {
         console.log(res)
         if (res.data.success == false) {

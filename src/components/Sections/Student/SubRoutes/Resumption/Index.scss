@@ -1,95 +1,29 @@
 @import "../../../../../Mixins.scss";
 
-.ProfileImage {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-
-    & .Image {
-        margin-right: 20px;
-        & > svg {
-            color: $helper-text-color;
-        }
-    }
-
-    & .Buttons {
-        width: 100px;
-
-        & button {
-            width: 90px;
-            border-radius: 3px;
-            text-align: start;
-            font-weight: bold;
-            padding: 2px;
-            transition: 0.3s;
-            &:active {
-                opacity: 0.75;
-            }
-        }
-        & button:first-child {
-            color: $success-color;
-            border: solid $success-color 1.5px;
-            &:hover {
-                color: white;
-                border: solid white 1.5px;
-                background-color: $success-color;
-            }
-        }
-        & button:last-child {
-            margin-top: 5px;
-            color: $sec-color;
-            border: solid $sec-color 1.5px;
-            &:hover {
-                color: white;
-                border: solid white 1.5px;
-                background-color: $sec-color;
-            }
-        }
-
-        & svg {
-            margin-right: 5px;
-        }
-    }
-}
-
-.ProfileDetails {
-    margin-top: 40px;
-    margin-bottom: 40px;
-    padding-left: 10px;
-    & ul {
-        list-style: none;
+.Resumption {
+    & .Heading {
+        color: $body-text-color;
         margin-bottom: 20px;
-        & li {
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            & span:first-child {
-                width: 100px;
-                color: $helper-text-color
-            }
-            & span:last-child {
-                text-align: center;
-                border-radius: 28px;
-                border: solid $pri-color-faded 1px;
-                padding: 3px 10px;
-                min-width: 150px;
-            }
-        }
     }
-}
-
-@include xs-only {
-    .ProfileImage {
-        // display: block;
-        justify-content: center;
-
-        & .Image {
-            margin-right: 0;
+    & .DragAndDrop {
+        height: 200px;
+        width: 200px;
+        border: solid $pri-color 1px;
+        border-radius: 10px;
+        text-align: center;
+        margin-bottom: 10px;
+        & svg {
+            color: $pri-color;
         }
-        // & button {
-        //     margin-left: 20px;
-        // }
+        & .Text {
+            color: $body-text-color;
+            font-size: 16px;
+        }
+    } 
+    & .UploadBtn {
+        color: $pri-color;
+        // border: $pri-color;
+
+
     }
 }

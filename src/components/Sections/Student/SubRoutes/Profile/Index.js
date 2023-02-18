@@ -47,7 +47,7 @@ const Profile = () => {
         <ul className='List'>
           <li>
             <div>NAME: </div>
-            <div><div>AFOLABI HASSAN</div></div>
+            <div><div>LOLADE JIDE</div></div>
           </li>
           <li>
             <div>GENDER: </div>

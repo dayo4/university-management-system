@@ -33,13 +33,13 @@ const Profile = ({ setBreadCrumb }) => {
             />
             Change
           </Button>
-          <button className='Delete'>
+          <Button className='Delete'>
             <Icon path={mdiDeleteOutline}
               size={0.9}
               title="Delete"
             />
             Delete
-          </button>
+          </Button>
         </div>
       </section>
 
@@ -54,20 +54,12 @@ const Profile = ({ setBreadCrumb }) => {
             <div><div>MALE</div></div>
           </li>
           <li>
-            <div>Matric No.: </div>
+            <div>Phone No.: </div>
             <div><div>4983432453</div></div>
           </li>
           <li>
             <div>Level: </div>
-            <div><div>300 Level</div></div>
-          </li>
-          <li>
-            <div>Semester: </div>
-            <div><div>Second</div></div>
-          </li>
-          <li>
-            <div>Program: </div>
-            <div><div>Computer Science</div></div>
+            <div><div>11</div></div>
           </li>
           <li>
             <div>D.O.B: </div>
@@ -75,7 +67,7 @@ const Profile = ({ setBreadCrumb }) => {
           </li>
           <li>
             <div>Status: </div>
-            <div><div>Promoted Clean Bill</div></div>
+            <div><div>Lorem..</div></div>
           </li>
         </ul>
       </section>

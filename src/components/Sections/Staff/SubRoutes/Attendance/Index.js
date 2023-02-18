@@ -101,7 +101,7 @@ const Attendance = () => {
      <div>
        <Row justify="center" className="Content">
        <Col xs={24} md={20}>
-          <h5 className='Heading'>Manage Attendance</h5>
+          <h6 className='Heading'>Manage Attendance</h6>
         </Col>
         <Col xs={24} md={20} style={{ margin: '20px 0' }}>
           <h6 className='SubHead'>Select Course</h6>

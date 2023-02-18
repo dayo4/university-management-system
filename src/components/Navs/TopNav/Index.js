@@ -138,7 +138,11 @@ const Topnav = (props) => {
 
             {/* User Profile */}
             <Popover className="Profile" placement="bottomRight" title={
-              <Divider plain style={{ color: "#8C8CA2", paddingTop: '10px' }} ><b>Student</b></Divider>
+              <Divider plain style={{ color: "#8C8CA2", paddingTop: '10px' }} ><b>{ShowBasedOnAccType({
+                mgt: 'Admin',
+                staff: 'Staff',
+                student: 'Student'
+              })}</b></Divider>
             } content={
               <Row dir="colomn" justify={"space-between"} className="NavUserPopoverContent">
                 <Col span={24}>
@@ -176,7 +180,11 @@ const Topnav = (props) => {
               {/* <img src="./userimg.svg" alt="" /> */}
 
               <div className="Details">
-                <h6>Afolabi Hassan</h6>
+                <h6>{ShowBasedOnAccType({
+                mgt: 'Omoleke Grace',
+                staff: 'Afolabi Hassan',
+                student: 'Lolade Jide'
+              })}</h6>
                 <small>
                   {ShowBasedOnAccType({
                     mgt: 'Management',

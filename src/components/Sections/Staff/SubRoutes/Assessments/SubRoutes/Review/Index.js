@@ -36,7 +36,7 @@ const Attendance = () => {
       title: 'ACTION',
       key: 'action',
       render: (_, record) => (
-        <Button style={{borderRight : 'solid 1px #d9d9d9'}}>
+        <Button style={{border: 'solid 1px #4B4DED'}}>
           REVIEW
         </Button>
       ),
