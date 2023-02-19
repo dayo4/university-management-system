@@ -9,6 +9,7 @@ import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useParams, useNavigate } from "react-router-dom";
 import NoAccess from "../InvalidAccess/noAccess";
+import logo2 from "../../images/logo2.svg";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -127,7 +128,7 @@ const Login = () => {
           <div className="login-cont">
             <div className="login-left">
               <div className="logo-login">
-                <img src="../../images/logo2.svg" alt="" />
+                <img src={logo2} alt="" />
                 <h6>
                   UNIVERSITY <br /> MANAGEMENT SYSTEM
                 </h6>

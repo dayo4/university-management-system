@@ -25,3 +25,5 @@ node_modules
 
 # hide personal dev files
 /src/devOnly
+# Local Netlify folder
+.netlify

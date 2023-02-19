@@ -8,6 +8,11 @@ import "./Index.scss"
 import Icon from '@mdi/react';
 import {
   mdiAccountMultiplePlusOutline,
+  mdiAccountSchoolOutline,
+  mdiAccountTieOutline,
+  mdiArrowBottomRight,
+  mdiArrowTopRight,
+  mdiCheckAll,
   mdiEmailArrowLeftOutline,
   mdiEmailArrowRightOutline,
   mdiEmailCheckOutline,
@@ -140,6 +145,55 @@ const Student = () => {
         </div>,
       children: <Row justify={'center'}>
         <Col xs={24}>
+          <Row justify={{ xs: 'start', md: 'space-between' }} align={'middle'} className="StatsSummary_Students">
+            <Col xs={12} md={5} className="Summary1">
+              <div className="Icon">
+                <Icon path={mdiAccountSchoolOutline}
+                  size={1}
+                />
+              </div>
+              <div className="Text">
+                <p>Total Stadents</p>
+                <h5>15,000</h5>
+              </div>
+            </Col>
+
+            <Col xs={12} md={5} className="Summary2">
+              <div className="Icon">
+                <Icon path={mdiArrowTopRight}
+                  size={1}
+                />
+              </div>
+              <div className="Text">
+                <p>Total Requests</p>
+                <h5>4,860</h5>
+              </div>
+            </Col>
+
+            <Col xs={12} md={5} className="Summary3">
+              <div className="Icon">
+                <Icon path={mdiCheckAll}
+                  size={1}
+                />
+              </div>
+              <div className="Text">
+                <p>Accepted Requests</p>
+                <h5>3,578</h5>
+              </div>
+            </Col>
+
+            <Col xs={12} md={5} className="Summary4">
+              <div className="Icon">
+                <Icon path={mdiArrowBottomRight}
+                  size={1}
+                />
+              </div>
+              <div className="Text">
+                <p>Declined Requests</p>
+                <h5>198</h5>
+              </div>
+            </Col>
+          </Row>
           <Table className='StudentsTable' columns={tableColumns} dataSource={tableData} />
         </Col>
       </Row>,
@@ -172,7 +226,7 @@ const Student = () => {
                 Filter
               </Button>
               <Button
-                icon={<Icon path={mdiAccountMultiplePlusOutline} size={1} style={{marginRight:'5px'}} />}
+                icon={<Icon path={mdiAccountMultiplePlusOutline} size={1} style={{ marginRight: '5px' }} />}
                 onClick={() => navigate("/management/student/add")}>
                 Add Student
               </Button>

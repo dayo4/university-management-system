@@ -51,6 +51,86 @@
   border-radius: 28px;
 }
 
+.StatsSummary_Students {
+  padding-top: 0px !important;
+  // margin-bottom: 6px;
+  width: 100%;
+
+  & > div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+
+    & .Icon {
+      border-radius: 5px;
+      padding: 7px 10px;
+    }
+
+    & .Text {
+      margin-left: 10px;
+      p {
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 14px;
+        letter-spacing: 1px;
+      }
+
+      h5 {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 16px;
+        color: #f4780f;
+      }
+    }
+
+    &.Summary1 {
+      & .Icon {
+        color: #f4780f;
+        background-color: #f57a0f2c;
+      }
+      & .Text {  
+        h5 {
+          color: #f4780f;
+        }
+      }
+    }
+    &.Summary2 {
+      & .Icon {
+        color: $pri-color;
+        background-color: #4b4eed2c;
+      }
+      & .Text {  
+        h5 {
+          color: $pri-color;
+        }
+      }
+    }
+    &.Summary3 {
+      & .Icon {
+        color: #09A1CF;
+        background-color: #09a1cf31;
+      }
+      & .Text {  
+        h5 {
+          color: #09A1CF;
+        }
+      }
+    }
+    &.Summary4 {
+      & .Icon {
+        color: #FC0646;
+        background-color: #FC064631;
+      }
+      & .Text {  
+        h5 {
+          color: #FC0646;
+        }
+      }
+    }
+  }
+}
+
 .StudentsTable {
   & td {
       font-weight: bold;

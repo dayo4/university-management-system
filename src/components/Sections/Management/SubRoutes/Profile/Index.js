@@ -12,30 +12,28 @@ import axios from 'axios';
 
 
 const Profile = () => {
-  const { usertoken } = JSON.parse(localStorage.getItem("userData")).data
+  const userData = JSON.parse(localStorage.getItem("userData"))
   const fetchProfile = async () => {
     const data = {
-      data: {
-        // apptoken: process.env.REACT_APP_UMS_TOKEN,
-        usertoken,
-        token: usertoken
-      }
+        apptoken: process.env.REACT_APP_UMS_TOKEN,
+        usertoken : userData.usertoken,
+        token: userData.usertoken
     };
 
     await axios
-      .get(`${process.env.REACT_APP_UMS_BASE}/management/getUserDetails`, data)
+      .post(`${process.env.REACT_APP_UMS_BASE}/management/getUserDetails`, data)
       .then((res) => {
         console.log(res)
-        if (res.data.success === true) {
-          message.success(res.data.message)
-          // setLoading(false);
-          localStorage.setItem("userPrf", res.data)
-          console.log(localStorage.getItem("userPrf"))
-          // authUser();
-        } else {
-          // setLoading(false);
-          message.info(res.data.message)
-        }
+        // if (res.data.success === true) {
+        //   message.success(res.data.message)
+        //   // setLoading(false);
+        //   localStorage.setItem("userPrf", res.data)
+        //   console.log(localStorage.getItem("userPrf"))
+        //   // authUser();
+        // } else {
+        //   // setLoading(false);
+        //   message.info(res.data.message)
+        // }
       })
       .catch((err) => {
         // setLoading(false);
