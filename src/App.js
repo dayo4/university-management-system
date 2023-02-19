@@ -1,7 +1,7 @@
-import logo from "./logo.svg";
+import logo from "./images/logo.svg";
 import "./Mixins.scss";
 import "./App.scss";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes  } from "react-router-dom";
 import Login from "./components/Login/Login";
 // import Sidenav from "./components/Sidenav/Sidenav";
 
@@ -21,24 +21,27 @@ import StudentsSection from "./components/Sections/Student/Index";
 function App() {
   return (
     <div className="App">
-      <Router>
+      <BrowserRouter>
         <Routes>
           {/* LOGIN FOR ALL APP */}
           <Route path="/" element={<Login />} exact />
 
           {/* MANAGEMENT ROUTING */}
-          <Route path="/management/*" element={<ManagementSection />} exact />
+          <Route path="/management/*" element={<ManagementSection />}  />
 
           {/* STAFF ROUTING */}
-          <Route path="/staff/*" element={<StaffSection />} exact />
+          <Route path="/staff/*" element={<StaffSection />}  />
 
           {/* STUDENTS ROUTING */}
-          <Route path="/student/*" element={<StudentsSection />} exact />
+          <Route path="/student/*" element={<StudentsSection />}  />
+
+          {/* Redirects */}
+          <Route path="*" element={<StudentsSection />}  />
 
           {/* DevMode IconsPreview */}
-          {/* <Route path="/icons-preview" element={<IconsPreview />} exact /> */}
+          {/* <Route path="/icons-preview" element={<IconsPreview />}  /> */}
         </Routes>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }

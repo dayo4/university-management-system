@@ -12,7 +12,7 @@ import { Input, Popover, Divider, Button, Row, Col, message } from 'antd';
 const { Search } = Input;
 import "./Index.scss";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { logo2 } from "../../../static/icons"
+import logo2 from "../../../images/logo2.svg"
 import { ShowBasedOnAccType } from "../../UtilFunctions";
 
 const Topnav = (props) => {

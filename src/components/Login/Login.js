@@ -127,7 +127,7 @@ const Login = () => {
           <div className="login-cont">
             <div className="login-left">
               <div className="logo-login">
-                <img src="./logo2.svg" alt="" />
+                <img src="../../images/logo2.svg" alt="" />
                 <h6>
                   UNIVERSITY <br /> MANAGEMENT SYSTEM
                 </h6>

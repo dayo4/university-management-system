@@ -10,7 +10,7 @@ import {
 } from '@mdi/js';
 
 // IMPORTING IMAGES
-import { logo } from "../../../static/icons"
+import logo from "../../../images/logo.svg"
 
 import ManagementSideNavLinks from "./management/Index"
 import StaffSideNavLinks from "./Staff/Index"
