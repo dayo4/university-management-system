@@ -27,53 +27,64 @@ import {
 // import onboard from "../../../images/onboard.svg";
 
 
-const { TabPane } = Tabs;
-
-
 const Student = () => {
   // TAB DECLEARATION
   const [toggleState, setToggleState] = useState(1);
-  const [getStudent, setGetStudent] = useState([]);
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("userData"))
   );
   const [apptoken, setpptoken] = useState(process.env.REACT_APP_UMS_TOKEN);
   const [ploading, setploading] = useState(false);
+  const [studentList, setStudentList] = useState([]);
 
   const toggleTab = (index) => {
     setToggleState(index);
   };
   const navigate = useNavigate();
 
+  const devMode = process.env.NODE_ENV === 'development'
   useEffect(() => {
-    listStudent();
+
+    fetchStudents();
     setploading(true);
-    setTimeout(() => {
-      setploading(false);
-    }, 500);
+    if (devMode) {
+      const storedData = JSON.parse(localStorage.getItem("studentList"))
+      if (storedData)
+        setStudentList(storedData)
+
+
+      setTimeout(() => {
+        setploading(false);
+      }, 500);
+    }
   }, []);
 
   // GETTING LIST OF STUDENTS
-  const listStudent = async () => {
-    const staffData = {
+  const fetchStudents = async () => {
+    const studentfData = {
       apptoken: apptoken,
       usertoken: userData.usertoken,
     };
 
     await axios
-      .post(` ${process.env.REACT_APP_UMS_BASE}/v1/listAllStudents`, staffData)
+      .post(` ${process.env.REACT_APP_UMS_BASE}/general/listAllStudents`, studentfData)
       .then((res) => {
-        if (res.data.success == false) {
-          setGetStudent([]);
+        console.log(res)
+        if (res.data.success === false) {
+          message.error('unable to get data!')
         } else {
-          setGetStudent(res.data);
+          setStudentList(res.data.data);
+          if (devMode)
+            localStorage.setItem('studentList', JSON.stringify(res.data.data));
         }
+
+        setploading(false);
       })
 
       .catch((err) => {
         console.log(err);
         setTimeout(() => {
-          listStudent();
+          fetchStudents();
         }, 20000);
       });
   };
@@ -93,6 +104,11 @@ const Student = () => {
       sorter: true
     },
     {
+      title: 'faculty',
+      dataIndex: 'faculty',
+      key: 'faculty',
+    },
+    {
       title: 'Department',
       dataIndex: 'department',
       key: 'department',
@@ -109,26 +125,31 @@ const Student = () => {
     },
     {
       title: 'Action',
+      dataIndex: 'action',
       key: 'action',
-      render: (_, record) => (
-        <Button style={{ border: 'solid 1px #4B4DED', }}>
-          Open
-        </Button>
-      ),
+      // render: (_, record) => (
+      //   <Button style={{ border: 'solid 1px #4B4DED', }}>
+      //     Open
+      //   </Button>
+      // ),
     },
   ];
 
   const tableData = []
   const randomColors = ['yellow', 'red', 'lightblue', 'green', 'blue', 'brown', 'cyan', 'teal']
-  for (let i = 0; i < 90; i++) {
+  for (let i = 0; i < studentList.length; i++) {
     tableData.push(
       {
         key: i,
-        image: <div className="StudentsImgAlt" style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}>OJ</div>,
-        name: 'Oladele Julius',
+        image: <div className="StudentsImgAlt" style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}>{studentList[i].fname.charAt(0) + studentList[i].lname.charAt(0)}</div>,
+        name: studentList[i].fname + ' ' + studentList[i].lname,
+        faculty: 'Mgt Science',
         department: 'Business Admin',
         level: '100',
-        email: 'oladele@rand.com',
+        email: studentList[i].mail,
+        action: <Button onClick={() => navigate('/management/student/view/' + studentList[i].id, { state: {} })} style={{ border: 'solid 1px #4B4DED', }}>
+          Open
+        </Button>
       }
     )
   }
@@ -194,7 +215,7 @@ const Student = () => {
               </div>
             </Col>
           </Row>
-          <Table className='StudentsTable' columns={tableColumns} dataSource={tableData} />
+          <Table className='StudentsTable' scroll={{ x: '100%' }} columns={tableColumns} dataSource={tableData} />
         </Col>
       </Row>,
     },

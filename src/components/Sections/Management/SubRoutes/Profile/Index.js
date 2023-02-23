@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Row, Col, Button, message } from 'antd';
 import Icon from '@mdi/react';
 import {
@@ -12,28 +12,30 @@ import axios from 'axios';
 
 
 const Profile = () => {
+  const [profileData, setProfileData] = useState(localStorage.getItem("userPrf"));
+
   const userData = JSON.parse(localStorage.getItem("userData"))
   const fetchProfile = async () => {
     const data = {
-        apptoken: process.env.REACT_APP_UMS_TOKEN,
-        usertoken : userData.usertoken,
-        token: userData.usertoken
+      apptoken: process.env.REACT_APP_UMS_TOKEN,
+      usertoken: userData.usertoken,
+      token: userData.usertoken
     };
 
     await axios
       .post(`${process.env.REACT_APP_UMS_BASE}/management/getUserDetails`, data)
       .then((res) => {
         console.log(res)
-        // if (res.data.success === true) {
-        //   message.success(res.data.message)
-        //   // setLoading(false);
-        //   localStorage.setItem("userPrf", res.data)
-        //   console.log(localStorage.getItem("userPrf"))
-        //   // authUser();
-        // } else {
-        //   // setLoading(false);
-        //   message.info(res.data.message)
-        // }
+        if (res.data.success === true) {
+          message.success(res.data.message)
+          // setLoading(false);
+          localStorage.setItem("userPrf",  JSON.stringify(res.data.data))
+          console.log(localStorage.getItem("userPrf"))
+          // authUser();
+        } else {
+          // setLoading(false);
+          message.info(res.data.message)
+        }
       })
       .catch((err) => {
         // setLoading(false);
@@ -77,7 +79,7 @@ const Profile = () => {
 
       <section className='ProfileDetails'>
         <ul className='List'>
-        <li>
+          <li>
             <div>NAME: </div>
             <div><div>Omoleke Grace</div></div>
           </li>

@@ -16,7 +16,7 @@ const Staff = () => {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("userData"))
   );
-  const [listStaff, setListStaff] = useState([]);
+  const [staffList, setStaffList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(3);
 
@@ -24,35 +24,46 @@ const Staff = () => {
   const [ploading, setploading] = useState(false);
   const navigate = useNavigate();
 
+
+  const devMode = process.env.NODE_ENV === 'development'
   useEffect(() => {
+    // console.log(staffList[0])
     getStaff();
     setploading(true);
-    setTimeout(() => {
-      setploading(false);
-    }, 500);
+    if (devMode) {
+      const storedData = JSON.parse(localStorage.getItem("staffList"))
+      if (storedData)
+        setStaffList(storedData)
+
+
+      setTimeout(() => {
+        setploading(false);
+      }, 500);
+    }
   }, []);
 
   // GETTING LIST OF STAFF
   const getStaff = async () => {
-    const { usertoken } = JSON.parse(localStorage.getItem("userData")).data
+    const { usertoken } = JSON.parse(localStorage.getItem("userData"))
 
     const staffData = {
-    //  data: {
-       apptoken: apptoken,
-       usertoken,
-    //  }
+      apptoken: apptoken,
+      usertoken,
     };
 
     await axios
       .post(`${process.env.REACT_APP_UMS_BASE}/general/listAllStaffs`, staffData)
       .then((res) => {
-        console.log(res)
         if (res.data.success == false) {
-          setListStaff([]);
+          message.error('unable to get data!')
         } else {
           console.log(res.data.data)
-          setListStaff(res.data.data);
+          setStaffList(res.data.data);
+          if (devMode)
+            localStorage.setItem('staffList', JSON.stringify(res.data.data));
         }
+
+        setploading(false);
       })
 
       .catch((err) => {
@@ -79,7 +90,7 @@ const Staff = () => {
 
     await axios
       .post(
-        ` ${process.env.REACT_APP_UMS_BASE}/v1/deleteStaff`,
+        ` ${process.env.REACT_APP_UMS_BASE}/management/deleteStaff`,
         deleteStaffData
       )
       .then((res) => {
@@ -110,14 +121,14 @@ const Staff = () => {
       sorter: true
     },
     {
+      title: 'faculty',
+      dataIndex: 'faculty',
+      key: 'faculty',
+    },
+    {
       title: 'Department',
       dataIndex: 'department',
       key: 'department',
-    },
-    {
-      title: 'Level',
-      dataIndex: 'level',
-      key: 'level',
     },
     {
       title: 'E-mail',
@@ -126,26 +137,28 @@ const Staff = () => {
     },
     {
       title: 'Action',
+      dataIndex: 'action',
       key: 'action',
-      render: (_, record) => (
-        <Button style={{ border: 'solid 1px #4B4DED',  }}>
-          Open
-        </Button>
-      ),
+      // render: (_, record) => (
+
+      // ),
     },
   ];
 
   const tableData = []
   const randomColors = ['yellow', 'red', 'lightblue', 'green', 'blue', 'brown', 'cyan', 'teal']
-  for (let i = 0; i < 90; i++) {
+  for (let i = 0; i < staffList.length; i++) {
     tableData.push(
       {
         key: i,
-        image: <div className="StaffImgAlt" style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}>AM</div>,
-        name: 'Adeola Mercy',
+        image: <div className="StaffImgAlt" style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}>{staffList[i].fname.charAt(0) + staffList[i].lname.charAt(0)}</div>,
+        name: staffList[i].fname + ' ' + staffList[i].lname,
+        faculty: 'Mgt Science',
         department: 'Business Admin',
-        level: '11',
-        email: 'adeola@rand.com',
+        email: staffList[i].mail,
+        action: <Button onClick={() => navigate('/management/staff/view/' + staffList[i].id, { state: {} })} style={{ border: 'solid 1px #4B4DED', }}>
+          Open
+        </Button>
       }
     )
   }
@@ -166,7 +179,7 @@ const Staff = () => {
               </Button>
               <Button
                 icon={<Icon path={mdiAccountMultiplePlusOutline} size={1} />}
-                onClick={()=>navigate("/management/staff/add")}>
+                onClick={() => navigate("/management/staff/add")}>
                 Onboard Staff
               </Button>
             </div>
@@ -174,7 +187,7 @@ const Staff = () => {
 
           <Row justify={'center'}>
             <Col xs={24}>
-              <Table className='StaffTable' columns={tableColumns} dataSource={tableData} />
+              <Table className='StaffTable' scroll={{ x: '100%' }} columns={tableColumns} dataSource={tableData} />
             </Col>
           </Row>
         </div>

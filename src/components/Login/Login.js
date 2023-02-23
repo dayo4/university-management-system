@@ -61,7 +61,7 @@ const Login = () => {
         if (res.data.success === true) {
           message.success(res.data.message);
           setLoading(false);
-          localStorage.setItem("userData", JSON.stringify(res.data));
+          localStorage.setItem("userData", JSON.stringify(res.data.data));
           authUser();
         } else {
           setLoading(false);

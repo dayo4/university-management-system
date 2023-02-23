@@ -88,6 +88,7 @@
                     background-color: $subtle-bg-color;
                     min-width: 250px;
                     & div {
+                        min-height: 24px;
                         text-align: center;
                         border-radius: 28px;
                         // border: solid $pri-color-faded 1px;

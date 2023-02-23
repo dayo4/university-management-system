@@ -15,6 +15,7 @@ import Finance from "./SubRoutes/Finance/Index";
 /* Import staff management subRoutes */
 import Staff from "./SubRoutes/Staff/Index";
 import AddStaff from "./SubRoutes/Staff/subRoutes/AddStaff/Index";
+import ViewStaff from "./SubRoutes/Staff/subRoutes/ViewStaff/Index";
 // import EditStaff from "./SubRoutes/Staff/subRoutes/EditStaff/Index";
 /* Import staff management subRoutes */
 import Student from "./SubRoutes/Student/Index";
@@ -65,6 +66,9 @@ const ManagementEntryPoint = ({ children }) => {
             <Route path="staff/*">
               <Route path="overview" element={<Staff />} />
               <Route path="add" element={<AddStaff />} />
+              <Route path="view/*">
+                <Route path=":id" element={<ViewStaff />} />
+              </Route>
               {/* <Route path="edit" element={<EditStaff />} /> */}
             </Route>
             <Route path="student/*">
