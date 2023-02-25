@@ -20,7 +20,7 @@ import Profile from "./SubRoutes/Profile/Index";
 /* Attendance Routes */
 import Attendance from "./SubRoutes/Attendance/Index";
 /* Courses Routes */
-// import Courses from "./SubRoutes/Courses/Index";
+import Courses from "./SubRoutes/Courses/Index";
 import CreateCourses from "./SubRoutes/Courses/SubRoutes/Create/Index";
 import CoursesOutline from "./SubRoutes/Courses/SubRoutes/Outline/Index";
 /* Assessments Routes */
@@ -88,6 +88,7 @@ const StaffEntryPoint = ({ children }) => {
               <Route path="" element={<Attendance />} />
             </Route>
             <Route path="courses/*">
+              <Route path="overview" element={<Courses />} />
               <Route path="create" element={<CreateCourses />} />
               <Route path="outline" element={<CoursesOutline />} />
             </Route>

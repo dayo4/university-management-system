@@ -48,6 +48,7 @@ const StaffSideNavLinks = () => {
     {
       icon: mdiBriefcaseCheckOutline, name: 'Courses', /* link: '/courses', */
       subLinks: [
+        { name: 'All Courses', link: '/courses/overview' },
         { name: 'Create Course', link: '/courses/create' },
         { name: 'Course Outline', link: '/courses/outline' }
       ]

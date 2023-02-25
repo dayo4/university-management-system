@@ -34,11 +34,11 @@ const Inbox = (props, ref) => {
     };
 
     await axios
-      .post(`${process.env.REACT_APP_UMS_BASE}/management/listMemo`, data)
+      .post(`${process.env.REACT_APP_UMS_BASE}/management/listDraftMemo`, data)
       .then((res) => {
         console.log(res)
         if (res.data.success == false) {
-          message.error('unable to get data!')
+          message.error('unable to get memo data!')
         } else {
           setMemoList(res.data.data);
         }
@@ -79,23 +79,23 @@ const Inbox = (props, ref) => {
       key: 'period',
       className: 'Period'
     },
-    {
-      key: 'star',
-      render: (value, record) => (
-        <span onClick={onStarClicked} className="StarredIcon" id={record.key} >
-          {
-            starred[record.key] ?
-              <Icon path={mdiStar}
-                size={1}
-              /> :
-              <Icon path={mdiStarOutline}
-                size={1}
-              />
-          }
-        </span>
-      ),
-      className: 'StarredMsg'
-    },
+    // {
+    //   key: 'star',
+    //   render: (value, record) => (
+    //     <span onClick={onStarClicked} className="StarredIcon" id={record.key} >
+    //       {
+    //         starred[record.key] ?
+    //           <Icon path={mdiStar}
+    //             size={1}
+    //           /> :
+    //           <Icon path={mdiStarOutline}
+    //             size={1}
+    //           />
+    //       }
+    //     </span>
+    //   ),
+    //   className: 'StarredMsg'
+    // },
   ];
 
   /* Table Data */

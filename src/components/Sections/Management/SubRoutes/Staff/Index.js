@@ -59,7 +59,7 @@ const Staff = () => {
         } else {
           console.log(res.data.data)
           setStaffList(res.data.data);
-          if (devMode)
+          // if (devMode)
             localStorage.setItem('staffList', JSON.stringify(res.data.data));
         }
 

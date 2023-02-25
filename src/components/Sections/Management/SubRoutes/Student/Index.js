@@ -74,7 +74,7 @@ const Student = () => {
           message.error('unable to get data!')
         } else {
           setStudentList(res.data.data);
-          if (devMode)
+          // if (devMode)
             localStorage.setItem('studentList', JSON.stringify(res.data.data));
         }
 

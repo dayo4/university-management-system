@@ -9,10 +9,46 @@ import {
   mdiCheckAll, mdiUpload
 } from '@mdi/js';
 import "./Index.scss"
+import axios from 'axios';
 
 
 
 const CreateAssessments = () => {
+  const [courseList, setCourseList] = useState([]);
+  const [apptoken, setpptoken] = useState(process.env.REACT_APP_UMS_TOKEN);
+
+  // const navigate = useNavigate();
+  useEffect(() => {
+    getCourses();
+  }, []);
+
+  const getCourses = async () => {
+    const { usertoken } = JSON.parse(localStorage.getItem("userData"))
+
+    const data = {
+      apptoken: apptoken,
+      usertoken: usertoken,
+    };
+
+    usertoken,
+      await axios
+        .post(`${process.env.REACT_APP_UMS_BASE}/general/listCourses`, data)
+        .then((res) => {
+          console.log(res)
+          if (res.data.success == false) {
+            message.error('unable to get course!')
+          } else {
+            setCourseList(res.data.data);
+          }
+        })
+
+        .catch((err) => {
+          console.log(err);
+          setTimeout(() => {
+            getCourses();
+          }, 20000);
+        });
+  };
 
   const onChange = (e) => {
     // console.log('Change:', e.target.value);
@@ -64,16 +100,12 @@ const CreateAssessments = () => {
             filterSort={(optionA, optionB) =>
               (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
             }
-            options={[
-              {
-                value: '1',
-                label: 'Cost Acounting 103',
-              },
-              {
-                value: '2',
-                label: 'Business Law 101',
+            options={courseList.map((crs) => {
+              return {
+                value: crs.id,
+                label: crs.course,
               }
-            ]}
+            })}
           />
         </Col>
         <Col xs={24} sm={20} md={16} style={{ marginTop: '30px' }}>

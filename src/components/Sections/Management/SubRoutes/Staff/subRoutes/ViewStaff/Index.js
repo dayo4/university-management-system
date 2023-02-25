@@ -15,6 +15,8 @@ import axios from 'axios';
 
 
 const ViewStaff = () => {
+  const devMode = process.env.NODE_ENV === 'development'
+
   const navigate = useNavigate();
   const params = useParams();
 
@@ -35,7 +37,10 @@ const ViewStaff = () => {
       .then((res) => {
         // console.log(res) 
         if (res.data.success === true) {
-          // setStaffData(res.data.data)
+          // if(!devMode){
+          //   setStaffData(res.data.data)
+          // }
+
           setPageLoading(false);
           // message.success(res.data.message)
           authUser();
@@ -51,18 +56,17 @@ const ViewStaff = () => {
   };
 
   useEffect(() => {
-    const devMode = process.env.NODE_ENV === 'development'
     fetchStaff();
     setPageLoading(true);
+    const staffList = JSON.parse(localStorage.getItem("staffList"))
+    if (staffList) {
+      staffList.find(staff => {
+        if(String(staff.id) === params.id) {
+          setStaffData(staff)
+        }
+      })
+    }
     if (devMode) {
-      const staffList = JSON.parse(localStorage.getItem("staffList"))
-      if (staffList) {
-        staffList.find(staff => {
-          if(String(staff.id) === params.id) {
-            setStaffData(staff)
-          }
-        })
-      }
 
       setTimeout(() => {
         setPageLoading(false);

@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Index.scss";
 import Modal from "react-bootstrap/Modal";
 
 import Inbox from "./Inbox/Index";
+import Draft from "./Draft/Index";
 import AppLoader from "../../../../../Loader";
 import { Button, message } from "antd";
 import axios from "axios";
@@ -36,55 +37,63 @@ const Memo = () => {
 
   // PRELOADER
   const [ploading, setploading] = useState(false);
+  const [saveBtnLoading, setSaveBtnLoading] = useState(false);
+  const [draftBtnLoading, setDraftBtnLoading] = useState(false);
 
   useEffect(() => {
-    setploading(true);
-    setTimeout(() => {
-      setploading(false);
-    }, 1000);
+    // setploading(true);
+    // setTimeout(() => {
+    //   setploading(false);
+    // }, 1000);
   }, []);
 
+  const InboxRef = useRef()
+  const DraftRef = useRef()
+
+  function refreshMemos() {
+    InboxRef.current.refreshMemos()
+    DraftRef.current.refreshMemos()
+  }
   // LOGIN HANDLE
-  const sendMemo = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+  async function useMemo(action) {
 
-    const memoData = {
-      apptoken: apptoken,
-      To: to,
-      Subject: subject,
-      Memo: memo,
-      usertoken: userData.usertoken,
-    };
+    if (!saveBtnLoading && !draftBtnLoading) {
+      action === 'send' ? setSaveBtnLoading(true) : setDraftBtnLoading(true);
 
-    await axios
-      .post(` ${process.env.REACT_APP_UMS_BASE}/v1/sendMemo`, memoData)
-      .then((res) => {
-        if (res.data.success === true) {
-          message.success(res.data.message);
-          setLoading(false);
-          setMemo("");
-          setTo("");
-          setSubject("");
-          composeClose();
-        } else {
-          setLoading(false);
-          message.info(res.data.message);
-        }
-      })
-      .catch((err) => {
-        setLoading(false);
-        console.log(err);
-        message.warning(err.message);
-      });
+      const memoData = {
+        apptoken: apptoken,
+        To: to,
+        subject: subject,
+        memo: memo,
+        usertoken: userData.usertoken,
+      };
+
+      await axios
+        .post(`${process.env.REACT_APP_UMS_BASE}/management/` + (action === 'send' ? 'sendMemo' : 'saveMemoToDraft'), memoData)
+        .then((res) => {
+          console.log(res)
+          action === 'send' ? setSaveBtnLoading(false) : setDraftBtnLoading(false);
+
+          if (res.data.success === true) {
+            message.success(action === 'send' ? res.data.message : 'Message has been saved to draft');
+            setMemo("");
+            setTo("");
+            setSubject("");
+            composeClose();
+            action === 'send' ? InboxRef.current.refreshMemos() : DraftRef.current.refreshMemos()
+
+          } else {
+            message.info(res.data.message);
+          }
+        })
+        .catch((err) => {
+          action === 'send' ? setSaveBtnLoading(false) : setDraftBtnLoading(false);
+          console.log(err);
+          message.warning(err.message);
+        });
+    }
+
   };
-
-  // TAB DECLEARATION
-  const [toggleState, setToggleState] = useState(1);
-  const toggleTab = (index) => {
-    setToggleState(index);
-  };
-
   // COMPOSE MESSAGE MODAL
   const [show, setShow] = useState(false);
   const composeClose = () => setShow(false);
@@ -101,10 +110,21 @@ const Memo = () => {
           />
           <h6>Inbox</h6>
         </div>,
-      children: <Inbox />,
+      children: <Inbox ref={InboxRef} />,
     },
     {
       key: '2',
+      label:
+        <div className="MemoTabsHeading">
+          <Icon path={mdiEmailOpenMultipleOutline}
+            size={0.9}
+          />
+          <h6>Draft</h6>
+        </div>,
+      children: <Draft ref={DraftRef} />,
+    },
+    {
+      key: '3',
       label:
         <div className="MemoTabsHeading">
           <Icon path={mdiEmailArrowRightOutline}
@@ -113,17 +133,6 @@ const Memo = () => {
           <h6>Sent</h6>
         </div>,
       children: 'Sent Memos',
-    },
-    {
-      key: '3',
-      label:
-        <div className="MemoTabsHeading">
-          <Icon path={mdiEmailOpenMultipleOutline}
-            size={0.9}
-          />
-          <h6>Draft</h6>
-        </div>,
-      children: 'Drafts',
     },
     {
       key: '4',
@@ -139,11 +148,7 @@ const Memo = () => {
   ];
 
   return (
-    // <MWrapperb>
     <div >
-      {/* <Sidenav /> */}
-      {/* <div id="MARGIN-APP"> */}
-      {/* <Topnav title={"Memo"} /> */}
 
       {ploading ? (
         <>
@@ -171,6 +176,7 @@ const Memo = () => {
 
                 <Icon path={mdiRefresh}
                   size={1.5}
+                  onClick={refreshMemos}
                   className={'MemoReloadIcon'}
                 />
 
@@ -185,15 +191,12 @@ const Memo = () => {
                   <input type="text" placeholder="Search..." required />
                 </form>
               </div>
-
-              {/* <div className="iginition">1-10 of 62</div> */}
             </div>
           </div>
 
           <Tabs defaultActiveKey="1" items={tabsContent}> </Tabs>
         </>
       )}
-      {/* </div> */}
 
       <div className="modal-compose-cont">
         <Modal show={show} onHide={composeClose} size="lg" centered>
@@ -212,43 +215,9 @@ const Memo = () => {
 
               <option value="All">To: All</option>
               <option value="Students">To: Students</option>
-              <option value="Staff">To: Staff</option>
+              <option value="Staffs">To: Staff</option>
             </select>
           </div>
-
-          {/* <Dropdown>
-            <Dropdown.Toggle id="dropdown-basic">To:</Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              <Dropdown.Item>
-                <input
-                  type="radio"
-                  name="to"
-                  value={to}
-                  onChange={(e) => setTo("All")}
-                />
-                <p>All</p>
-              </Dropdown.Item>
-              <Dropdown.Item>
-                <input
-                  type="radio"
-                  name="to"
-                  value={to}
-                  onChange={(e) => setTo("Student")}
-                />
-                <p>Students</p>
-              </Dropdown.Item>
-              <Dropdown.Item>
-                <input
-                  type="radio"
-                  name="to"
-                  value={to}
-                  onChange={(e) => setTo("Admin")}
-                />
-                <p>Admin</p>
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown> */}
 
           <div className="subject">
             <p>Subject</p>
@@ -272,12 +241,15 @@ const Memo = () => {
             ></textarea>
           </Modal.Body>
           <Modal.Footer>
-            <button className="close-compose" onClick={composeClose}>
+            <Button className="close-compose" onClick={composeClose}>
               Cancle
-            </button>
-            <button className="send-compose" onClick={(e) => sendMemo(e)}>
+            </Button>
+            <Button loading={saveBtnLoading} type="primary" className="" onClick={() => useMemo('send')}>
               Send
-            </button>
+            </Button>
+            <Button loading={draftBtnLoading} type="primary" className="" onClick={() => useMemo('saveDraft')}>
+              Draft
+            </Button>
           </Modal.Footer>
         </Modal>
       </div>

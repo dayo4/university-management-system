@@ -1,19 +1,131 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Col, Select, Button, DatePicker } from 'antd';
+import { Row, Col, Select, Button, DatePicker, Input, message } from 'antd';
 // import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 import Icon from '@mdi/react';
 import {
   mdiCheckAll
 } from '@mdi/js';
 import "./Index.scss"
 
-
-
 const CreateCourses = () => {
+  const [courseList, setCourseList] = useState([]);
+  const [newCourseData, setNewCourseData] = useState({
+    courseTitle: '',
+    courseCode: '',
+    unit: '',
+    requirement: '',
+    deptid: '',
+    level: '',
+    sessionid: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [apptoken, setpptoken] = useState(process.env.REACT_APP_UMS_TOKEN);
+  // const [userData, setUserData] = useState(
+  //   JSON.parse(localStorage.getItem("userData"))
+  // );
+
+  // const devMode = process.env.NODE_ENV === 'development'
+  useEffect(() => {
+    getCourses();
+    // if (devMode) {
+    //   const storedData = JSON.parse(localStorage.getItem("courseList"))
+    //   if (storedData)
+    //     setCourseList(storedData)
+    // }
+  }, []);
+
   const onDateChange = (date, dateString) => {
     console.log(date, dateString);
   };
+
+
+  const getCourses = async () => {
+    const { usertoken } = JSON.parse(localStorage.getItem("userData"))
+
+    const data = {
+      apptoken: apptoken,
+      usertoken: usertoken,
+    };
+
+    usertoken,
+      await axios
+        .post(`${process.env.REACT_APP_UMS_BASE}/general/listCourses`, data)
+        .then((res) => {
+          console.log(res)
+          if (res.data.success == false) {
+            message.error('unable to get course!')
+          } else {
+            console.log(res.data.data)
+            setCourseList(res.data.data);
+          }
+
+          console.log(courseList)
+        })
+
+        .catch((err) => {
+          console.log(err);
+          setTimeout(() => {
+            getCourses();
+          }, 20000);
+        });
+  };
+
+  const addCourse = async () => {
+    setLoading(true);
+    const { usertoken } = JSON.parse(localStorage.getItem("userData"))
+
+    const data = {
+      apptoken: apptoken,
+      usertoken: usertoken,
+      ...newCourseData
+      // features: {
+      //   Dashboard: accessDash,
+      //   Finance: accessFniance,
+      //   Memo: accessMemo,
+      // },
+    };
+
+
+    usertoken,
+      await axios
+        .post(`${process.env.REACT_APP_UMS_BASE}/general/addCourse`, data)
+        .then((res) => {
+          setLoading(false);
+          if (res.data.success == false) {
+            message.info(`${res.data.message} Please check form again..`);
+          } else {
+            console.log(res.data.data)
+            message.success(res.data.message);
+          }
+
+        })
+
+        .catch((err) => {
+          message.warning(err.message);
+        });
+  };
+
+  /* Alterations handler functions */
+  function onUnitChange(value) {
+    setCourseData({ unit: value })
+  }
+  function onLevelChange(value) {
+    setCourseData({ level: value })
+  }
+  function onDeptChange(value) {
+    setCourseData({ deptid: value })
+  }
+  function onReqChange(value) {
+    setCourseData({ requirement: value })
+  }
+
+  function setCourseData(data/* object containing data to spread */) {
+    setNewCourseData({
+      ...newCourseData,
+      ...data
+    })
+  }
 
   return (
     <div>
@@ -24,29 +136,33 @@ const CreateCourses = () => {
         <Col xs={24} sm={20}>
           <Row justify={'space-between'}>
             <Col xs={24} style={{ marginTop: '10px' }}>
-              <h6 className='SubHead'>All Available Courses</h6>
+              <h6 className='SubHead'>Check All Available Courses</h6>
               <Select
                 showSearch
                 style={{
                   width: '100%'
                 }}
-                placeholder="Select A Course"
+                placeholder="List Of All Courses"
                 optionFilterProp="children"
                 filterOption={(input, option) => (option?.label ?? '').includes(input)}
                 filterSort={(optionA, optionB) =>
                   (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
                 }
-                options={[
-                  {
-                    value: '1',
-                    label: 'Cost Acounting 103',
-                  },
-                  {
-                    value: '2',
-                    label: 'Business Law 101',
+                options={courseList.map((crs) => {
+                  return {
+                    value: crs.id,
+                    label: crs.course,
                   }
-                ]}
+                })}
               />
+            </Col>
+            <Col xs={24} sm={16} md={10} style={{ marginTop: '10px' }}>
+              <h6 className='SubHead'>Course Title</h6>
+              <Input type='text' onChange={(e) => setCourseData({ courseTitle: e.target.value })} placeholder="Course Title" />
+            </Col>
+            <Col xs={24} sm={16} md={10} style={{ marginTop: '10px' }}>
+              <h6 className='SubHead'>Course Code</h6>
+              <Input type='text' onChange={(e) => setCourseData({ courseCode: e.target.value })} placeholder="Course Code" />
             </Col>
             <Col xs={5} style={{ marginTop: '10px' }}>
               <h6 className='SubHead'>Course Unit</h6>
@@ -55,7 +171,16 @@ const CreateCourses = () => {
                   width: '100%'
                 }}
                 placeholder="Select Course Unit"
+                onChange={onUnitChange}
                 options={[
+                  {
+                    value: '1',
+                    label: '1',
+                  },
+                  {
+                    value: '2',
+                    label: '2',
+                  },
                   {
                     value: '3',
                     label: '3',
@@ -74,13 +199,14 @@ const CreateCourses = () => {
                   width: '100%'
                 }}
                 placeholder="Select"
+                onChange={onReqChange}
                 options={[
                   {
-                    value: '3',
+                    value: 'req1',
                     label: 'req 1',
                   },
                   {
-                    value: '4',
+                    value: 'req2',
                     label: 'req 2',
                   }
                 ]}
@@ -93,15 +219,24 @@ const CreateCourses = () => {
                   width: '100%'
                 }}
                 placeholder="Select Level"
+                onChange={onLevelChange}
                 options={[
                   {
-                    value: '3',
+                    value: '100',
                     label: '100',
                   },
                   {
-                    value: '4',
+                    value: '200',
                     label: '200',
-                  }
+                  },
+                  {
+                    value: '300',
+                    label: '300',
+                  },
+                  {
+                    value: '400',
+                    label: '400',
+                  },
                 ]}
               />
             </Col>
@@ -112,6 +247,7 @@ const CreateCourses = () => {
                   width: '100%'
                 }}
                 placeholder="Select Department"
+                onChange={onDeptChange}
                 options={[
                   {
                     value: '3',
@@ -137,11 +273,11 @@ const CreateCourses = () => {
                 placeholder="Select Session"
                 options={[
                   {
-                    value: '3',
+                    value: '1',
                     label: '2023/2024',
                   },
                   {
-                    value: '4',
+                    value: '2',
                     label: '2024/2025',
                   }
                 ]}
@@ -159,6 +295,8 @@ const CreateCourses = () => {
                 style={{ marginRight: '3px' }}
                 size={1}
               />}
+              loading={loading}
+              onClick={() => addCourse()}
             >Add</Button>
           </Row>
         </Col>
