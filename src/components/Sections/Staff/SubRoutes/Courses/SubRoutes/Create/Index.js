@@ -21,18 +21,9 @@ const CreateCourses = () => {
   });
   const [loading, setLoading] = useState(false);
   const [apptoken, setpptoken] = useState(process.env.REACT_APP_UMS_TOKEN);
-  // const [userData, setUserData] = useState(
-  //   JSON.parse(localStorage.getItem("userData"))
-  // );
 
-  // const devMode = process.env.NODE_ENV === 'development'
   useEffect(() => {
     getCourses();
-    // if (devMode) {
-    //   const storedData = JSON.parse(localStorage.getItem("courseList"))
-    //   if (storedData)
-    //     setCourseList(storedData)
-    // }
   }, []);
 
   const onDateChange = (date, dateString) => {

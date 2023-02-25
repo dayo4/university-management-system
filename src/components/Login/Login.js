@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Login.scss";
 import { Link } from "react-router-dom";
-// import logo from "logo.svg"
 import axios from "axios";
 import { message, Button } from "antd";
 import "antd/dist/reset.css";
@@ -17,15 +16,30 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [apptoken, setpptoken] = useState(process.env.REACT_APP_UMS_TOKEN);
-  const [loggedIn, setLoggedIn] = useState(
-    JSON.parse(localStorage.getItem("userData"))
-  );
+
   const [loginSuccess, setLoginSuccess] = useState(false);
 
   // PRE LOADER LOADING STYLE
   const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
-  // ALL USE EFFECT
+  // ROUTING FUNCTION FOR AUTH
+
+  const authUser = () => {
+    const user = JSON.parse(localStorage.getItem("userData"));
+    if (user) {
+      if (user.acc_type === "management") {
+        navigate(`/management/dashboard`);
+      } else if (user.acc_type === "staff") {
+        navigate(`/staff/dashboard`);
+      } else if (user.acc_type === "student") {
+        navigate(`/student/dashboard`);
+      } else {
+        return <NoAccess />;
+      }
+    } else {
+      return <NoAccess />;
+    }
+  };
 
   // LOGIN HANDLE
   const handleLogin = async (e) => {
@@ -38,28 +52,13 @@ const Login = () => {
       pword: password,
     };
 
-    // ROUTING FUNCTION FOR AUTH
-
-    const authUser = () => {
-      const user = JSON.parse(localStorage.getItem("userData"));
-      if (user.acc_type === "management") {
-        navigate(`/management/dashboard`);
-      } else if (user.acc_type === "staff") {
-        navigate(`/staff
-         /dashboard`);
-      } else if (user.acc_type === "student") {
-        navigate(`/student/dashboard`);
-      } else {
-        return <NoAccess />;
-      }
-    };
 
     await axios
       .post(` ${process.env.REACT_APP_UMS_BASE}/general/login`, data)
       .then((res) => {
         console.log(res.data)
         if (res.data.success === true) {
-          message.success(res.data.message);
+          message.success("Logged In Successfully!");
           setLoading(false);
           localStorage.setItem("userData", JSON.stringify(res.data.data));
           authUser();
@@ -74,41 +73,9 @@ const Login = () => {
       });
   };
 
-  //  CHECKING  IF USER IS LOGGED IN OR NOT
-
-  const authUser2 = () => {
-    const user = JSON.parse(localStorage.getItem("userData"));
-    if (user.acc_type === "management") {
-      navigate(`/management/dashboard`);
-    } else if (user.acc_type === "staff") {
-      navigate(`/staff
-         /dashboard`);
-    } else if (user.acc_type === "student") {
-      navigate(`/student/dashboard`);
-    } else {
-      return <NoAccess />;
-    }
-  };
-
-
-
-  const dataIn = () => {
-    if (loggedIn === null) {
-      setLoginSuccess(false);
-    } else if (loggedIn.success === true) {
-      setLoginSuccess(true);
-      console.log(loggedIn);
-      authUser2();
-    } else {
-      setLoginSuccess(false);
-    }
-  };
-
   useEffect(() => {
-    dataIn();
+    authUser()
   }, []);
-
-  // END
 
   // TOOGLE PASSWORD
   const [view, setView] = useState(false);

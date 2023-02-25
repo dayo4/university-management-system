@@ -11,7 +11,6 @@ import {
   mdiChartBoxPlusOutline,
   mdiExitRun
 } from '@mdi/js';
-// import "./Index.scss";
 
 const StaffSideNavLinks = () => {
   const { pathname } = useLocation()
@@ -29,21 +28,13 @@ const StaffSideNavLinks = () => {
     };
   }
 
-  // const setupMenu
-
   const onMenuItemClick = (e) => {
     console.log('click ', e);
     setSelectedMenuItem(e.key);
   };
 
-  // useEffect(() => {
-  //   setDefaultMenuItem("/" + pathname.split('/')[2])
-  //   setSelectedMenuItem(pathname)
-  // })
-
   const navItems = [
     { icon: mdiViewDashboardOutline, name: 'Dashboard', link: '/dashboard' },
-    // { icon: mdiCardsOutline, name: 'Fees Management', link: '/fees' },
     { icon: mdiListBoxOutline, name: 'Attendance', link: '/attendance' },
     {
       icon: mdiBriefcaseCheckOutline, name: 'Courses', /* link: '/courses', */
@@ -60,9 +51,6 @@ const StaffSideNavLinks = () => {
         { name: 'Create Assessment', link: '/assessments/create' },
       ]
     },
-    // { icon: mdiAccountSchoolOutline, name: 'Resumption', link: '/resumption' },
-    // { icon: mdiChartBoxPlusOutline, name: 'Results', link: '/results' },
-    // { icon: mdiExitRun, name: 'Exit', link: '/exit' },
   ]
 
   const MainNavLinks = navItems.map(({ icon, name, link, subLinks }, i) => {
@@ -109,10 +97,8 @@ const StaffSideNavLinks = () => {
   return (
 
     <div className="SideNavLinks">
-      {/* {MainNavLinks} */}
 
       <Menu className="LinksMenu"
-        // theme={theme}
         onClick={onMenuItemClick}
         defaultOpenKeys={[defaultMenuItem]}
         selectedKeys={[selectedMenuItem]}

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-// import "./Index.scss";
 import { Menu } from "antd";
 import Icon from '@mdi/react';
 import {
@@ -32,8 +31,6 @@ const StudentsSideNavLinks = () => {
       type,
     };
   }
-
-  // const setupMenu
 
   const onMenuItemClick = (e) => {
     console.log('click ', e);
@@ -116,10 +113,8 @@ const StudentsSideNavLinks = () => {
   return (
 
     <div className="SideNavLinks">
-      {/* {MainNavLinks} */}
 
       <Menu className="LinksMenu"
-        // theme={theme}
         onClick={onMenuItemClick}
         defaultOpenKeys={[defaultMenuItem]}
         selectedKeys={[selectedMenuItem]}

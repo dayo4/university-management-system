@@ -9,14 +9,9 @@ import Topnav from "../../Navs/TopNav/Index";
 import "./Index.scss"
 
 /* Import students section routes */
-// import Dashboard from "./SubRoutes/Dashboard/Dashboard";
 import Dashboard from "./SubRoutes/Profile/Index";
 import Profile from "./SubRoutes/Profile/Index";
 /* Fees Mgt Routes */
-// import FeesManagement from "./SubRoutes/FeesManagement/Index";
-// import Payment from "./SubRoutes/FeesManagement/SubRoutes/Payment/Index";
-// import Receipts from "./SubRoutes/FeesManagement/SubRoutes/Receipts/Index";
-// import Complaint from "./SubRoutes/FeesManagement/SubRoutes/Complaint/Index";
 /* Attendance Routes */
 import Attendance from "./SubRoutes/Attendance/Index";
 /* Courses Routes */
@@ -34,11 +29,13 @@ import ReviewAssessments from "./SubRoutes/Assessments/SubRoutes/Review/Index";
 const StaffEntryPoint = ({ children }) => {
   const user = JSON.parse(localStorage.getItem("userData"));
   const { pathname } = useLocation()
-  // const [BreadCrumb, setBreadCrumb] = useState('hhh')
 
-  // useEffect(() => {
-
-  // })
+  useEffect(() => {
+    if(!userData /* || userData.acc_type != "staff"  */){
+      navigate("/")
+      message.info("You Must Login To Continue..")
+    }
+  }, []);
 
   function setBreadCrumb() {
     const arr = ['dashboard']
@@ -55,7 +52,6 @@ const StaffEntryPoint = ({ children }) => {
     })
   }
 
-  // if (user.acc_type === "staff") {
   return (
     <div id="MANAGEMENT-WHOLE">
       <Topnav title={"Dashboard"} />
@@ -67,7 +63,6 @@ const StaffEntryPoint = ({ children }) => {
           <Row className="BCrumb">
             {
               setBreadCrumb()
-
             }
           </Row>
 
@@ -78,12 +73,6 @@ const StaffEntryPoint = ({ children }) => {
             <Route path="profile/*">
               <Route path="" element={<Profile />} />
             </Route>
-            {/* <Route path="fees/*">
-              <Route path="" element={<FeesManagement />} />
-              <Route path="payment" element={<Payment />} />
-              <Route path="receipts" element={<Receipts />} />
-              <Route path="complaint" element={<Complaint />} />
-            </Route> */}
             <Route path="attendance/*">
               <Route path="" element={<Attendance />} />
             </Route>
@@ -103,13 +92,6 @@ const StaffEntryPoint = ({ children }) => {
       </Row>
     </div>
   );
-  // } else {
-  //   return (
-  //     <>
-  //       <NoAccess />
-  //     </>
-  //   );
-  // }
 };
 
 export default StaffEntryPoint;

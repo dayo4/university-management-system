@@ -48,7 +48,13 @@ const StudentsEntryPoint = ({ children }) => {
     })
   }
 
-  // if (user.acc_type === "student") {
+  useEffect(() => {
+    if(!userData /* || userData.acc_type != "student" */){
+      navigate("/")
+      message.info("You Must Login To Continue..")
+    }
+  }, []);
+
   return (
     <div id="MANAGEMENT-WHOLE">
       <Topnav title={"Dashboard"} />
@@ -60,7 +66,6 @@ const StudentsEntryPoint = ({ children }) => {
           <Row className="BCrumb">
             {
               setBreadCrumb()
-
             }
           </Row>
 
@@ -98,13 +103,6 @@ const StudentsEntryPoint = ({ children }) => {
       </Row>
     </div>
   );
-  // } else {
-  //   return (
-  //     <>
-  //       <NoAccess />
-  //     </>
-  //   );
-  // }
 };
 
 export default StudentsEntryPoint;

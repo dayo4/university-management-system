@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useLocation, Link } from "react-router-dom";
-import { Row, Col, } from 'antd';
+import { Routes, Route, useLocation, Link, useNavigate } from "react-router-dom";
+import { Row, Col, message, } from 'antd';
 
 import NoAccess from "../../InvalidAccess/noAccess";
 
@@ -26,8 +26,16 @@ import Profile from "./SubRoutes/Profile/Index";
 
 
 const ManagementEntryPoint = ({ children }) => {
-  const user = JSON.parse(localStorage.getItem("userData"));
+  const userData = JSON.parse(localStorage.getItem("userData"));
   const { pathname } = useLocation()
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(!userData /* || userData.acc_type != "management" */){
+      navigate("/")
+      message.info("You Must Login To Continue..")
+    }
+  }, []);
 
   function setBreadCrumb() {
     const arr = ['dashboard']
@@ -43,6 +51,7 @@ const ManagementEntryPoint = ({ children }) => {
       </Link>
     })
   }
+
 
   // if (user.acc_type === "management") {
   return (
