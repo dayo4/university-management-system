@@ -90,8 +90,13 @@ $roboto: "Roboto", sans-serif;
 // $form-bg-color: #f4f7fd;
 
 //Variables
-$pri-color: #4B4DED;
-$pri-color-faded: rgba(75, 78, 237, 0.5);
+/* This original primary color looks different on certain devices */
+// $pri-color: #4B4DED;
+// $pri-color-faded: rgba(75, 78, 237, 0.5);
+/* Adjusted Primary Color */
+$pri-color: #1677ff;
+$pri-color-faded: rgba(22, 119, 255, 0.502);
+
 $sec-color: #ED4B9E;
 $ter-color: #F3D9DA;
 $subtle-bg-color: #ECF1F4;
