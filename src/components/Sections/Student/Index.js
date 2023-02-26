@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useLocation, Link } from "react-router-dom";
+import { Routes, Route, useLocation, Link, useNavigate } from "react-router-dom";
 import { Row, Col, } from 'antd';
 
 import NoAccess from "../../InvalidAccess/noAccess";
@@ -30,7 +30,8 @@ import Exit from "./SubRoutes/Exit/Index";
 
 
 const StudentsEntryPoint = ({ children }) => {
-  const user = JSON.parse(localStorage.getItem("userData"));
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  const navigate = useNavigate();
   const { pathname } = useLocation()
 
   function setBreadCrumb() {
@@ -49,7 +50,7 @@ const StudentsEntryPoint = ({ children }) => {
   }
 
   useEffect(() => {
-    if(!userData /* || userData.acc_type != "student" */){
+    if (!userData /* || userData.acc_type != "student" */) {
       navigate("/")
       message.info("You Must Login To Continue..")
     }
@@ -71,30 +72,30 @@ const StudentsEntryPoint = ({ children }) => {
 
 
           <Routes>
-            <Route path="/dashboard" element={<Dashboard/>} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="profile/*">
-              <Route path="" element={<Profile/>} />
+              <Route path="" element={<Profile />} />
             </Route>
             <Route path="fees/*">
-              <Route path="" element={<FeesManagement/>} />
-              <Route path="payment" element={<Payment/>} />
-              <Route path="receipts" element={<Receipts/>} />
-              <Route path="complaint" element={<Complaint/>} />
+              <Route path="" element={<FeesManagement />} />
+              <Route path="payment" element={<Payment />} />
+              <Route path="receipts" element={<Receipts />} />
+              <Route path="complaint" element={<Complaint />} />
             </Route>
             <Route path="attendance/*">
-              <Route path="" element={<Attendance/>} />
+              <Route path="" element={<Attendance />} />
             </Route>
             <Route path="courses/*">
-              <Route path="" element={<Courses/>} />
+              <Route path="" element={<Courses />} />
             </Route>
             <Route path="resumption/*">
-              <Route path="" element={<Resumption/>} />
+              <Route path="" element={<Resumption />} />
             </Route>
             <Route path="results/*">
-              <Route path="history" element={<Results/>} />
+              <Route path="history" element={<Results />} />
             </Route>
             <Route path="exit/*">
-              <Route path="" element={<Exit/>} />
+              <Route path="" element={<Exit />} />
             </Route>
           </Routes>
 

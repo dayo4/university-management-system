@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useLocation, Link } from "react-router-dom";
+import { Routes, Route, useLocation, Link, useNavigate } from "react-router-dom";
 import { Row, Col, } from 'antd';
 
 import NoAccess from "../../InvalidAccess/noAccess";
@@ -27,7 +27,8 @@ import ReviewAssessments from "./SubRoutes/Assessments/SubRoutes/Review/Index";
 
 
 const StaffEntryPoint = ({ children }) => {
-  const user = JSON.parse(localStorage.getItem("userData"));
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  const navigate = useNavigate();
   const { pathname } = useLocation()
 
   useEffect(() => {
