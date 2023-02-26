@@ -92,6 +92,7 @@ p {
   margin: 0;
 }
 
+
 $primary-t-color: #1315ba;
 $muted-t-color: rgba(157, 162, 176, 0.76);
 $ws-font: "Work Sans", sans-serif;
@@ -124,6 +125,12 @@ $ws-font: "Work Sans", sans-serif;
   z-index: 2000 !important;
 }
 
+
+@include xs-only {
+  td {
+    min-width: 150px !important;
+  }
+}
 // GLOBAL TABS STYLING
 // .nav-link {
 //   border: none !important;
