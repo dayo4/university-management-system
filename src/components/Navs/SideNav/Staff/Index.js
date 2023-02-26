@@ -12,7 +12,7 @@ import {
   mdiExitRun
 } from '@mdi/js';
 
-const StaffSideNavLinks = () => {
+const StaffSideNavLinks = ({onRouteSwitch}) => {
   const { pathname } = useLocation()
   const [selectedMenuItem, setSelectedMenuItem] = useState(pathname);
   const [defaultMenuItem, setDefaultMenuItem] = useState("/" + pathname.split('/')[2]);
@@ -61,6 +61,7 @@ const StaffSideNavLinks = () => {
           key={i}
           to={link ? "/staff" + link : null}
           className={({ isActive }) => ("Link " + (isActive && !subLinks ? "active" : ""))}
+          onClick={() => link ? onRouteSwitch() : null}
         >
           <Icon path={icon}
             title={name}
@@ -79,6 +80,7 @@ const StaffSideNavLinks = () => {
                   key={link + j}
                   to={"/staff" + link}
                   className={({ isActive }) => ("Link SubLink " + (isActive ? "active" : ""))}
+                  onClick={() => link ? onRouteSwitch() : null}
                 >
                   {name}
                 </NavLink >

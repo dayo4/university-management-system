@@ -156,7 +156,7 @@ const Staff = () => {
         faculty: 'Mgt Science',
         department: 'Business Admin',
         email: staffList[i].mail,
-        action: <Button onClick={() => navigate('/management/staff/view/' + staffList[i].id, { state: {} })} style={{ border: 'solid 1px #4B4DED', }}>
+        action: <Button onClick={() => navigate('/management/staff/view/' + staffList[i].id, { state: {} })} style={{ border: 'solid 1px #1677ff', }}>
           Open
         </Button>
       }
@@ -169,7 +169,7 @@ const Staff = () => {
         <AppLoader nameloader={"Staff"} loading={ploading} />
       ) : (
         <div className="MgtStaffOverview">
-          <Row justify={'space-between'} align={'middle'} className="TopActions">
+          <Row  justify={{xs: 'start' , sm: 'space-between'}} align={'middle'} className="TopActions">
             <h6>Staff Overview</h6>
 
             <div className="filter-cont">
@@ -187,7 +187,7 @@ const Staff = () => {
 
           <Row justify={'center'}>
             <Col xs={24}>
-              <Table className='StaffTable' scroll={{ x: '100%' }} columns={tableColumns} dataSource={tableData} />
+              <Table style={{marginTop: '10px'}} className='StaffTable' scroll={{ x: '100%' }} columns={tableColumns} dataSource={tableData} />
             </Col>
           </Row>
         </div>

@@ -122,7 +122,7 @@ const Student = () => {
       dataIndex: 'action',
       key: 'action',
       // render: (_, record) => (
-      //   <Button style={{ border: 'solid 1px #4B4DED', }}>
+      //   <Button style={{ border: 'solid 1px #1677ff', }}>
       //     Open
       //   </Button>
       // ),
@@ -141,7 +141,7 @@ const Student = () => {
         department: 'Business Admin',
         level: '100',
         email: studentList[i].mail,
-        action: <Button onClick={() => navigate('/management/student/view/' + studentList[i].id, { state: {} })} style={{ border: 'solid 1px #4B4DED', }}>
+        action: <Button onClick={() => navigate('/management/student/view/' + studentList[i].id, { state: {} })} style={{ border: 'solid 1px #1677ff', }}>
           Open
         </Button>
       }
@@ -232,7 +232,7 @@ const Student = () => {
         <AppLoader nameloader={"Students"} loading={ploading} />
       ) : (
         <div className="MgtStudentsOverview">
-          <Row justify={'space-between'} align={'middle'} className="TopActions">
+          <Row justify={{xs: 'start' , sm: 'space-between'}} className="TopActions">
             <h6>Students Overview</h6>
 
             <div>
@@ -248,7 +248,7 @@ const Student = () => {
             </div>
           </Row>
 
-          <Tabs defaultActiveKey="1" items={tabsContent}> </Tabs>
+          <Tabs className="AllTabs"  defaultActiveKey="1" items={tabsContent}> </Tabs>
 
         </div>
       )}

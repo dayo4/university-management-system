@@ -1,25 +1,24 @@
 @import "../../../../../Mixins.scss";
 
-
 .MgtStaffOverview {
   & .TopActions {
     height: 40px;
     margin-bottom: 20px;
     font-weight: 900;
     & h6 {
-     color: $body-text-color;
-     font-size: 18px;
+      color: $body-text-color;
+      font-size: 18px;
     }
     & button {
-     color: $pri-color;
-     border-color: $pri-color;
-     margin-right: 15px;
+      color: $pri-color;
+      border-color: $pri-color;
+      margin-right: 15px;
     }
     & svg {
       margin-right: 3px;
     }
   }
- }
+}
 
 .StaffImgAlt {
   display: flex;
@@ -35,9 +34,15 @@
 
 .StaffTable {
   & td {
-      font-weight: bold;
-      font-size: 12px;
-      color: $body-text-color;
-      text-align: left;
+    font-weight: bold;
+    font-size: 12px;
+    color: $body-text-color;
+    text-align: left;
+  }
+}
+
+@include xs-only {
+  .StaffTable {
+    margin-top: 15px;
   }
 }
