@@ -1,5 +1,12 @@
 @import "../../../../../Mixins.scss";
 
+.DSHBTable {
+  margin-bottom: 10px;
+  & .Amount{
+    font-weight: bold;
+  }
+}
+
 .finance-whole-cont {
   width: 95%;
   margin-left: 2.5%;

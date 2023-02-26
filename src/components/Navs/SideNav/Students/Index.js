@@ -15,7 +15,7 @@ import {
 
 
 
-const StudentsSideNavLinks = () => {
+const StudentsSideNavLinks = ({onRouteSwitch}) => {
   // Set necessary states
   const { pathname } = useLocation()
   const [selectedMenuItem, setSelectedMenuItem] = useState(pathname);
@@ -77,6 +77,7 @@ const StudentsSideNavLinks = () => {
           key={i}
           to={link ? "/student" + link : null}
           className={({ isActive }) => ("Link " + (isActive && !subLinks ? "active" : ""))}
+          onClick={() => link ? onRouteSwitch() : null}
         >
           <Icon path={icon}
             title={name}
@@ -95,6 +96,7 @@ const StudentsSideNavLinks = () => {
                   key={link + j}
                   to={"/student" + link}
                   className={({ isActive }) => ("Link SubLink " + (isActive ? "active" : ""))}
+                  onClick={() => link ? onRouteSwitch() : null}
                 >
                   {name}
                 </NavLink >

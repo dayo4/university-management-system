@@ -4,12 +4,12 @@ import LineChart from "./Linechart/LineChart";
 import { UserData } from "../../../Data";
 import Icon from '@mdi/react';
 import {
-  mdiAccountSchoolOutline, 
-  mdiAccountTieOutline, 
-  mdiArrowBottomRight, 
+  mdiAccountSchoolOutline,
+  mdiAccountTieOutline,
+  mdiArrowBottomRight,
   mdiArrowTopRight,
 } from '@mdi/js';
-import { Button, Col, Row } from "antd";
+import { Button, Col, Row, Table } from "antd";
 
 const Finance = () => {
   const [userData, setUserData] = useState({
@@ -48,10 +48,49 @@ const Finance = () => {
     ],
   });
 
+  /*  Table Colomns  */
+  const tableColumns = [
+    {
+      title: 'Date',
+      dataIndex: 'date',
+      key: 'date',
+      sorter: true
+    },
+    {
+      title: 'Description',
+      dataIndex: 'description',
+      key: 'description',
+    },
+    {
+      title: 'Department',
+      dataIndex: 'department',
+      key: 'department',
+    },
+    {
+      title: 'Amount',
+      dataIndex: 'amount',
+      key: 'amount',
+      className: 'Amount'
+    },
+  ];
+
+  const tableData = []
+  for (let i = 1; i < 10; i++) {
+    tableData.push(
+      {
+        key: i,
+        date: '10/02/2023',
+        description: i % 2 === 0 ?  'Fuel Purchase to buses':'Income from ramdom stuffs',
+        department: i % 2 === 0 ? 'Agric Science' : 'Finance',
+        amount: i % 2 === 0 ? <span style={{ color: '#ff0000' }}>#{i * 1000}</span> : <span style={{ color: '#04a204' }}>#{i * 1500}</span>,
+      }
+    )
+  }
+
   return (
 
     <div className="finance-whole-cont">
-      <Row justify={{xs:'start', md:'space-between'}} align={'middle'} className="StatsSummary_DB">
+      <Row justify={{ xs: 'start', md: 'space-between' }} align={'middle'} className="StatsSummary_DB">
         <Col xs={12} md={5} className="Summary1">
           <div className="Icon">
             <Icon path={mdiAccountSchoolOutline}
@@ -66,7 +105,7 @@ const Finance = () => {
 
         <Col xs={12} md={5} className="Summary2">
           <div className="Icon">
-          <Icon path={mdiAccountTieOutline}
+            <Icon path={mdiAccountTieOutline}
               size={1}
             />
           </div>
@@ -78,7 +117,7 @@ const Finance = () => {
 
         <Col xs={12} md={5} className="Summary3">
           <div className="Icon">
-          <Icon path={mdiArrowTopRight}
+            <Icon path={mdiArrowTopRight}
               size={1}
             />
           </div>
@@ -90,7 +129,7 @@ const Finance = () => {
 
         <Col xs={12} md={5} className="Summary4">
           <div className="Icon">
-          <Icon path={mdiArrowBottomRight}
+            <Icon path={mdiArrowBottomRight}
               size={1}
             />
           </div>
@@ -111,52 +150,11 @@ const Finance = () => {
           <Button>View all</Button>
         </div>
 
-        <div className="transaction-data">
-          <table className="transaction-data">
-            <td className="you-must">
-              <th>Data</th>
-              <th>Description</th>
-              <th>Department</th>
-              <th>Total</th>
-            </td>
-
-            <td className="td-transaction">
-              <tr>25/01/2022</tr>
-              <tr>
-                Fuel Purchase to buses <p>11:30am</p>
-              </tr>
-              <tr>Computer Science</tr>
-              <tr className="price-rate-minus" >- NGN 8000</tr>
-            </td>
-
-            <td className="td-transaction">
-              <tr>25/01/2022</tr>
-              <tr>
-                Fuel Purchase to buses <p>11:30am</p>
-              </tr>
-              <tr>Computer Science</tr>
-              <tr className="price-rate-minus" >- NGN 8000</tr>
-            </td>
-
-            <td className="td-transaction">
-              <tr>25/01/2022</tr>
-              <tr>
-                Fuel Purchase to buses <p>11:30am</p>
-              </tr>
-              <tr>Computer Science</tr>
-              <tr className="price-rate-minus" >- NGN 8000</tr>
-            </td>
-
-            <td className="td-transaction">
-              <tr>25/01/2022</tr>
-              <tr>
-                Fuel Purchase to buses <p>11:30am</p>
-              </tr>
-              <tr>Computer Science</tr>
-              <tr className="price-rate-plus">+ NGN 125000</tr>
-            </td>
-          </table>
-        </div>
+        <Row justify={'center'}>
+          <Col xs={24}>
+            <Table style={{ marginTop: '10px' }} className='DSHBTable' scroll={{ x: '100%' }} columns={tableColumns} dataSource={tableData} />
+          </Col>
+        </Row>
       </div>
     </div>
   );

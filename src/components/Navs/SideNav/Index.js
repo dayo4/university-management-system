@@ -57,7 +57,7 @@ const Sidenav = () => {
 
           {/*  All main nav links display here. */}
           {ShowBasedOnAccType({
-            mgt: <ManagementSideNavLinks />,
+            mgt: <ManagementSideNavLinks onRouteSwitch={()=> setNavshow(false)} />,
             staff: <StaffSideNavLinks />,
             student: <StudentsSideNavLinks />
           })}

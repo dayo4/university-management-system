@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { Menu, Switch } from 'antd';
+import { Menu } from 'antd';
 import Icon from '@mdi/react';
 import {
   mdiViewDashboardOutline,
-  mdiCardsOutline,
   mdiAccountSchoolOutline,
-  mdiListBoxOutline,
-  mdiBriefcaseCheckOutline,
-  mdiChartBoxPlusOutline,
-  mdiExitRun,
   mdiFileDocumentEditOutline,
   mdiChartLine,
   mdiAccountTieOutline,
@@ -17,7 +12,7 @@ import {
 } from '@mdi/js';
 // import "./Index.scss";
 
-const StaffSideNavLinks = () => {
+const MgtSideNavLinks = ({ onRouteSwitch }) => {
   const { pathname } = useLocation()
   const [selectedMenuItem, setSelectedMenuItem] = useState(pathname);
   const [defaultMenuItem, setDefaultMenuItem] = useState("/" + pathname.split('/')[2]);
@@ -74,6 +69,7 @@ const StaffSideNavLinks = () => {
           key={i}
           to={link ? "/management" + link : null}
           className={({ isActive }) => ("Link " + (isActive && !subLinks ? "active" : ""))}
+          onClick={() => link ? onRouteSwitch() : null}
         >
           <Icon path={icon}
             title={name}
@@ -92,6 +88,7 @@ const StaffSideNavLinks = () => {
                   key={link + j}
                   to={"/management" + link}
                   className={({ isActive }) => ("Link SubLink " + (isActive ? "active" : ""))}
+                  onClick={() => link ? onRouteSwitch() : null}
                 >
                   {name}
                 </NavLink >
@@ -125,4 +122,4 @@ const StaffSideNavLinks = () => {
   );
 };
 
-export default StaffSideNavLinks;
+export default MgtSideNavLinks;
