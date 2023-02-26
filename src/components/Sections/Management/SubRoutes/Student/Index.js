@@ -21,12 +21,6 @@ import {
   mdiPlusBox,
 } from '@mdi/js';
 
-// IMPORTING IMAGES
-// import inboxm from "../../../images/inbox.svg";
-// import sent from "../../../images/sent.svg";
-// import onboard from "../../../images/onboard.svg";
-
-
 const Student = () => {
   // TAB DECLEARATION
   const [toggleState, setToggleState] = useState(1);
