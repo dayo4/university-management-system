@@ -12,12 +12,25 @@ import {
 import { Button, Col, Row, Table } from "antd";
 
 const Finance = () => {
-  const [userData, setUserData] = useState({
-    labels: UserData.map((data) => data.year),
+  // const [chartInput, setChartInput] = useState([])
+  const chartInput = []
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  for (let i = 0; i < months.length; i++) {
+
+    chartInput.push({
+      id: i,
+      period: months[i],
+      userGain: i % 2 === 0 ? i * 1500 : (i * 2000)/2,
+      userLost:  i % 2 === 0 ? (i * 2000)/2 : i * 1500,
+    })
+  }
+
+  const [chartData, setChartData] = useState({
+    labels: chartInput.map((data) => data.period),
     datasets: [
       {
         label: "Income",
-        data: UserData.map((data) => data.userGain),
+        data: chartInput.map((data) => data.userGain),
         backgroundColor: ["#4EBFEE"],
         border: "none",
         borderColor: "#4EBFEE",
@@ -32,7 +45,7 @@ const Finance = () => {
 
       {
         label: "Expenses",
-        data: UserData.map((data) => data.userLost),
+        data: chartInput.map((data) => data.userLost),
         backgroundColor: ["#FFC7E3"],
         border: "none",
         borderColor: "#FFC7E3",
@@ -80,7 +93,7 @@ const Finance = () => {
       {
         key: i,
         date: '10/02/2023',
-        description: i % 2 === 0 ?  'Fuel Purchase to buses':'Income from ramdom stuffs',
+        description: i % 2 === 0 ? 'Fuel Purchase to buses' : 'Income from ramdom stuffs',
         department: i % 2 === 0 ? 'Agric Science' : 'Finance',
         amount: i % 2 === 0 ? <span style={{ color: '#ff0000' }}>#{i * 1000}</span> : <span style={{ color: '#04a204' }}>#{i * 1500}</span>,
       }
@@ -141,7 +154,7 @@ const Finance = () => {
       </Row>
       <div className="chart-container" style={{ width: "100%" }}>
         <h5 className="SectionSubHeading">Statistics</h5>
-        <LineChart chartData={userData} />
+        <LineChart chartData={chartData} />
       </div>{" "}
       <div className="transac-cont">
         <div className="top-transaction">

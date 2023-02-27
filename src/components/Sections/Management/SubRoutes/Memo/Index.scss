@@ -6,14 +6,9 @@ $black-c-text: rgba(0, 0, 0, 0.76);
 $form-bg-color: #f4f7fd;
 @import "../../../../../Mixins.scss";
 
-.memo-whole-cont {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.MemoTopActionCont {
   border: 1px solid rgba(196, 196, 196, 0.51);
-  padding: 5px 0px;
+  padding: 5px;
   border-radius: 10px;
 }
 
@@ -53,19 +48,10 @@ $form-bg-color: #f4f7fd;
 }
 
 .memo-search-whole-cont {
-  width: 40%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-// .iginition {
-//   font-weight: 700;
-//   font-size: 14px;
-//   line-height: 16px;
-
-//   color: $pri-color;
-// }
 
 // ANOTHER SEARCH FIELD
 
@@ -114,7 +100,9 @@ $form-bg-color: #f4f7fd;
   color: $pri-color;
   margin-right: 30px;
   transition: 0.3s;
-  border-radius: 28px;
+  border-radius: 50%;
+  // width: '40px';
+  // height: '40px';
   &:hover {
     background-color: #4b4eed28;
   }
@@ -443,32 +431,7 @@ select:focus {
   margin-top: 20px;
   display: none;
 }
-//   .content  {
 
-//     h2 {
-//         padding: 0px 0 5px 0px;
-
-//     }
-//   }
-//   .content  {
-
-// hr
-// {
-
-//     width: 100px;
-//     height: 2px;
-//     background: #222;
-//     margin-bottom: 5px;
-// }
-//   }
-//   .content  {
-
-//     p {
-
-//         width: 100%;
-//         height: 100%;
-//     }
-//   }
 .active-content {
   display: block;
 }

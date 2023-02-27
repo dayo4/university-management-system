@@ -5,7 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import Inbox from "./Inbox/Index";
 import Draft from "./Draft/Index";
 import AppLoader from "../../../../../Loader";
-import { Button, message } from "antd";
+import { Button, Col, message, Row } from "antd";
 import axios from "axios";
 import "antd/dist/reset.css";
 import "../../GlobalStyle.scss";
@@ -41,10 +41,7 @@ const Memo = () => {
   const [draftBtnLoading, setDraftBtnLoading] = useState(false);
 
   useEffect(() => {
-    // setploading(true);
-    // setTimeout(() => {
-    //   setploading(false);
-    // }, 1000);
+
   }, []);
 
   const InboxRef = useRef()
@@ -156,29 +153,30 @@ const Memo = () => {
         </>
       ) : (
         <>
-          <div className="memo-whole-cont">
-            <div className="top-memo-cont">
-              <Button
-                className="compose-btn"
-                type="primary"
-                onClick={composeShow}
-              >
-                Compose Message
-                <Icon path={mdiPencilPlusOutline}
-                  size={1}
-                  style={{
-                    marginLeft: '8px'
-                  }}
-                />
-              </Button>
+            <Row justify={{ xs: 'start', sm: 'space-between' }} className={'MemoTopActionCont'}>
 
-              <div className="memo-search-whole-cont">
+              <Col xs={24} sm={12} className="memo-search-whole-cont">
+                <Button
+                  className="compose-btn"
+                  type="primary"
+                  onClick={composeShow}
+                >
+                  Compose
+                  <Icon path={mdiPencilPlusOutline}
+                    size={1}
+                    style={{
+                      marginLeft: '8px'
+                    }}
+                  />
+                </Button>
 
                 <Icon path={mdiRefresh}
                   size={1.5}
                   onClick={refreshMemos}
                   className={'MemoReloadIcon'}
                 />
+              </Col>
+              <Col xs={24} sm={12} className="memo-search-whole-cont">
 
                 <form
                   className="search-memo-cont"
@@ -186,13 +184,12 @@ const Memo = () => {
                   autoComplete="on"
                 >
                   <button>
-                    <img src={search} alt="" />
+                    <img src={search} alt="Search" />
                   </button>
                   <input type="text" placeholder="Search..." required />
                 </form>
-              </div>
-            </div>
-          </div>
+              </Col>
+            </Row>
 
           <Tabs defaultActiveKey="1" items={tabsContent}> </Tabs>
         </>

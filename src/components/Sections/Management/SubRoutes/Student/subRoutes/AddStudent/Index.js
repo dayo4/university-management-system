@@ -247,6 +247,7 @@ const AddStudent = () => {
                 }}
                 placeholder="Select A Faculty"
                 optionFilterProp="children"
+                defaultValue={allData.facultyid ? allData.facultyid : null }
                 onChange={onFacultyChange}
                 filterOption={(input, option) => (option?.label ?? '').includes(input)}
                 filterSort={(optionA, optionB) =>
@@ -273,6 +274,7 @@ const AddStudent = () => {
                 filterSort={(optionA, optionB) =>
                   (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
                 }
+                defaultValue={allData.deptid ? allData.deptid : null }
                 onChange={onDeptChange}
                 placeholder={disableDeptInput ? "You Must Select A Faculty" : "Select A Department"}
                 options={listDepartment ? listDepartment.map((dept) => {
@@ -297,6 +299,7 @@ const AddStudent = () => {
               (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
             }
             placeholder="Undergraduate"
+            defaultValue={allData.admission_type ? allData.admission_type : null }
             options={[
               {
                 value: 'Undergraduate',
@@ -323,13 +326,14 @@ const AddStudent = () => {
               (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
             }
             placeholder="Select A Hostel"
+            defaultValue={allData.hostel ? allData.hostel : null }
             options={[
               {
-                value: '3',
-                label: 'Geto',
+                value: 'GETO',
+                label: 'GETO',
               },
               {
-                value: '4',
+                value: 'CJS',
                 label: 'CJS',
               },
             ]}
@@ -342,7 +346,8 @@ const AddStudent = () => {
               width: '100%'
             }}
             onChange={onLevelChange}
-            placeholder="Select Staff Level"
+            placeholder="Select Student Level"
+            defaultValue={allData.levelid ? allData.levelid : null }
             options={[
               {
                 value: '3',

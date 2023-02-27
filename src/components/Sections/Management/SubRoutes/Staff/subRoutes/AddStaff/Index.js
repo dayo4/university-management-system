@@ -258,6 +258,7 @@ const Newstaff = () => {
                 filterSort={(optionA, optionB) =>
                   (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
                 }
+                defaultValue={allData.facultyid ? allData.facultyid : null }
                 options={listFaculty.map((fac) => {
                   return {
                     value: fac.id,
@@ -279,6 +280,7 @@ const Newstaff = () => {
                 filterSort={(optionA, optionB) =>
                   (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
                 }
+                defaultValue={allData.deptid ? allData.deptid : null }
                 onChange={onDeptChange}
                 placeholder={disableDeptInput ? "You Must Select A Faculty" : "Select A Department"}
                 options={listDepartment ? listDepartment.map((dept) => {
@@ -302,6 +304,7 @@ const Newstaff = () => {
                 filterSort={(optionA, optionB) =>
                   (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
                 }
+                defaultValue={allData.jobPos ? allData.jobPos : null }
                 placeholder="Select Job Position"
                 options={[
                   {
@@ -321,6 +324,7 @@ const Newstaff = () => {
                 style={{
                   width: '100%'
                 }}
+                defaultValue={allData.level ? allData.level : null }
                 onChange={onLevelChange}
                 placeholder="Select Staff Level"
                 options={[

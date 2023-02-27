@@ -59,6 +59,7 @@ const Student = () => {
       apptoken: apptoken,
       usertoken: userData.usertoken,
     };
+    setploading(true);
 
     await axios
       .post(` ${process.env.REACT_APP_UMS_BASE}/general/listAllStudents`, studentfData)
@@ -67,16 +68,33 @@ const Student = () => {
         if (res.data.success === false) {
           message.error('unable to get data!')
         } else {
-          setStudentList(res.data.data);
-          // if (devMode)
-            localStorage.setItem('studentList', JSON.stringify(res.data.data));
+          const randomColors = ['yellow', 'red', 'lightblue', 'green', 'blue', 'brown', 'cyan', 'teal']
+          const studs = res.data.data
+          const tableData =
+            studs.map((stud) => {
+              return {
+                key: stud.id,
+                image: <div className="StudentsImgAlt" style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}>{stud.fname.charAt(0) + stud.lname.charAt(0)}</div>,
+                name: stud.fname + ' ' + stud.lname,
+                faculty: 'Mgt Science',
+                department: 'Business Admin',
+                level: '100',
+                email: stud.mail,
+                action: <Button onClick={() => navigate('/management/student/view/' + stud.id, { state: {} })} style={{ border: 'solid 1px #1677ff', }}>
+                  Open
+                </Button>
+              }
+            })
+
+          localStorage.setItem('studentList', JSON.stringify(res.data.data));
+          setStudentList(tableData);
         }
 
         setploading(false);
       })
 
       .catch((err) => {
-        console.log(err);
+        setploading(false);
         setTimeout(() => {
           fetchStudents();
         }, 20000);
@@ -129,25 +147,6 @@ const Student = () => {
     },
   ];
 
-  const tableData = []
-  const randomColors = ['yellow', 'red', 'lightblue', 'green', 'blue', 'brown', 'cyan', 'teal']
-  for (let i = 0; i < studentList.length; i++) {
-    tableData.push(
-      {
-        key: i,
-        image: <div className="StudentsImgAlt" style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}>{studentList[i].fname.charAt(0) + studentList[i].lname.charAt(0)}</div>,
-        name: studentList[i].fname + ' ' + studentList[i].lname,
-        faculty: 'Mgt Science',
-        department: 'Business Admin',
-        level: '100',
-        email: studentList[i].mail,
-        action: <Button onClick={() => navigate('/management/student/view/' + studentList[i].id, { state: {} })} style={{ border: 'solid 1px #1677ff', }}>
-          Open
-        </Button>
-      }
-    )
-  }
-
   const tabsContent = [
     {
       key: '1',
@@ -159,58 +158,62 @@ const Student = () => {
           <h6>Students</h6>
         </div>,
       children: <Row justify={'center'}>
-        <Col xs={24}>
-          <Row justify={{ xs: 'start', md: 'space-between' }} align={'middle'} className="StatsSummary_Students">
-            <Col xs={12} md={5} className="Summary1">
-              <div className="Icon">
-                <Icon path={mdiAccountSchoolOutline}
-                  size={1}
-                />
-              </div>
-              <div className="Text">
-                <p>Total Stadents</p>
-                <h5>15,000</h5>
-              </div>
-            </Col>
+        {ploading ? (
+          <AppLoader nameloader={"Students"} loading={ploading} />
+        ) : (
+          <Col xs={24}>
+            <Row justify={{ xs: 'start', md: 'space-between' }} align={'middle'} className="StatsSummary_Students">
+              <Col xs={12} md={5} className="Summary1">
+                <div className="Icon">
+                  <Icon path={mdiAccountSchoolOutline}
+                    size={1}
+                  />
+                </div>
+                <div className="Text">
+                  <p>Total Stadents</p>
+                  <h5>15,000</h5>
+                </div>
+              </Col>
 
-            <Col xs={12} md={5} className="Summary2">
-              <div className="Icon">
-                <Icon path={mdiArrowTopRight}
-                  size={1}
-                />
-              </div>
-              <div className="Text">
-                <p>Total Requests</p>
-                <h5>4,860</h5>
-              </div>
-            </Col>
+              <Col xs={12} md={5} className="Summary2">
+                <div className="Icon">
+                  <Icon path={mdiArrowTopRight}
+                    size={1}
+                  />
+                </div>
+                <div className="Text">
+                  <p>Total Requests</p>
+                  <h5>4,860</h5>
+                </div>
+              </Col>
 
-            <Col xs={12} md={5} className="Summary3">
-              <div className="Icon">
-                <Icon path={mdiCheckAll}
-                  size={1}
-                />
-              </div>
-              <div className="Text">
-                <p>Accepted Requests</p>
-                <h5>3,578</h5>
-              </div>
-            </Col>
+              <Col xs={12} md={5} className="Summary3">
+                <div className="Icon">
+                  <Icon path={mdiCheckAll}
+                    size={1}
+                  />
+                </div>
+                <div className="Text">
+                  <p>Accepted Requests</p>
+                  <h5>3,578</h5>
+                </div>
+              </Col>
 
-            <Col xs={12} md={5} className="Summary4">
-              <div className="Icon">
-                <Icon path={mdiArrowBottomRight}
-                  size={1}
-                />
-              </div>
-              <div className="Text">
-                <p>Declined Requests</p>
-                <h5>198</h5>
-              </div>
-            </Col>
-          </Row>
-          <Table className='StudentsTable' scroll={{ x: '100%' }} columns={tableColumns} dataSource={tableData} />
-        </Col>
+              <Col xs={12} md={5} className="Summary4">
+                <div className="Icon">
+                  <Icon path={mdiArrowBottomRight}
+                    size={1}
+                  />
+                </div>
+                <div className="Text">
+                  <p>Declined Requests</p>
+                  <h5>198</h5>
+                </div>
+              </Col>
+            </Row>
+            <Table className='StudentsTable' scroll={{ x: '100%' }} columns={tableColumns} dataSource={studentList} />
+          </Col>
+        )}
       </Row>,
     },
     {
@@ -227,31 +230,25 @@ const Student = () => {
   ];
 
   return (
-    <div>
-      {ploading ? (
-        <AppLoader nameloader={"Students"} loading={ploading} />
-      ) : (
-        <div className="MgtStudentsOverview">
-          <Row justify={{xs: 'start' , sm: 'space-between'}} className="TopActions">
-            <h6>Students Overview</h6>
+    <div className="MgtStudentsOverview">
+      <Row justify={{ xs: 'start', sm: 'space-between' }} className="TopActions">
+        <h6>Students Overview</h6>
 
-            <div>
-              <Button
-                icon={<Icon path={mdiFilter} size={1} />}>
-                Filter
-              </Button>
-              <Button
-                icon={<Icon path={mdiAccountMultiplePlusOutline} size={1} style={{ marginRight: '5px' }} />}
-                onClick={() => navigate("/management/student/add")}>
-                Add Student
-              </Button>
-            </div>
-          </Row>
-
-          <Tabs className="AllTabs"  defaultActiveKey="1" items={tabsContent}> </Tabs>
-
+        <div>
+          <Button
+            icon={<Icon path={mdiFilter} size={1} />}>
+            Filter
+          </Button>
+          <Button
+            icon={<Icon path={mdiAccountMultiplePlusOutline} size={1} style={{ marginRight: '5px' }} />}
+            onClick={() => navigate("/management/student/add")}>
+            Add Student
+          </Button>
         </div>
-      )}
+      </Row>
+
+      <Tabs className="AllTabs" defaultActiveKey="1" items={tabsContent}> </Tabs>
+
     </div>
   );
 };

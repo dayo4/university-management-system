@@ -17,6 +17,7 @@ import StaffSection from "./components/Sections/Staff/Index";
 import StudentsSection from "./components/Sections/Student/Index";
 
 // import IconsPreview from "./devOnly/IconsPreview";
+import LinkTest from "./devOnly/LinkTest";
 
 function App() {
   return (
@@ -36,7 +37,8 @@ function App() {
           <Route path="/student/*" element={<StudentsSection />} exact />
 
           {/* DevMode IconsPreview */}
-          {/* <Route path="/icons-preview" element={<IconsPreview />} exact /> */}
+          {/* <Route path="/icons" element={<IconsPreview />} exact /> */}
+          <Route path="/test" element={<LinkTest />} exact />
         </Routes>
       </Router>
     </div>

@@ -7,7 +7,8 @@ import { Button, Col, message, Row, Table } from "antd";
 import axios from "axios";
 import {
   mdiAccountMultiplePlusOutline,
-  mdiCheckAll, mdiFilter
+  mdiCheckAll, 
+  mdiFilter
 } from '@mdi/js';
 import Icon from "@mdi/react";
 
@@ -17,8 +18,6 @@ const Staff = () => {
     JSON.parse(localStorage.getItem("userData"))
   );
   const [staffList, setStaffList] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(3);
 
   // PRELOADER
   const [ploading, setploading] = useState(false);
@@ -50,6 +49,7 @@ const Staff = () => {
       apptoken: apptoken,
       usertoken,
     };
+    setploading(true);
 
     await axios
       .post(`${process.env.REACT_APP_UMS_BASE}/general/listAllStaffs`, staffData)
@@ -58,9 +58,25 @@ const Staff = () => {
           message.error('unable to get data!')
         } else {
           console.log(res.data.data)
-          setStaffList(res.data.data);
-          // if (devMode)
+          const randomColors = ['yellow', 'red', 'lightblue', 'green', 'blue', 'brown', 'cyan', 'teal']
+          const studs = res.data.data
+          const tableData =
+            studs.map((stud) => {
+              return {
+                key: stud.id,
+                image: <div className="StaffImgAlt" style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}>{stud.fname.charAt(0) + stud.lname.charAt(0)}</div>,
+                name: stud.fname + ' ' + stud.lname,
+                faculty: 'Mgt Science',
+                department: 'Business Admin',
+                email: stud.mail,
+                action: <Button onClick={() => navigate('/management/staff/view/' + stud.id, { state: {} })} style={{ border: 'solid 1px #1677ff', }}>
+                  Open
+                </Button>
+              }
+            })
+
             localStorage.setItem('staffList', JSON.stringify(res.data.data));
+          setStaffList(tableData);
         }
 
         setploading(false);
@@ -145,53 +161,33 @@ const Staff = () => {
     },
   ];
 
-  const tableData = []
-  const randomColors = ['yellow', 'red', 'lightblue', 'green', 'blue', 'brown', 'cyan', 'teal']
-  for (let i = 0; i < staffList.length; i++) {
-    tableData.push(
-      {
-        key: i,
-        image: <div className="StaffImgAlt" style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}>{staffList[i].fname.charAt(0) + staffList[i].lname.charAt(0)}</div>,
-        name: staffList[i].fname + ' ' + staffList[i].lname,
-        faculty: 'Mgt Science',
-        department: 'Business Admin',
-        email: staffList[i].mail,
-        action: <Button onClick={() => navigate('/management/staff/view/' + staffList[i].id, { state: {} })} style={{ border: 'solid 1px #1677ff', }}>
-          Open
-        </Button>
-      }
-    )
-  }
-
   return (
-    <div>
-      {ploading ? (
-        <AppLoader nameloader={"Staff"} loading={ploading} />
-      ) : (
-        <div className="MgtStaffOverview">
-          <Row  justify={{xs: 'start' , sm: 'space-between'}} align={'middle'} className="TopActions">
-            <h6>Staff Overview</h6>
+    <div className="MgtStaffOverview">
+      <Row justify={{ xs: 'start', sm: 'space-between' }} align={'middle'} className="TopActions">
+        <h6>Staff Overview</h6>
 
-            <div className="filter-cont">
-              <Button
-                icon={<Icon path={mdiFilter} size={1} />}>
-                Filter
-              </Button>
-              <Button
-                icon={<Icon path={mdiAccountMultiplePlusOutline} size={1} />}
-                onClick={() => navigate("/management/staff/add")}>
-                Onboard Staff
-              </Button>
-            </div>
-          </Row>
-
-          <Row justify={'center'}>
-            <Col xs={24}>
-              <Table style={{marginTop: '10px'}} className='StaffTable' scroll={{ x: '100%' }} columns={tableColumns} dataSource={tableData} />
-            </Col>
-          </Row>
+        <div className="filter-cont">
+          <Button
+            icon={<Icon path={mdiFilter} size={1} />}>
+            Filter
+          </Button>
+          <Button
+            icon={<Icon path={mdiAccountMultiplePlusOutline} size={1} />}
+            onClick={() => navigate("/management/staff/add")}>
+            Onboard Staff
+          </Button>
         </div>
-      )}
+      </Row>
+
+      <Row justify={'center'}>
+        {ploading ? (
+          <AppLoader loading={ploading} />
+        ) : (
+          <Col xs={24}>
+            <Table style={{ marginTop: '10px' }} className='StaffTable' scroll={{ x: '100%' }} columns={tableColumns} dataSource={staffList} />
+          </Col>
+        )}
+      </Row>
     </div>
   );
 };

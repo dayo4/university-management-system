@@ -11,7 +11,7 @@ import axios from 'axios';
 
 
 
-const Attendance = () => {
+const Assessment = () => {
   const [courseList, setCourseList] = useState([]);
   const [apptoken, setpptoken] = useState(process.env.REACT_APP_UMS_TOKEN);
 
@@ -122,7 +122,7 @@ const Attendance = () => {
          <Col xs={24} md={20}>
            <Table className='CTable' columns={tableColumns} dataSource={tableData} />
          </Col>
-         <Col xs={24} md={20}>
+         {/* <Col xs={24} md={20}>
            <Row justify="space-between" className='Actions'>
              <span></span>
              <Button
@@ -134,9 +134,9 @@ const Attendance = () => {
                />}
              >Apply</Button>
            </Row>
-         </Col>
+         </Col> */}
        </Row>
      </div>
    )
  }
-export default Attendance
+export default Assessment

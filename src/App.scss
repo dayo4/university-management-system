@@ -124,7 +124,9 @@ $ws-font: "Work Sans", sans-serif;
 .ant-message {
   z-index: 2000 !important;
 }
-
+.ant-checkbox-inner {
+  border: solid 1px $pri-color-faded !important;
+}
 
 @include xs-only {
   td {
