@@ -179,7 +179,7 @@ const Attendance = () => {
   /*  Table Colomns  */
   const tableColumns = [
     {
-      title: 'Select',
+      // title: 'Select',
       dataIndex: 'select',
       key: 'select',
     },
@@ -222,12 +222,12 @@ const Attendance = () => {
           }
           onChange={onCourseChange}
           defaultValue={'1'}
-          options={courseList.map((crs) => {
+          options={courseList ?courseList.map((crs) => {
             return {
               value: crs.id,
               label: crs.course,
             }
-          })}
+          }): []}
         />
       </Col>
       <Col xs={24} md={20}>
@@ -235,7 +235,7 @@ const Attendance = () => {
         {ploading ? (
           <AppLoader nameloader={"Students"} loading={ploading} />
         ) : (
-          <Table rowSelection={rowSelection} className='CTable' columns={tableColumns} dataSource={studentList} />
+          <Table rowSelection={rowSelection} className='CTable' scroll={{ x: '100%' }} columns={tableColumns} dataSource={studentList} />
         )}
       </Col>
       <Col xs={24} md={20}>

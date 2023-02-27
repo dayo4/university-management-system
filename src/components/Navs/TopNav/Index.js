@@ -135,7 +135,7 @@ const Topnav = (props) => {
             </Popover>
 
             {/* User Profile */}
-            <Popover className="Profile" placement="bottomRight" title={
+            <Popover  className="Profile" placement="bottomRight" title={
               <Divider plain style={{ color: "#8C8CA2", paddingTop: '10px' }} ><b>{ShowBasedOnAccType({
                 mgt: 'Admin',
                 staff: 'Staff',

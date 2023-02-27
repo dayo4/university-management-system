@@ -120,7 +120,7 @@ const Assessment = () => {
           />
         </Col>
          <Col xs={24} md={20}>
-           <Table className='CTable' columns={tableColumns} dataSource={tableData} />
+           <Table className='CTable' scroll={{ x: '100%' }} columns={tableColumns} dataSource={tableData} />
          </Col>
          {/* <Col xs={24} md={20}>
            <Row justify="space-between" className='Actions'>

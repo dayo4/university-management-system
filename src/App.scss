@@ -1,15 +1,15 @@
 @import "./Mixins.scss";
 
-#PageAwaitingDesign{
-display: flex;
-justify-content: center;
-align-items: center;
-height: 300px;
-width: 100%;
-font-size: 20px;
-background-color: $subtle-bg-color;
-color: $body-text-color;
-margin-top: 20px;
+#PageAwaitingDesign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: 100%;
+  font-size: 20px;
+  background-color: $subtle-bg-color;
+  color: $body-text-color;
+  margin-top: 20px;
 }
 
 /* .App {
@@ -55,7 +55,7 @@ margin-top: 20px;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Work Sans', sans-serif;
+  font-family: "Work Sans", sans-serif;
 }
 
 /* font-family: 'Work Sans', sans-serif; */
@@ -91,7 +91,6 @@ p {
 p {
   margin: 0;
 }
-
 
 $primary-t-color: #1315ba;
 $muted-t-color: rgba(157, 162, 176, 0.76);
@@ -129,8 +128,23 @@ $ws-font: "Work Sans", sans-serif;
 }
 
 @include xs-only {
-  td {
-    min-width: 150px !important;
+  tr {
+    // & td:not(:first-child) {
+    //   min-width: 150px !important;
+    // }
+    // & td {
+    //   min-width: 60px !important;
+    // }
+    & td:first-child {
+      min-width: 60px !important;
+    }
+    & td:nth-child(2), 
+    & td:nth-child(3), 
+    & td:nth-child(4), 
+    & td:nth-child(5), 
+    & td:nth-child(6) {
+      min-width: 130px !important;
+    }
   }
 }
 // GLOBAL TABS STYLING
