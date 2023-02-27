@@ -136,14 +136,14 @@ $ws-font: "Work Sans", sans-serif;
     //   min-width: 60px !important;
     // }
     & td:first-child {
-      min-width: 60px !important;
+      min-width: 80px !important;
     }
     & td:nth-child(2), 
     & td:nth-child(3), 
     & td:nth-child(4), 
     & td:nth-child(5), 
     & td:nth-child(6) {
-      min-width: 130px !important;
+      min-width: 150px !important;
     }
   }
 }

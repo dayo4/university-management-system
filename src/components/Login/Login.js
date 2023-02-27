@@ -74,7 +74,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    authUser()
+    // authUser()
   }, []);
 
   // TOOGLE PASSWORD

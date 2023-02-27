@@ -59,11 +59,11 @@ const Courses = () => {
 
   /*  Table Colomns  */
   const tableColumns = [
-    {
-      title: '',
-      dataIndex: 'select',
-      key: 'select',
-    },
+    // {
+    //   title: '',
+    //   dataIndex: 'select',
+    //   key: 'select',
+    // },
     {
       title: 'Course Code',
       dataIndex: 'course_code',

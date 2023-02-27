@@ -178,11 +178,11 @@ const Attendance = () => {
 
   /*  Table Colomns  */
   const tableColumns = [
-    {
-      // title: 'Select',
-      dataIndex: 'select',
-      key: 'select',
-    },
+    // {
+    //   // title: 'Select',
+    //   dataIndex: 'select',
+    //   key: 'select',
+    // },
     {
       title: 'Name',
       dataIndex: 'name',
