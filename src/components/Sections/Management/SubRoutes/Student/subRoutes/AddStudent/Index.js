@@ -220,27 +220,28 @@ const AddStudent = () => {
       <Row justify={{ xs: 'center', md: 'space-around' }}>
             <Col xs={20} sm={16} md={10} style={{ marginTop: '10px' }}>
               <h6 className='SubHead'>First Name</h6>
-              <Input value={allData.fname} type='text' onChange={(e) => setStudentData({ fname: e.target.value })} placeholder="First Name" />
+              <Input className="Input" value={allData.fname} type='text' onChange={(e) => setStudentData({ fname: e.target.value })} placeholder="First Name" />
             </Col>
             <Col xs={20} sm={16} md={10} style={{ marginTop: '10px' }}>
               <h6 className='SubHead'>Middle Name</h6>
-              <Input value={allData.mname} type='text' onChange={(e) => setStudentData({ mname: e.target.value })} placeholder="Middle Name" />
+              <Input className="Input" value={allData.mname} type='text' onChange={(e) => setStudentData({ mname: e.target.value })} placeholder="Middle Name" />
             </Col>
             <Col xs={20} sm={16} md={10} style={{ marginTop: '10px' }}>
               <h6 className='SubHead'>Last Name</h6>
-              <Input value={allData.lname} type='text' onChange={(e) => setStudentData({ lname: e.target.value })} placeholder="Last Name" />
+              <Input className="Input" value={allData.lname} type='text' onChange={(e) => setStudentData({ lname: e.target.value })} placeholder="Last Name" />
             </Col>
             <Col xs={20} sm={16} md={10} style={{ marginTop: '10px' }}>
               <h6 className='SubHead'>Matric Number</h6>
-              <Input value={allData.matricno} type='number' onChange={(e) => setStudentData({ matricno: e.target.value })} placeholder="Matric Number" />
+              <Input className="Input" value={allData.matricno} type='number' onChange={(e) => setStudentData({ matricno: e.target.value })} placeholder="Matric Number" />
             </Col>
             <Col xs={20} sm={16} md={10} style={{ marginTop: '10px' }}>
               <h6 className='SubHead'>Phone Number</h6>
-              <Input value={allData.phone} type='number' onChange={(e) => setStudentData({ phone: e.target.value })} placeholder="09001234567" />
+              <Input className="Input" value={allData.phone} type='number' onChange={(e) => setStudentData({ phone: e.target.value })} placeholder="09001234567" />
             </Col>
             <Col xs={20} sm={16} md={10} style={{ marginTop: '10px' }}>
               <h6 className='SubHead'>Faculty</h6>
               <Select
+              className="Input"
                 showSearch
                 style={{
                   width: '100%'

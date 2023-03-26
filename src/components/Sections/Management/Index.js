@@ -11,7 +11,10 @@ import "./Index.scss"
 /* Import management section routes */
 import Dashboard from "./SubRoutes/Dashboard/Index";
 import Memo from "./SubRoutes/Memo/Index";
+/* Import Finance subRoutes */
 import Finance from "./SubRoutes/Finance/Index";
+import Expenses from "./SubRoutes/Finance/subRoutes/expenses/Index";
+import Income from "./SubRoutes/Finance/subRoutes/income/Index";
 /* Import staff management subRoutes */
 import Staff from "./SubRoutes/Staff/Index";
 import AddStaff from "./SubRoutes/Staff/subRoutes/AddStaff/Index";
@@ -24,6 +27,7 @@ import AddStudent from "./SubRoutes/Student/subRoutes/AddStudent/Index";
 import Settings from "./SubRoutes/Settings/Index";
 import Profile from "./SubRoutes/Profile/Index";
 
+import { ChangeTopNavTitle } from "@/components/UtilFunctions"
 
 const ManagementEntryPoint = ({ children }) => {
   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -31,12 +35,12 @@ const ManagementEntryPoint = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(!userData /* || userData.acc_type != "management" */){
+    if (!userData /* || userData.acc_type != "management" */) {
       navigate("/")
       message.info("You Must Login To Continue..")
     }
   }, []);
-
+  
   function setBreadCrumb() {
     const arr = ['dashboard']
     const current_path = pathname.split('/').slice(2)
@@ -52,11 +56,10 @@ const ManagementEntryPoint = ({ children }) => {
     })
   }
 
-
   // if (user.acc_type === "management") {
   return (
     <div id="MANAGEMENT-WHOLE">
-      <Topnav title={"Dashboard"} />
+      <Topnav title={ChangeTopNavTitle()} />
       <SideNav />
 
       <Row justify="center" id="MARGIN-APP" >
@@ -72,6 +75,11 @@ const ManagementEntryPoint = ({ children }) => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/memo" element={<Memo />} />
             <Route path="/finance" element={<Finance />} />
+            <Route path="finance/*">
+              <Route path="overview" element={<Finance />} />
+              <Route path="expenses" element={<Expenses />} />
+              <Route path="income" element={<Income />} />
+            </Route>
             <Route path="staff/*">
               <Route path="overview" element={<Staff />} />
               <Route path="add" element={<AddStaff />} />
@@ -80,7 +88,7 @@ const ManagementEntryPoint = ({ children }) => {
               </Route>
               {/* <Route path="edit" element={<EditStaff />} /> */}
             </Route>
-            <Route path="student/*">
+            <Route path="students/*">
               <Route path="overview" element={<Student />} />
               <Route path="add" element={<AddStudent />} />
             </Route>

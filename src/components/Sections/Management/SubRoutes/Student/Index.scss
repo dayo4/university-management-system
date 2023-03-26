@@ -1,24 +1,38 @@
-@import "../../../../../Mixins.scss";
+@import "@/Mixins.scss";
 
 .MgtStudentsOverview {
   & .TopActions {
     height: 40px;
     margin-bottom: 5px;
     font-weight: 900;
-    & h6 {
-     color: $body-text-color;
-     font-size: 18px;
+
+    & .StdSearch button {
+      border-color: #d9d9d9;
+      border-left: none;
     }
-    & button {
-     color: $pri-color;
-     border-color: $pri-color;
-     margin-right: 15px;
-    }
-    & svg {
-      margin-right: 3px;
+
+    & .BtnsWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      & button {
+        margin-right: 15px;
+      }
+      & .FilterBtn {
+        border-color: rgb(224, 224, 224);
+        color: $pri-color;
+      }
+      & .PlusBtn {
+        background-color: $pri-color;
+        color: white;
+      }
+      & svg {
+        margin-right: 3px;
+      }
     }
   }
-  
+
   & .StudentsTabsHeading {
     display: flex;
     justify-content: center;
@@ -37,18 +51,24 @@
   & .ant-tabs {
     width: 100% !important;
   }
- }
+}
 
+.StudentNameCont {
+  display: flex;
+  align-items: center;
+}
 .StudentsImgAlt {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40px;
-  width: 40px;
+  height: 22px;
+  width: 22px;
+  min-width: 22px;
   color: white;
-  font-size: 20px;
+  font-size: 10px;
   font-weight: bold;
   border-radius: 28px;
+  margin-right: 5px;
 }
 
 .StatsSummary_Students {
@@ -89,7 +109,7 @@
         color: #f4780f;
         background-color: #f57a0f2c;
       }
-      & .Text {  
+      & .Text {
         h5 {
           color: #f4780f;
         }
@@ -100,7 +120,7 @@
         color: $pri-color;
         background-color: #4b4eed2c;
       }
-      & .Text {  
+      & .Text {
         h5 {
           color: $pri-color;
         }
@@ -108,23 +128,23 @@
     }
     &.Summary3 {
       & .Icon {
-        color: #09A1CF;
+        color: #09a1cf;
         background-color: #09a1cf31;
       }
-      & .Text {  
+      & .Text {
         h5 {
-          color: #09A1CF;
+          color: #09a1cf;
         }
       }
     }
     &.Summary4 {
       & .Icon {
-        color: #FC0646;
-        background-color: #FC064631;
+        color: #fc0646;
+        background-color: #fc064631;
       }
-      & .Text {  
+      & .Text {
         h5 {
-          color: #FC0646;
+          color: #fc0646;
         }
       }
     }
@@ -133,14 +153,36 @@
 
 .StudentsTable {
   & td {
-      font-weight: bold;
-      font-size: 12px;
-      color: $body-text-color;
-      text-align: left;
+    // font-weight: bold;
+    font-size: 12px;
+    color: $body-text-color;
+    text-align: left;
   }
 }
 
 @include xs-only {
+  .MgtStudentsOverview {
+    & .TopActions {
+      height: 60px;
+
+      & .StdSearch {
+        margin-bottom: 10px;
+      }
+
+      & .BtnsWrapper {
+
+        & button {
+          color: $pri-color;
+          border-color: $pri-color;
+          margin-right: 15px;
+        }
+        & svg {
+          margin-right: 3px;
+        }
+      }
+    }
+  }
+
   .AllTabs {
     margin-top: 25px;
   }

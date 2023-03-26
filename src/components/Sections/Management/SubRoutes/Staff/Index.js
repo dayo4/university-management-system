@@ -3,14 +3,18 @@ import { useState, useEffect } from "react";
 import "./Index.scss";
 import { Link, useNavigate } from "react-router-dom";
 import AppLoader from "../../../../../Loader";
-import { Button, Col, message, Row, Table } from "antd";
+import { Button, Col, message, Row, Table, Input } from "antd";
 import axios from "axios";
 import {
   mdiAccountMultiplePlusOutline,
-  mdiCheckAll, 
-  mdiFilter
+  mdiCheckAll,
+  mdiFilter,
+  mdiFilterOutline
 } from '@mdi/js';
 import Icon from "@mdi/react";
+
+import Filter from '@/components/globalComponents/Filter'
+const { Search } = Input;
 
 const Staff = () => {
   const [apptoken, setpptoken] = useState(process.env.REACT_APP_UMS_TOKEN);
@@ -18,6 +22,7 @@ const Staff = () => {
     JSON.parse(localStorage.getItem("userData"))
   );
   const [staffList, setStaffList] = useState([]);
+  const [toggleFilter, setToggleFilter] = useState(false);
 
   // PRELOADER
   const [ploading, setploading] = useState(false);
@@ -64,8 +69,8 @@ const Staff = () => {
             studs.map((stud) => {
               return {
                 key: stud.id,
-                image: <div className="StaffImgAlt" style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}>{stud.fname.charAt(0) + stud.lname.charAt(0)}</div>,
-                name: stud.fname + ' ' + stud.lname,
+                // image: <div className="StaffImgAlt" style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}>{stud.fname.charAt(0) + stud.lname.charAt(0)}</div>,
+                name: <div className="StaffNameCont"><div className="StaffImgAlt" style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}>{stud.fname.charAt(0) + stud.lname.charAt(0)}</div><div>{stud.fname + ' ' + stud.lname}</div></div>,
                 faculty: 'Mgt Science',
                 department: 'Business Admin',
                 email: stud.mail,
@@ -75,7 +80,7 @@ const Staff = () => {
               }
             })
 
-            localStorage.setItem('staffList', JSON.stringify(res.data.data));
+          localStorage.setItem('staffList', JSON.stringify(res.data.data));
           setStaffList(tableData);
         }
 
@@ -125,11 +130,11 @@ const Staff = () => {
 
   /*  Table Colomns  */
   const tableColumns = [
-    {
-      // title: 'Image',
-      dataIndex: 'image',
-      key: 'image',
-    },
+    // {
+    //   // title: 'Image',
+    //   dataIndex: 'image',
+    //   key: 'image',
+    // },
     {
       title: 'Name',
       dataIndex: 'name',
@@ -164,22 +169,30 @@ const Staff = () => {
   return (
     <div className="MgtStaffOverview">
       <Row justify={{ xs: 'start', sm: 'space-between' }} align={'middle'} className="TopActions">
-        <h6>Staff Overview</h6>
-
-        <div className="filter-cont">
+        <Col xs={24} sm={9} className={'StaffSearch'}>
+          <Search placeholder="Search by name..." onSearch={''} />
+        </Col>
+        <Col xs={24} sm={14} className="BtnsWrapper">
           <Button
-            icon={<Icon path={mdiFilter} size={1} />}>
+            onClick={() => setToggleFilter(!toggleFilter)}
+            className="FilterBtn"
+            icon={<Icon path={mdiFilterOutline} size={1} />}
+          >
             Filter
           </Button>
           <Button
-            icon={<Icon path={mdiAccountMultiplePlusOutline} size={1} />}
+            className="PlusBtn"
+            icon={<Icon path={mdiAccountMultiplePlusOutline} size={1} style={{ marginRight: '5px' }} />}
             onClick={() => navigate("/management/staff/add")}>
-            Onboard Staff
+            Add Staff
           </Button>
-        </div>
+        </Col>
       </Row>
 
-      <Row justify={'center'}>
+      {/* Filter Conponent */}
+      <Filter toggleFilter={toggleFilter} closeFilter={() => setToggleFilter(!toggleFilter)} />
+
+      <Row justify={'center'} className={'StaffTableCont'}>
         {ploading ? (
           <AppLoader loading={ploading} />
         ) : (

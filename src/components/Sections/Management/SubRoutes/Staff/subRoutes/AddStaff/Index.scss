@@ -14,6 +14,12 @@
   }
 }
 
+.AddStaffPage2 {
+  & .Options {
+    margin-top: 20px;
+  }
+}
+
 .BackIcon {
   cursor: pointer;
   color: $pri-color;

@@ -43,7 +43,14 @@ const MgtSideNavLinks = ({ onRouteSwitch }) => {
   const navItems = [
     { icon: mdiViewDashboardOutline, name: 'Dashboard', link: '/dashboard' },
     { icon: mdiFileDocumentEditOutline, name: 'Memo', link: '/memo' },
-    { icon: mdiChartLine, name: 'Finance', link: '/finance' },
+    {
+      icon: mdiChartLine, name: 'Finance',
+      subLinks: [
+        { name: 'Dashboard', link: '/finance/overview' },
+        { name: 'Expenses', link: '/finance/expenses' },
+        { name: 'Income', link: '/finance/income' },
+      ]
+    },
     {
       icon: mdiAccountTieOutline, name: 'Staff', /* link: '/staff' */
       subLinks: [
@@ -52,10 +59,10 @@ const MgtSideNavLinks = ({ onRouteSwitch }) => {
       ]
     },
     {
-      icon: mdiAccountSchoolOutline, name: 'Student', /* link: '/student' */
+      icon: mdiAccountSchoolOutline, name: 'Students', /* link: '/student' */
       subLinks: [
-        { name: 'Overview', link: '/student/overview' },
-        { name: 'Add Student', link: '/student/add' },
+        { name: 'Overview', link: '/students/overview' },
+        { name: 'Add Student', link: '/students/add' },
       ]
     },
     { icon: mdiCogTransferOutline, name: 'Settings', link: '/Settings' },

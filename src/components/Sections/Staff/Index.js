@@ -25,6 +25,8 @@ import ReviewAssessments from "./SubRoutes/Assessments/SubRoutes/Review/Index";
 /* Resumption Routes */
 // import Resumption from "./SubRoutes/Resumption/Index";
 
+import { ChangeTopNavTitle } from "@/components/UtilFunctions"
+
 
 const StaffEntryPoint = ({ children }) => {
   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -55,7 +57,7 @@ const StaffEntryPoint = ({ children }) => {
 
   return (
     <div id="MANAGEMENT-WHOLE">
-      <Topnav title={"Dashboard"} />
+      <Topnav title={ChangeTopNavTitle()} />
       <SideNav />
 
       <Row justify="center" id="MARGIN-APP" >

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./Index.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { message, Button, Spin, Steps, Select, Row, Col, Input } from "antd";
+import { message, Button, Spin, Steps, Select, Row, Col, Input, Checkbox, Space } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
 import {
@@ -20,7 +20,7 @@ const Newstaff = () => {
     level: '',
     phone: '',
     facultyid: '',
-    jobPos:'',
+    jobPos: '',
     deptid: '',
     mail: '',
     pword: '',
@@ -46,8 +46,8 @@ const Newstaff = () => {
     getFaculties();
 
     const storedData = JSON.parse(localStorage.getItem("staffTemp1"))
-    if(storedData)
-      setAllData({...storedData})
+    if (storedData)
+      setAllData({ ...storedData })
   }, []);
 
   // GETTING LIST OF LEVELS
@@ -258,7 +258,7 @@ const Newstaff = () => {
                 filterSort={(optionA, optionB) =>
                   (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
                 }
-                defaultValue={allData.facultyid ? allData.facultyid : null }
+                defaultValue={allData.facultyid ? allData.facultyid : null}
                 options={listFaculty.map((fac) => {
                   return {
                     value: fac.id,
@@ -280,7 +280,7 @@ const Newstaff = () => {
                 filterSort={(optionA, optionB) =>
                   (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
                 }
-                defaultValue={allData.deptid ? allData.deptid : null }
+                defaultValue={allData.deptid ? allData.deptid : null}
                 onChange={onDeptChange}
                 placeholder={disableDeptInput ? "You Must Select A Faculty" : "Select A Department"}
                 options={listDepartment ? listDepartment.map((dept) => {
@@ -304,7 +304,7 @@ const Newstaff = () => {
                 filterSort={(optionA, optionB) =>
                   (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
                 }
-                defaultValue={allData.jobPos ? allData.jobPos : null }
+                defaultValue={allData.jobPos ? allData.jobPos : null}
                 placeholder="Select Job Position"
                 options={[
                   {
@@ -324,7 +324,7 @@ const Newstaff = () => {
                 style={{
                   width: '100%'
                 }}
-                defaultValue={allData.level ? allData.level : null }
+                defaultValue={allData.level ? allData.level : null}
                 onChange={onLevelChange}
                 placeholder="Select Staff Level"
                 options={[
@@ -346,16 +346,25 @@ const Newstaff = () => {
             <Col xs={20} sm={16} md={10} style={{ marginTop: '10px' }}>
               <h6 className='SubHead'>Password</h6>
               <Input.Password
-              value={allData.pword}
+                value={allData.pword}
                 onChange={(e) => setStaffData({ pword: e.target.value })}
                 required
               />
             </Col>
           </Row>
+
           :
-          <Row justify={'center'}>
-            <Col xs={24} sm={20} md={16}>
-              <div id="PageAwaitingDesign">Awaiting Page Design</div>
+
+          <Row justify={'center'} className={'AddStaffPage2'}>
+            <Col xs={24} sm={20}>
+              <div style={{ display: 'flex', alignItems: 'center' }}><h5 style={{ marginRight: '10px', marginBottom: '0px' }}>Features</h5>  (optional)</div>
+              <div>
+                <Space direction="vertical" className="Options">
+                  <Checkbox onChange={''}>Finance</Checkbox>
+                  <Checkbox checked={true} onChange={''}>Staff</Checkbox>
+                  <Checkbox onChange={''}>Student</Checkbox>
+                </Space>
+              </div>
             </Col>
           </Row>
       }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Request from "./Requests/Request";
 import axios from "axios";
 import AppLoader from "../../../../../Loader";
-import { Button, Col, Row, Table, Tabs } from "antd";
+import { Button, Col, Row, Table, Tabs, Input } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import "./Index.scss"
 import Icon from '@mdi/react';
@@ -18,12 +18,17 @@ import {
   mdiEmailCheckOutline,
   mdiEmailOpenMultipleOutline,
   mdiFilter,
+  mdiFilterOutline,
   mdiPlusBox,
 } from '@mdi/js';
+
+import Filter from '@/components/globalComponents/Filter'
+const { Search } = Input;
 
 const Student = () => {
   // TAB DECLEARATION
   const [toggleState, setToggleState] = useState(1);
+  const [toggleFilter, setToggleFilter] = useState(false);
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("userData"))
   );
@@ -74,10 +79,11 @@ const Student = () => {
             studs.map((stud) => {
               return {
                 key: stud.id,
-                image: <div className="StudentsImgAlt" style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}>{stud.fname.charAt(0) + stud.lname.charAt(0)}</div>,
-                name: stud.fname + ' ' + stud.lname,
+                // image: <div className="StudentsImgAlt" style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}>{stud.fname.charAt(0) + stud.lname.charAt(0)}</div>,
+                name: <div className="StudentNameCont"><div className="StudentsImgAlt" style={{ backgroundColor: randomColors[Math.floor(Math.random() * randomColors.length)] }}>{stud.fname.charAt(0) + stud.lname.charAt(0)}</div><div>{stud.fname + ' ' + stud.lname}</div></div>,
                 faculty: 'Mgt Science',
                 department: 'Business Admin',
+                matricno: stud.matricno,
                 level: '100',
                 email: stud.mail,
                 action: <Button onClick={() => navigate('/management/student/view/' + stud.id, { state: {} })} style={{ border: 'solid 1px #1677ff', }}>
@@ -104,11 +110,11 @@ const Student = () => {
 
   /*  Table Colomns  */
   const tableColumns = [
-    {
-      // title: 'Image',
-      dataIndex: 'image',
-      key: 'image',
-    },
+    // {
+    //   // title: 'Image',
+    //   dataIndex: 'image',
+    //   key: 'image',
+    // },
     {
       title: 'Name',
       dataIndex: 'name',
@@ -124,6 +130,11 @@ const Student = () => {
       title: 'Department',
       dataIndex: 'department',
       key: 'department',
+    },
+    {
+      title: 'matricno',
+      dataIndex: 'matricno',
+      key: 'matricno',
     },
     {
       title: 'Level',
@@ -231,21 +242,30 @@ const Student = () => {
 
   return (
     <div className="MgtStudentsOverview">
-      <Row justify={{ xs: 'start', sm: 'space-between' }} className="TopActions">
-        <h6>Students Overview</h6>
-
-        <div>
+      <Row justify={{ xs: 'start', sm: 'space-between' }} align={'middle'} className="TopActions">
+        {/* <h6>Students Overview</h6> */}
+        <Col xs={24} sm={9} className={'StdSearch'}>
+          <Search placeholder="Search by name..." onSearch={''} />
+        </Col>
+        <Col xs={24} sm={14} className="BtnsWrapper">
           <Button
-            icon={<Icon path={mdiFilter} size={1} />}>
+            onClick={() => setToggleFilter(!toggleFilter)}
+            className="FilterBtn"
+            icon={<Icon path={mdiFilterOutline} size={1} />}
+          >
             Filter
           </Button>
           <Button
+            className="PlusBtn"
             icon={<Icon path={mdiAccountMultiplePlusOutline} size={1} style={{ marginRight: '5px' }} />}
             onClick={() => navigate("/management/student/add")}>
             Add Student
           </Button>
-        </div>
+        </Col>
       </Row>
+
+      {/* Filter Conponent */}
+      <Filter toggleFilter={toggleFilter} closeFilter={() => setToggleFilter(!toggleFilter)} />
 
       <Tabs className="AllTabs" defaultActiveKey="1" items={tabsContent}> </Tabs>
 

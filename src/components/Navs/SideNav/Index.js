@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import "./Index.scss";
-import { message, Button } from "antd";
+import { message, Button, Select, Row, Col } from "antd";
 import Icon from '@mdi/react';
 import {
   mdiLogout,
@@ -17,7 +17,7 @@ import StaffSideNavLinks from "./Staff/Index"
 import StudentsSideNavLinks from "./Students/Index"
 import { ShowBasedOnAccType } from "../../UtilFunctions";
 
-const Sidenav = () => {
+const Sidenav = ({ }) => {
   let navigate = useNavigate();
   const { pathname } = useLocation()
 
@@ -32,6 +32,10 @@ const Sidenav = () => {
     navigate(`/`);
   };
 
+  function action() {
+    console.log('kf')
+    setNavshow(false)
+  }
   return (
     <div>
       <Icon className="SideNavBtn"
@@ -55,11 +59,56 @@ const Sidenav = () => {
             <img src={logo} alt="ums logo" />
           </div>
 
-          {/*  All main nav links display here. */}
+          <Row justify={'center'} align={'middle'} className="SideNavOpts">
+            <Col style={{
+              marginRight: '5px'
+            }}>
+              <h6>Session</h6>
+              <Select
+                style={{
+                  width: '100%'
+                }}
+                onChange={''}
+                defaultValue={'1'}
+                options={[
+                  {
+                    value: '1',
+                    label: '2021/2022',
+                  },
+                  {
+                    value: '2',
+                    label: '2022/2023',
+                  },
+                ]}
+              />
+            </Col>
+            <Col>
+              <h6>Semmester</h6>
+              <Select
+                style={{
+                  width: '100%'
+                }}
+                onChange={''}
+                defaultValue={'1'}
+                options={[
+                  {
+                    value: '1',
+                    label: '1st',
+                  },
+                  {
+                    value: '2',
+                    label: '2nd',
+                  },
+                ]}
+              />
+            </Col>
+          </Row>
+
+          {/*  All main nav links disp   e. */}
           {ShowBasedOnAccType({
-            mgt: <ManagementSideNavLinks onRouteSwitch={()=> setNavshow(false)} />,
-            staff: <StaffSideNavLinks onRouteSwitch={()=> setNavshow(false)} />,
-            student: <StudentsSideNavLinks onRouteSwitch={()=> setNavshow(false)} />
+            mgt: <ManagementSideNavLinks onRouteSwitch={action} />,
+            staff: <StaffSideNavLinks onRouteSwitch={action} />,
+            student: <StudentsSideNavLinks onRouteSwitch={action} />
           })}
 
         </section>

@@ -1,0 +1,44 @@
+@import "@/Mixins.scss";
+
+ .FilterCont {
+    margin-top: 25px;
+    margin-bottom: 5px;
+    padding: 10px;
+    border: solid $pri-color-faded 1px;
+    border-radius: 5px;
+    animation: fade-in 0.8s linear;
+
+    & .Filter {
+        margin-bottom: 10px;
+        & .FilterItem {
+            display: flex;
+            align-items: center;
+            width: 100%;
+
+            & .Label {
+                display: flex;
+                align-items: center;
+                height: 32px;
+                color: grey;
+                padding: 0 5px;
+                border-radius: 6px;
+                border: solid rgba(185, 185, 185, 0.593) 1px;
+            }
+        }
+    }
+
+    & .FilterBtns {
+        button {
+            color: $pri-color;
+        }
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

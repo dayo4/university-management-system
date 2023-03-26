@@ -147,7 +147,7 @@ const Finance = () => {
       </div>{" "}
       <div className="transac-cont">
         <div className="top-transaction">
-          <h5 className="SectionSubHeading">Expenses</h5>
+          <h5 className="SectionSubHeading">Transactions</h5>
 
           <Button>View all</Button>
         </div>

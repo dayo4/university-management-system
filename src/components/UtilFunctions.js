@@ -10,3 +10,14 @@ export function ShowBasedOnAccType({ mgt, staff, student }) {
     else
         return student
 }
+
+export function ChangeTopNavTitle(/* Objects containing paths and corresponding Name*/) {
+    const { pathname } = useLocation()
+let name = pathname.split('/')[2]
+    if (name) {
+        return name.charAt(0).toUpperCase() + name.slice(1)
+    }
+    else
+        return 'Dashboard'
+
+}

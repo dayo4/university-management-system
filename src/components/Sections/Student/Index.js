@@ -28,6 +28,8 @@ import Results from "./SubRoutes/Results/Index";
 /* Exit Routes */
 import Exit from "./SubRoutes/Exit/Index";
 
+import { ChangeTopNavTitle } from "@/components/UtilFunctions"
+
 
 const StudentsEntryPoint = ({ children }) => {
   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -58,7 +60,7 @@ const StudentsEntryPoint = ({ children }) => {
 
   return (
     <div id="MANAGEMENT-WHOLE">
-      <Topnav title={"Dashboard"} />
+      <Topnav title={ChangeTopNavTitle()} />
       <SideNav onTabSwitch />
 
       <Row justify="center" id="MARGIN-APP" >

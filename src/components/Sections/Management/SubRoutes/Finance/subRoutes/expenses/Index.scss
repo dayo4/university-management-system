@@ -1,11 +1,11 @@
-@import "../../../../../Mixins.scss";
+@import "@/Mixins.scss";
 
-.MgtStaffOverview {
+.FinExpsPage {
   & .TopActions {
     height: 40px;
     margin-bottom: 10px;
 
-    & .StaffSearch button {
+    & .ExpSearch button {
       border-color: #d9d9d9;
       border-left: none;
     }
@@ -31,44 +31,18 @@
       }
     }
   }
-}
 
-.StaffNameCont {
-  display: flex;
-  align-items: center;
-  & .StaffImgAlt {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 22px;
-    width: 22px;
-    min-width: 22px;
-    color: white;
-    font-size: 10px;
-    font-weight: bold;
-    border-radius: 28px;
-    margin-right: 5px;
-    }
-}
-
-.StaffTable {
-  & td {
-    // font-weight: bold;
-    font-size: 12px;
-    color: $body-text-color;
-    text-align: left;
-  }
 }
 
 @include xs-only {
   .StaffTableCont {
     margin-top: 10px;
   }
-  .MgtStaffOverview {
+  .FinExpsPage {
     & .TopActions {
       height: 60px !important;
 
-      & .StaffSearch {
+      & .ExpSearch {
         margin-bottom: 10px;
       }
 

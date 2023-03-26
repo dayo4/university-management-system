@@ -33,7 +33,15 @@ $form-bg-color: #f4f7fd;
 }
 
 .SideNavLogo {
+    margin-bottom: 20px;
+}
+.SideNavOpts {
+    width: 100%;
     margin-bottom: 30px;
+    & h6 {
+        color: white;
+        font-size: 13px;
+    }
 }
 
 .SideNavLinks {
