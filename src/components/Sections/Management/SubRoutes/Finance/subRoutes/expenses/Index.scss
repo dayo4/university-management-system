@@ -31,7 +31,16 @@
       }
     }
   }
+}
 
+.CreateExpenseOpts {
+  & h6 {
+    font-size: 13px;
+  }
+  & .ExtraOpts {
+    width: 100%;
+    margin-top: 20px;
+  }
 }
 
 @include xs-only {

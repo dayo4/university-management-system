@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 import "./Index.scss";
 import { Link, useNavigate } from "react-router-dom";
-import AppLoader from "../../../../../Loader";
 import { Button, Col, message, Row, Table, Input } from "antd";
 import axios from "axios";
 import {
@@ -13,6 +12,7 @@ import {
 } from '@mdi/js';
 import Icon from "@mdi/react";
 
+import AppLoader from "@/Loader";
 import Filter from '@/components/globalComponents/Filter'
 const { Search } = Input;
 

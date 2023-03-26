@@ -9,7 +9,7 @@ import {
 } from '@mdi/js';
 
 
-const Filter = ({ toggleFilter, closeFilter }) => {
+const Filter = ({ toggleFilter, closeFilter,  }) => {
     const [userData, setUserData] = useState(
         JSON.parse(localStorage.getItem("userData"))
     );

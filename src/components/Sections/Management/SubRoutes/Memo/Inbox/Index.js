@@ -98,19 +98,6 @@ const Inbox = (props, ref) => {
     },
   ];
 
-  /* Table Data */
-  const tableData = []
-  for (let i = 0; i < memoList.length; i++) {
-    tableData.push(
-      {
-        key: i,
-        image: <Icon path={mdiAccountCircle} size={1.4} />,
-        name: 'Adeola Mercy',
-        subject: memoList[i].subject,
-        period: memoList[i].timeago.split(',')[0] + ' ago',
-      }
-    )
-  }
 
   function onStarClicked(e) {
     let target = e.target.closest('.StarredIcon').id
@@ -137,7 +124,17 @@ const Inbox = (props, ref) => {
 
         <Row>
           <Col xs={24}>
-            <Table scroll={{ x: '100%' }} className='InboxTable' columns={tableColumns} dataSource={tableData} />
+            <Table scroll={{ x: '100%' }} className='InboxTable' columns={tableColumns} dataSource={
+              memoList.map((memo, i) => {
+                return {
+                  key: i,
+                  image: <Icon path={mdiAccountCircle} size={1.4} />,
+                  name: 'Adeola Mercy',
+                  subject: memo.subject,
+                  period: memo.timeago.split(',')[0] + ' ago',
+                }
+              })
+            } />
           </Col>
         </Row>
 
