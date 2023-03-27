@@ -3,7 +3,9 @@ import "./Index.scss";
 import Icon from '@mdi/react';
 import {
   mdiDeleteOutline,
+  mdiFileEdit,
   mdiFilterOutline,
+  mdiPencilOutline,
   mdiPlusOutline,
 } from '@mdi/js';
 import { Button, Col, Row, Table, Input, DatePicker, Modal, Select, message } from "antd";
@@ -86,31 +88,36 @@ const Expenses = () => {
       reason: expenseData.description,
       amount: expenseData.amount,
     };
-    
-    if (!btnLoading) {
-      setBtnLoading(true);
 
-      await axios
+    if (!data.reason)
+      message.info('Please enter the description')
+    else if (!data.amount)
+      message.info('Please enter the description')
+    else//
+      if (!btnLoading) {
+        setBtnLoading(true);
 
-        .post(` ${process.env.REACT_APP_UMS_BASE}/management/addExpenses`, data)
+        await axios
 
-        .then((res) => {
-          console.log(res);
-          if (res.data.success === true) {
-            message.success(res.data.message);
-            getExpenses()
+          .post(` ${process.env.REACT_APP_UMS_BASE}/management/addExpenses`, data)
+
+          .then((res) => {
+            console.log(res);
+            if (res.data.success === true) {
+              message.success(res.data.message);
+              getExpenses()
+              setBtnLoading(false);
+              setModalOpen(false);
+            } else {
+              setBtnLoading(false);
+              message.info(`${res.data.message} Please check your input again..`);
+            }
+          })
+          .catch((err) => {
             setBtnLoading(false);
-            setModalOpen(false);
-          } else {
-            setBtnLoading(false);
-            message.info(`${res.data.message} Please check your input again..`);
-          }
-        })
-        .catch((err) => {
-          setBtnLoading(false);
-          message.warning(err.message);
-        });
-    }
+            message.warning(err.message);
+          });
+      }
 
   };
 
@@ -176,7 +183,7 @@ const Expenses = () => {
           <AppLoader loading={loading} />
         ) : (
           <Col xs={24}>
-            <Table style={{ marginTop: '10px' }}  columns={tableColumns} dataSource={
+            <Table style={{ marginTop: '10px' }} scroll={{ x: '100%' }} columns={tableColumns} dataSource={
               expensesList.map((exp, i) => {
                 return {
                   key: i,
@@ -184,7 +191,7 @@ const Expenses = () => {
                   department: i < 3 ? 'Agric Science' : 'Finance',
                   amount: exp.amount,
                   date: exp.timeago.split(',')[0] + ' ago',
-                  action: <Icon path={mdiDeleteOutline} size={1} style={{ color: '#ff0000', cursor: 'pointer' }}></Icon>,
+                  action:<div> <Icon path={mdiDeleteOutline} size={1} style={{ color: '#ff0000', cursor: 'pointer', marginRight:'25px' }}></Icon><Icon path={mdiPencilOutline} size={1} style={{ color: '#1677ff', cursor: 'pointer' }}></Icon></div>,
                 }
               })
             } />

@@ -58,7 +58,13 @@ $form-bg-color: #f4f7fd;
 
         & button {
             display: flex;
+            background-color: white !important;
+            color: $pri-color;
+            border: solid 1px rgb(224, 224, 224);
             align-items: center;
+        }
+        & button:hover {
+            color: $pri-color;
         }
         & svg {
             font-weight: 900 !important;
