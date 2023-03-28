@@ -191,7 +191,7 @@ const Memo = () => {
               </Col>
             </Row>
 
-          <Tabs defaultActiveKey="1" items={tabsContent}> </Tabs>
+          <Tabs defaultActiveKey="1" items={tabsContent} className='MemoTabsMain'> </Tabs>
         </>
       )}
 

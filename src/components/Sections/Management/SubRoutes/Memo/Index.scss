@@ -12,9 +12,13 @@ $form-bg-color: #f4f7fd;
   border-radius: 10px;
 }
 
+.MemoTabsMain{
+min-width: 100%;
+}
+
 .MemoTabsHeading {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   & svg {
     color: $pri-color;

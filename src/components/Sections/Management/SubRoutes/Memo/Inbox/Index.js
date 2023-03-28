@@ -24,6 +24,49 @@ const Inbox = (props, ref) => {
     }
   }), [])
 
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const onSelectChange = (newSelectedRowKeys) => {
+    console.log('selectedRowKeys changed: ', newSelectedRowKeys);
+    setSelectedRowKeys(newSelectedRowKeys);
+  };
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: onSelectChange,
+    selections: [
+      Table.SELECTION_ALL,
+      Table.SELECTION_INVERT,
+      Table.SELECTION_NONE,
+      {
+        key: 'odd',
+        text: 'Select Odd Row',
+        onSelect: (changableRowKeys) => {
+          let newSelectedRowKeys = [];
+          newSelectedRowKeys = changableRowKeys.filter((_, index) => {
+            if (index % 2 !== 0) {
+              return false;
+            }
+            return true;
+          });
+          setSelectedRowKeys(newSelectedRowKeys);
+        },
+      },
+      {
+        key: 'even',
+        text: 'Select Even Row',
+        onSelect: (changableRowKeys) => {
+          let newSelectedRowKeys = [];
+          newSelectedRowKeys = changableRowKeys.filter((_, index) => {
+            if (index % 2 !== 0) {
+              return true;
+            }
+            return false;
+          });
+          setSelectedRowKeys(newSelectedRowKeys);
+        },
+      },
+    ],
+  };
+
   const getMemos = async () => {
     const { usertoken } = JSON.parse(localStorage.getItem("userData"))
     setploading(true);
@@ -60,26 +103,6 @@ const Inbox = (props, ref) => {
 
   const tableColumns = [
     {
-      dataIndex: 'image',
-      key: 'image',
-      className: 'UserImage'
-    },
-    {
-      dataIndex: 'name',
-      key: 'name',
-      className: 'UserName',
-    },
-    {
-      dataIndex: 'subject',
-      key: 'subject',
-      className: 'Subject'
-    },
-    {
-      dataIndex: 'period',
-      key: 'period',
-      className: 'Period'
-    },
-    {
       key: 'star',
       render: (value, record) => (
         <span onClick={onStarClicked} className="StarredIcon" id={record.key} >
@@ -95,6 +118,21 @@ const Inbox = (props, ref) => {
         </span>
       ),
       className: 'StarredMsg'
+    },
+    {
+      dataIndex: 'name',
+      key: 'name',
+      className: 'UserName',
+    },
+    {
+      dataIndex: 'subject',
+      key: 'subject',
+      className: 'Subject'
+    },
+    {
+      dataIndex: 'period',
+      key: 'period',
+      className: 'Period'
     },
   ];
 
@@ -124,12 +162,11 @@ const Inbox = (props, ref) => {
 
         <Row>
           <Col xs={24}>
-            <Table scroll={{ x: '100%' }} className='InboxTable' columns={tableColumns} dataSource={
+            <Table rowSelection={rowSelection} scroll={{ x: '100%' }} className='InboxTable' columns={tableColumns} dataSource={
               memoList.map((memo, i) => {
                 return {
                   key: i,
-                  image: <Icon path={mdiAccountCircle} size={1.4} />,
-                  name: 'Adeola Mercy',
+                  name:  'Adeola Mercy',
                   subject: memo.subject,
                   period: memo.timeago.split(',')[0] + ' ago',
                 }

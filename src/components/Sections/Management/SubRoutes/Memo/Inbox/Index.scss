@@ -1,10 +1,9 @@
-@import "../../../../../../Mixins.scss";
+@import "@/Mixins.scss";
 
 .InboxTable {
     & td {
-        font-weight: bold;
+        font-weight: 500 !important;
         font-size: 12px;
-        color: $body-text-color;
         text-align: left;
     }
     & .UserImage {
@@ -18,30 +17,46 @@
         cursor: pointer;
     }
     & .Period {
-        font-weight: normal ;
+        font-weight: normal;
     }
 
     & .StarredMsg svg {
         cursor: pointer;
-        color: $pri-color;
+        color: #EFD494 !important;
     }
 }
 
+.MemoNameCont {
+    display: flex;
+    align-items: center;
+}
+.MemoImgAlt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 22px;
+    width: 22px;
+    min-width: 22px;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 28px;
+    margin-right: 5px;
+}
+
 .inbox-memo-cont {
-    display:flex;
-    width:100%;
-    align-items:center;
+    display: flex;
+    width: 100%;
+    align-items: center;
     justify-content: space-between;
-    margin-top:20px;
+    margin-top: 20px;
 
-    .user-inbox-date  {
-
-
+    .user-inbox-date {
         p {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            font-family: 'Work Sans';
+            font-family: "Work Sans";
             font-style: normal;
             font-weight: 700;
             font-size: 16px;
@@ -54,14 +69,14 @@
         display: flex;
 
         .user-name-name {
-            margin-left:10px;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             // align-items:center;
 
             h6 {
-                font-family: 'Work Sans';
+                font-family: "Work Sans";
                 font-style: normal;
                 font-weight: 700;
                 margin-bottom: 0 !important;
@@ -74,7 +89,7 @@
             }
 
             p {
-                font-family: 'Work Sans';
+                font-family: "Work Sans";
                 font-style: normal;
                 font-weight: 300;
                 font-size: 12px;
@@ -87,12 +102,10 @@
         }
     }
 
-
     .user-inbox-details {
         padding: 0px 10px;
         p {
-
-            font-family: 'Work Sans';
+            font-family: "Work Sans";
             font-style: normal;
             font-weight: 600;
             font-size: 16px;
@@ -103,7 +116,7 @@
             white-space: nowrap;
 
             span {
-                font-family: 'Work Sans';
+                font-family: "Work Sans";
                 font-style: normal;
                 font-weight: 300;
                 font-size: 16px;
@@ -117,14 +130,30 @@
     }
 }
 
-
 .line-line {
     border: 1px solid rgba(196, 196, 196, 0.5);
     margin-top: 15px;
     width: 100%;
 }
 
-
 @media (max-width: 982px) {
+}
 
+@include xs-only {
+    .InboxTable {
+        tr {
+            & td:first-child {
+                min-width: 20px !important;
+            }
+            & td:nth-child(2) {
+                min-width: 20px !important;
+            }
+            & td:nth-child(3),
+            & td:nth-child(4),
+            & td:nth-child(5),
+            & td:nth-child(6) {
+                min-width: 150px !important;
+            }
+        }
+    }
 }

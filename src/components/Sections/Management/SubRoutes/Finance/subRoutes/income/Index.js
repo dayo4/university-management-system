@@ -144,7 +144,7 @@ const Income = () => {
                   department: 'Finance',
                   payment_status: <div className="PaymentStatus">{i % 2 === 0 ? <span style={{ color: '#007F00', backgroundColor:'#CDFFCD' }}>completed</span> : <span style={{ color: '#D30000', backgroundColor:'#FFE0E0' }}>part</span>} </div>,
                   amount: i % 2 === 0 ? 'NGN 23000' : 'NGN 10000',
-                  balance: i % 2 === 0 ? '' : 'NGN 13000'
+                  balance: i % 2 === 0 ? '-' : 'NGN 13000'
                 }
               })
             } />

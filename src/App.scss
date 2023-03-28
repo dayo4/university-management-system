@@ -127,6 +127,11 @@ $ws-font: "Work Sans", sans-serif;
   border: solid 1px $pri-color-faded !important;
 }
 
+tr {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
 @include xs-only {
   tr {
     // & td:not(:first-child) {
@@ -136,7 +141,7 @@ $ws-font: "Work Sans", sans-serif;
     //   min-width: 60px !important;
     // }
     & td:first-child {
-      min-width: 80px !important;
+      min-width: 110px !important;
     }
     & td:nth-child(2), 
     & td:nth-child(3), 
@@ -147,57 +152,3 @@ $ws-font: "Work Sans", sans-serif;
     }
   }
 }
-// GLOBAL TABS STYLING
-// .nav-link {
-//   border: none !important;
-//   font-family: "Work Sans" !important;
-//   font-style: normal !important;
-//   font-weight: 600 !important;
-//   font-size: 18px !important;
-//   line-height: 21px !important;
-//   display: flex !important;
-//   justify-content: center !important;
-//   align-items: center !important;
-//     color: rgba(0, 0, 0, 0.6) !important;
-
-// }
-
-// .nav-item {
-//   display: flex !important;
-//   justify-content: center !important;
-//   align-items: center !important;
-// }
-
-// .nav-link.active {
-//   border-bottom: 7px solid $primary-t-color !important;
-//   padding-left: 15px !important;
-//   justify-content: center !important;
-//   font-family: "Work Sans" !important;
-//   font-style: normal !important;
-//   font-weight: 600 !important;
-//   font-size: 18px !important;
-//   line-height: 21px !important;
-//     color: rgba(0, 0, 0, 0.6) !important;
-
-// }
-
-// .active img {
-//   margin-right: 10px !important;
-// }
-
-// .nav-link img {
-//     margin-right: 10px !important;
-
-// }
-
-// // .nav-link p::after {
-// //   display: none;
-// // }
-
-// .nav-link p {
-//     color:red;
-// }
-
-// .nav-link p::before {
-//     color: green;
-// }
