@@ -19,6 +19,9 @@ import StudentsSection from "./components/Sections/Student/Index";
 // import IconsPreview from "./devOnly/IconsPreview";
 // import LinkTest from "./devOnly/LinkTest";
 
+import HomeDelivery from './devOnly/dayo/home-delivery/Index'
+import PickUpGoods from './devOnly/dayo/pick-up-goods/Index'
+
 function App() {
   return (
     <div className="App">
@@ -39,6 +42,8 @@ function App() {
           {/* DevMode IconsPreview */}
           {/* <Route path="/icons" element={<IconsPreview />} exact /> */}
           {/* <Route path="/test" element={<LinkTest />} exact /> */}
+          <Route path="/d1" element={<HomeDelivery />} />
+          <Route path="/d2" element={<PickUpGoods />} />
         </Routes>
       </Router>
     </div>
