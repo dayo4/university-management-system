@@ -184,7 +184,10 @@ const Staff = () => {
             className="PlusBtn"
             icon={<Icon path={mdiAccountMultiplePlusOutline} size={1} style={{ marginRight: '5px' }} />}
             onClick={() => navigate("/management/staff/add")}>
+              <span>
+
             Add Staff
+              </span>
           </Button>
         </Col>
       </Row>
